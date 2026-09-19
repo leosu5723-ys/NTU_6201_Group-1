@@ -2,7 +2,7 @@
 
 Snapshot for whoever picks this up next. Read this first, then `review/PE6201_A2_TEAM_FAQ.md` for the member-facing answers and `review/PE6201_A2_PROGRESS_BOARD.md` for the board we share with the team.
 
-**Last updated:** 2026-09-19, 17:00 SGT. **Deadline: Sunday 2026-09-20, 23:59 SGT** (confirmed by Kyle against the Blackboard announcement of 9 September; the brief PDF still prints the superseded 13 September date). One member uploads for the group to Blackboard → Assignments → Submission - A2.
+**Last updated:** 2026-09-19, 18:20 SGT. **Deadline: Sunday 2026-09-20, 23:59 SGT for every artefact** — report, repository, self-appraisal, video link and the peer rating (confirmed by Kyle against the instructor's posting of 9 September; the brief PDF still prints the superseded 13 September date, and the Document Updates sheet still lists the peer rating at 16 September, so the shorter date no longer governs). One member uploads for the group to Blackboard → Assignments → Submission - A2.
 
 ## What this is
 

@@ -1,7 +1,7 @@
 # PE6201 A2 · Progress Board / 项目总进度看板
 
-**Problem A · Team B-1 · Deadline: Sunday 20 September 2026, 23:59 SGT**
-**截止时间：2026年9月20日（周日）23:59**
+**Problem A · Team B-1 · Deadline: Sunday 20 September 2026, 23:59 SGT — all artefacts, including the peer rating**
+**截止时间：2026年9月20日（周日）23:59，全部提交物（含 peer rating）**
 
 **Last updated / 更新于:** 19 September 2026, 16:50 SGT
 
