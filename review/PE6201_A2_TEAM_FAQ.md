@@ -1,6 +1,6 @@
 # PE6201 A2 · Team FAQ (current stage)
 
-**Problem A · Team B-1 · Frozen version `e64d2aa`**
+**Problem A · Team B-1 · Frozen version: tip of `main` (SHA confirmed in the group)**
 
 This is the current-stage reference for the team assistant. If your question is about the project, the answer should be here or in the documents this file points to.
 
@@ -8,7 +8,7 @@ This is the current-stage reference for the team assistant. If your question is 
 
 ## 1 · Where are we now?
 
-The engineering work is finished. The frozen version is on GitHub at commit `e64d2aa`:
+The engineering work is finished. The frozen version is the current tip of `main` on GitHub:
 
 ```
 https://github.com/leosu5723-ys/NTU_6201_Group-1
@@ -38,7 +38,7 @@ Your assigned cases are listed in `CASE_WORKSHEETS.md` and `TEAM_ACTION_PACK.md`
 ```bash
 git clone https://github.com/leosu5723-ys/NTU_6201_Group-1.git
 cd NTU_6201_Group-1
-git checkout e64d2aa
+
 python3 -m unittest discover -s tests -q   # expect 101 tests OK
 python3 run_eval.py                        # expect 60/60
 ```
@@ -72,7 +72,7 @@ The result file is written under `results/live/`.
 | Sun Hanyu | `deepseek/deepseek-v3.2` | v2 |
 | Zhang Jiayang | `google/gemini-2.5-flash-lite` | v1 |
 
-All six runs must use the **same commit, the same 40-case set and the same v2 prompt**. The model name is the only thing that may differ. That is what makes the comparison meaningful.
+All six runs must use the **same commit, the same 40-case set and the same v2 prompt**. Run `git rev-parse HEAD` and report the SHA; it must be identical across all six of us. The model name is the only thing that may differ. That is what makes the comparison meaningful.
 
 ---
 

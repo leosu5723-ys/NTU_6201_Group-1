@@ -81,13 +81,12 @@
 ## 6 · Frozen version / 冻结版本
 
 **Repository:** `https://github.com/leosu5723-ys/NTU_6201_Group-1`
-**Frozen experiment commit:** `e64d2aa` — this is the commit every battery must use.
-Later documentation commits on `main` do not change the code, prompt or cases, so check out `e64d2aa` explicitly rather than trusting the branch tip.
+**Frozen experiment commit:** the current tip of `main`. The code, prompt and cases are frozen; only documentation commits followed. Pull `main` and run `git rev-parse HEAD` — report that SHA with your result. SHI SHUYI confirms the accepted SHA in the group.
 
 ```bash
 git clone https://github.com/leosu5723-ys/NTU_6201_Group-1.git
 cd NTU_6201_Group-1
-git checkout e64d2aa
+
 python3 -m unittest discover -s tests -q   # expect 101 tests OK
 python3 run_eval.py                        # expect 60/60
 ```

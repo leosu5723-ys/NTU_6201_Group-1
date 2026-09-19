@@ -1,6 +1,6 @@
 # Pull, run, and push — step by step
 
-**Frozen experiment commit: `e64d2aa`**
+**Frozen experiment commit: the current tip of `main`**
 **Repository: https://github.com/leosu5723-ys/NTU_6201_Group-1**
 
 Two separate things, do not mix them up:
@@ -45,7 +45,7 @@ cd NTU_6201_Group-1
 Then create your own branch from the frozen commit:
 
 ```bash
-git checkout -b member/YOUR_NAME e64d2aa
+git checkout -b member/YOUR_NAME main
 ```
 
 If you already cloned the repository:
@@ -53,7 +53,7 @@ If you already cloned the repository:
 ```bash
 cd NTU_6201_Group-1
 git fetch --all
-git checkout -b member/YOUR_NAME e64d2aa
+git checkout -b member/YOUR_NAME main
 ```
 
 Replace `YOUR_NAME` with your name in lowercase, for example `member/meng-sijia`.
@@ -130,7 +130,7 @@ Name and date:
 
 | Step | Command | Why |
 |---|---|---|
-| 1 | `git checkout -b member/YOUR_NAME e64d2aa` | get the frozen version on your own branch |
+| 1 | `git checkout -b member/YOUR_NAME main` | get the frozen version on your own branch |
 | 2 | `python3 -m unittest discover -s tests -q` | confirm the checkout works |
 | 3 | `python3 live_battery.py --model ID --prompt-version v2` | free dry run |
 | 4 | the same command with `--execute` and your key | the real measurement |

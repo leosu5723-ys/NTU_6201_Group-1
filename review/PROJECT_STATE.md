@@ -14,7 +14,7 @@ MSc Enterprise AI, PE6201 A2, Team B-1, Problem A (health-insurance claim first 
 |---|---|
 | Assignment repo (public, submitted) | `/Users/kyle/Projects/NTU/PE6201-A2-Group-B1` |
 | Remote | `https://github.com/leosu5723-ys/NTU_6201_Group-1` |
-| **Frozen experiment commit** | **`e64d2aa`** — every battery must use this |
+| **Frozen experiment commit** | the tip of `main` at freeze time; SHA confirmed in the group. Code/prompt/cases are byte-identical to `e64d2aa` |
 | Team assistant project | `/Users/kyle/Projects/NTU/PE6201-Team-Assistant` |
 | Team bot profile | `/Users/kyle/.hermes/profiles/pe6201-team` (Telegram, group `-5364848522`) |
 | Member submissions received | `review/member_submissions/` and the bot's `runtime/submissions/` |
@@ -54,7 +54,7 @@ MSc Enterprise AI, PE6201 A2, Team B-1, Problem A (health-insurance claim first 
 - Exactly 40 cases, exactly 10 negatives, one trial per ordinary case and three per negative — 60 trials per battery.
 - Every member runs their own battery on their own key. Kyle does **not** run them all. The brief states this three times.
 - Nobody pushes to `main`; each member pushes `member/<name>` and SHI SHUYI merges.
-- Do not rewrite git history — it would change `e64d2aa`.
+- Do not rewrite git history — it would change the frozen SHA everyone is checking out.
 - The bot is not given raw filesystem access. Its corpus is a manifest allowlist; broadening it was explicitly rejected in favour of a richer published snapshot.
 
 ## Useful commands
