@@ -3,13 +3,15 @@
 **Problem A · Team B-1 · Deadline: Sunday 20 September 2026, 23:59 SGT**
 **截止时间：2026年9月20日（周日）23:59**
 
+**Last updated / 更新于:** 19 September 2026, 16:50 SGT
+
 ---
 
 ## 1 · Where we are / 目前位置
 
-**EN:** The engineering work is finished and frozen on GitHub — 101 unit tests pass and the offline scripted evaluation passes 60/60. One member's live battery is already complete. Everything remaining is human work that each member must do personally; the brief does not allow one person to do it on behalf of the team.
+**EN:** The engineering work is finished and frozen on GitHub — 101 unit tests pass and the offline scripted evaluation passes 60/60. **Five of the six live batteries have been run**, and all five ran on the frozen commit `42253ad` with identical case, answer-key and v2 prompt hashes. One battery is still outstanding (**Su Yang**), and one has arrived in the wrong form (**Sun Hanyu** — the run itself is complete and valid, but it was uploaded as an archive under `results/scripted/` instead of being committed under `results/live/`). Everything remaining is human work that each member must do personally; the brief does not allow one person to do it on behalf of the team.
 
-**中文：** 工程部分已经完成并在 GitHub 上冻结——101项单元测试通过，离线评测 60/60。已经有一套 live battery 跑完。剩下的全部是人工作业，必须每位成员亲自完成，老师不允许由一个人代劳。
+**中文：** 工程部分已经完成并在 GitHub 上冻结——101项单元测试通过，离线评测 60/60。**六套 live battery 已跑完五套**，且全部在冻结 commit `42253ad` 上运行，案例、答案键与 v2 prompt 哈希一致。还差 **Su Yang** 一套；**Sun Hanyu** 那套已经跑完、数据有效，但以压缩包形式上传到了 `results/scripted/`，需要按 `results/live/` 重新提交。剩下的全部是人工作业，必须每位成员亲自完成，老师不允许由一个人代劳。
 
 ---
 
@@ -20,18 +22,18 @@
 | 1 | System: single-agent loop, 7 tools, harness, guardrails, experiments, cost model | 工程系统：Agent循环、7个工具、评测框架、guardrails、实验、成本模型 | ✅ Done / 完成 |
 | 2 | 40-case evaluation set with exactly 10 negative cases | 40个评测案例（含10个 negative） | ✅ Done / 完成 |
 | 3 | Everyone writes 5–8 evaluation cases | 全队案例撰写（每人5–8个） | ✅ 6 of 6 / 已交6人 |
-| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 1 of 6 / 已交1人 |
+| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 **3 of 6**（SHI SHUYI、Isha、Zhang 已交）|
 | 5 | Freeze one version and push to GitHub | 冻结统一版本并 push 到 GitHub | ✅ Done / 完成 |
-| 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | 🟡 **1 of 6**（SHI SHUYI 完成）|
-| 7 | Ten human judgements | 10项人工判定 | 🔴 0 of 10 |
-| 8 | Report with real live numbers | 报告填入真实数据 | 🟡 Draft exists / 草稿已有 |
+| 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | 🟡 **5 of 6 已跑**（4 套已入库；Sun Hanyu 待按规范提交）|
+| 7 | Ten human judgements | 10项人工判定 | 🟡 **2 of 10**（SHI SHUYI 的两项已填；其余在六套合并后统一收集）|
+| 8 | Report with real live numbers | 报告填入真实数据 | 🟡 Draft exists / 草稿已有（2,021 词，已超 2,000 词上限）|
 
 ---
 
-## 3 · What each member delivers now / 每人现在要交的三样东西
+## 3 · What each member delivers / 每人要交的三样东西
 
-1. **Live result** — the complete JSON file from your assigned model
-   **Live 结果** — 你负责模型的完整 JSON 结果文件
+1. **Live result** — the complete JSON file from your assigned model, committed under `results/live/`
+   **Live 结果** — 你负责模型的完整 JSON 结果文件，放在 `results/live/` 下提交
 
 2. **Strand review** — findings or an explicit approval for your strand
    **代码审阅** — 你负责模块的问题，或明确批准
@@ -41,20 +43,39 @@
 
 ---
 
-## 4 · Model assignment / 模型分配
+## 4 · Delivery status / 交付情况
 
-| Member | Model | Prompt |
-|---|---|---|
-| Meng Sijia | `google/gemini-2.5-flash-lite` | v2 |
-| SHI SHUYI | `qwen/qwen3-30b-a3b-instruct-2507` | v2 ✅ done |
-| Su Yang | `anthropic/claude-haiku-4.5` | v2 |
-| Isha Kirti Ghia | `meta-llama/llama-4-maverick` | v2 |
-| Sun Hanyu | `deepseek/deepseek-v3.2` | v2 |
-| Zhang Jiayang | `google/gemini-2.5-flash-lite` | **v1** (control / 对照组) |
+| Member | Battery | Strand review | Note / 备注 |
+|---|---|---|---|
+| Meng Sijia | ✅ done | ⏳ not yet | 结果已在 `member/meng-sijia` |
+| SHI SHUYI | ✅ done | ✅ returned | 结果与审阅均在 `member/shi-shuyi` |
+| Su Yang | ⏳ not yet | ⏳ not yet | 分支尚未建立 / branch not created yet |
+| Isha Kirti Ghia | ✅ done | ✅ returned | Phase A 仍待她本人确认签署 |
+| Sun Hanyu | ⚠️ run complete, needs re-commit | ⏳ not yet | 结果以压缩包上传到 `results/scripted/`，需改放 `results/live/` |
+| Zhang Jiayang | ✅ done | ✅ returned | — |
 
 ---
 
-## 5 · Rules from the brief / 老师的硬性要求
+## 5 · Measured results / 实测结果
+
+| Member | Model | Prompt | Passed | Negative trials | Measured cost |
+|---|---|---|---|---|---|
+| Meng Sijia | `google/gemini-2.5-flash-lite` | v2 | **9/60** (15.0%) | 9/30 | US$0.0436 |
+| SHI SHUYI | `qwen/qwen3-30b-a3b-instruct-2507` | v2 | **16/60** (26.7%) | 11/30 | US$0.0633 |
+| Su Yang | `anthropic/claude-haiku-4.5` | v2 | — | — | — |
+| Isha Kirti Ghia | `meta-llama/llama-4-maverick` | v2 | **10/60** (16.7%) | 9/30 | US$0.1481 |
+| Sun Hanyu | `deepseek/deepseek-v3.2` | v2 | **16/60** (26.7%) | 13/30 | US$0.0773 |
+| Zhang Jiayang | `google/gemini-2.5-flash-lite` | v1 (control) | **6/60** (10.0%) | 6/30 | US$0.0420 |
+
+All five recorded runs used the **same commit `42253ad`**, a clean tree, and identical case / answer-key / v2 prompt hashes. Five of five consistent — no rerun needed so far.
+五套已记录的运行使用**同一 commit `42253ad`**、树干净、案例/答案键/prompt 哈希一致。5/5 一致，目前没有一套需要重跑。
+
+The ACI comparison now has both halves of its pair: the **same model** scores 9/60 under the v2 prompt (Meng) and 6/60 under v1 (Zhang).
+v1/v2 对照现在两半都齐了：**同一个模型**在 v2 下 9/60（Meng），在 v1 下 6/60（Zhang）。
+
+---
+
+## 6 · Rules from the brief / 老师的硬性要求
 
 **EN:**
 
@@ -76,10 +97,10 @@
 
 ---
 
-## 6 · Frozen version / 冻结版本
+## 7 · Frozen version and branches / 冻结版本与分支
 
 **Repository:** `https://github.com/leosu5723-ys/NTU_6201_Group-1`
-**Frozen experiment commit:** `42253ad28fc58b36b9014808f9d8e3fd523c01ed` — the tip of `main`. `main` will not move until all six batteries are collected, so pulling `main` is enough. Confirm with `git rev-parse HEAD` before your paid run.
+**Frozen experiment commit:** `42253ad28fc58b36b9014808f9d8e3fd523c01ed` — the tip of `main`. `main` has not moved and will not move until all six batteries are collected, so pulling `main` is enough. Confirm with `git rev-parse HEAD` before your paid run.
 
 ```bash
 git clone https://github.com/leosu5723-ys/NTU_6201_Group-1.git
@@ -90,17 +111,25 @@ python3 -m unittest discover -s tests -q  # expect: OK (101 tests)
 python3 run_eval.py                       # expect: "passed": 60
 ```
 
+**Branches pushed so far:** `member/meng-sijia`, `member/shi-shuyi`, `member/isha-kirti-ghia`, `member/sun-hanyu`, `member/zhang-jiayang`. No branch yet for Su Yang.
+**已推送分支：** 上述五条；Su Yang 尚未建立。
+
+An open pull request from `member/isha-kirti-ghia` **must not be merged yet** — merging moves `main` off `42253ad` and would void any checkout that is still to run. Merging happens once, at the end.
+
 **Nobody pushes to `main`.** Each member pushes `member/<name>`; SHI SHUYI merges at the end.
 
 ---
 
-## 7 · Pipeline / 流程
+## 8 · Pipeline / 流程
 
 ```
-1. Freeze and push            → 冻结版本并推送            ✅ done / 已完成
-2. Everyone runs their battery → 全队各自跑自己的 battery   ← now / 现在
-3. Send back your five answers → 回报五行简短回答
-4. Collect six results         → 收齐六份结果
-          ↓
-   Next step comes from SHI SHUYI / 下一步由 SHI SHUYI 发出
+1. Freeze and push               → 冻结版本并推送              ✅ done / 已完成
+2. Everyone runs their battery   → 全队各自跑自己的 battery      🟡 5 of 6（等 Su Yang；Sun 需重交）
+3. Send back your answers        → 回报五行简短回答
+4. Collect six results           → 收齐六份结果
+5. Merge the six branches        → 合并六条分支（贡献者列表只在 main 上生效）
+6. Ten human judgements          → 十项人工判定（合并后统一发出）
+7. Report numbers, video, package → 报告填数、视频、打包提交
 ```
+
+`main` stays frozen until step 4 is complete. / 第 4 步完成前 `main` 保持不动。

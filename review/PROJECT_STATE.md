@@ -2,7 +2,7 @@
 
 Snapshot for whoever picks this up next. Read this first, then `review/PE6201_A2_TEAM_FAQ.md` for the member-facing answers and `review/PE6201_A2_PROGRESS_BOARD.md` for the board we share with the team.
 
-**Last updated:** 2026-09-19. **Deadline: Sunday 2026-09-20, 23:59 SGT** (confirmed by Kyle against the Blackboard announcement of 9 September; the brief PDF still prints the superseded 13 September date). One member uploads for the group to Blackboard → Assignments → Submission - A2.
+**Last updated:** 2026-09-19, 17:00 SGT. **Deadline: Sunday 2026-09-20, 23:59 SGT** (confirmed by Kyle against the Blackboard announcement of 9 September; the brief PDF still prints the superseded 13 September date). One member uploads for the group to Blackboard → Assignments → Submission - A2.
 
 ## What this is
 
@@ -47,24 +47,29 @@ Plus, from §4: the repository must contain a `CONTRIBUTIONS.md` naming who did 
 - 40-case set with exactly 10 negatives; per-case machine oracle in `evaluation/code_expectations_A.json`.
 - Case authorship integrated: all 6 members submitted Phase A. Case allocation corrected (Meng Sijia 6, SHI SHUYI 8).
 - Repo pushed; `main` frozen at `42253ad` and not moving until the batteries are collected.
-- Contributor attribution fixed for future commits; the six earlier commits stay unlinked until Kyle adds `SHUYI013@e.ntu.edu.sg` to his GitHub account and verifies it.
+- Contributor attribution verified (19 Sep): every commit on `main` resolves to an account (`SHUYI013@e.ntu.edu.sg` and the Stone441 noreply address both map to **Stone441**; Isha's to `Isha-prog578`, Zhang's to `Jy135zhang`). Nothing outstanding here — the earlier concern about unlinked commits is closed.
 - **SHI SHUYI's live battery is done**: `qwen/qwen3-30b-a3b-instruct-2507` v2, 60/60 trials, **16 passed (26.7%)**, all 9 hostile-narrative trials correctly escalated with zero writes, measured cost **US$0.0633**, recorded commit `42253ad`, clean tree. Committed on branch `member/shi-shuyi` (`0b9f5fe`), attributed to Stone441. File: `results/live/qwen__qwen3-30b-a3b-instruct-2507__v2.json`.
 - Team bot rebuilt: 40-document corpus (current docs + source code, deliberately excluding the answer key and scripted trajectories), helpful-by-default SOUL with three red lines, `max_turns` 15, gateway restarted, verified with real queries.
+- **SHI SHUYI's strand review is signed** (19 Sep) in `review/member_work/SHI_SHUYI_phase_b_strand_review.md`; the two properties it asserts were re-checked in `agent.py` (`:184`/`:298`/`:315`, `:326`/`:334`).
+- **Human-judgement surface fixed**: `prepare_judgement_check` now projects `escalate_to`, which five cases require reviewers to confirm. The regenerated scripted payload is otherwise identical (same summary, all 60 result rows and every decision log byte-identical; frozen fixture hash unchanged), and the three collected batteries still validate.
+- **Readiness test made stage-independent** (`tests/test_verify_submission.py`): it now compares the reported live/judgement counts with the files present instead of pinning zero, so the suite passes before and after the batteries merge. Verified OK with 0, 1 and 3 batteries present; full suite 101 OK.
+- `review/MERGE_STEPS.md` corrected: the documented `git push -c ...` form fails (option must precede the subcommand), and the shared `review/judgement_verdicts.json` file is now flagged as the one file six reviewers must not fill on separate branches.
 
 **Outstanding**
 
-1. **Live batteries: 1 of 6 run.** Remaining five:
-   - Meng Sijia — `google/gemini-2.5-flash-lite`, v2
-   - Su Yang — `anthropic/claude-haiku-4.5`, v2
-   - Isha Kirti Ghia — `meta-llama/llama-4-maverick`, v2
-   - Sun Hanyu — `deepseek/deepseek-v3.2`, v2
-   - Zhang Jiayang — `google/gemini-2.5-flash-lite`, v1 (control)
-2. **Phase B strand reviews: 1 of 6** (Zhang Jiayang only).
-3. **Ten human judgements: 0 of 10** (`review/judgement_verdicts.json`).
-4. **Isha's case record is unsigned** — her document still asks her to verify against Appendix A before signing.
-5. **Report has live placeholders** and is near the 2,000-word cap; real live numbers must be inserted from the six JSONs.
+1. **Live batteries: 5 of 6 run.** All five recorded the frozen commit `42253ad` with a clean tree and matching case / answer-key / v2 prompt hashes, so none needs a rerun:
+   - Meng Sijia — `google/gemini-2.5-flash-lite`, v2 — 9/60 (15.0%), US$0.0436 — pushed on `member/meng-sijia`
+   - SHI SHUYI — `qwen/qwen3-30b-a3b-instruct-2507`, v2 — 16/60 (26.7%), US$0.0633
+   - Isha Kirti Ghia — `meta-llama/llama-4-maverick`, v2 — 10/60 (16.7%), US$0.1481
+   - Zhang Jiayang — `google/gemini-2.5-flash-lite`, v1 (control) — 6/60 (10.0%), US$0.0420
+   - Sun Hanyu — `deepseek/deepseek-v3.2`, v2 — 16/60 (26.7%), US$0.0773 — **delivered in the wrong form**: uploaded through the web UI as `results/scripted/live_results_backup.zip`. The battery inside is valid (commit `42253ad`, hashes match, 60 trials) and contains no keys, but it must be committed under `results/live/` with its `-logs` directory before the merge.
+   - **Still missing: Su Yang** (`anthropic/claude-haiku-4.5`, v2) — no branch created yet.
+2. **Phase B strand reviews: 3 of 6 returned** (Zhang Jiayang, Isha Kirti Ghia, SHI SHUYI). Missing: Meng Sijia, Sun Hanyu, Su Yang.
+3. **Ten human judgements: 2 of 10 filled** — SHI SHUYI's `CLM-8894` and `CLM-8941`, both `pass` with cited evidence. The remaining eight wait for the merge. Note the judgement surface is the frozen **scripted** run, so it does not depend on the live batteries.
+4. **Isha's Phase A case record is unsigned** — her document still reads "Awaiting Isha Kirti Ghia's personal confirmation before final sign-off", although she sent a completed worksheet to the team bot on 18 September.
+5. **Report has live placeholders and is over the cap** (2,021 prose words against 2,000); trim before inserting the real numbers from the six JSONs.
 6. **Not produced yet:** report PDF, team self-appraisal sheet, video link text file, the NTULearn folder copy of the code, final approval record, `PE6201_A2_B-1.zip`.
-7. **Merge step not yet done:** `member/shi-shuyi` (and the other five, once pushed) must be merged into `main`, or the contributors list will not reflect the team.
+7. **Merge step not yet done:** five member branches are pushed (`meng-sijia`, `shi-shuyi`, `isha-kirti-ghia`, `sun-hanyu`, `zhang-jiayang`); Su Yang's does not exist. An open pull request from `member/isha-kirti-ghia` must stay unmerged until the last battery lands — merging moves `main` off `42253ad` and would void any checkout that has not run yet.
 
 ## Known limitation to state honestly in the report
 

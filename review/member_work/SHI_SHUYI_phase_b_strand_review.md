@@ -2,7 +2,7 @@
 
 **Strand:** the ReAct loop, the tool layer and their integration
 **Files read:** `agent.py`, `tools.py`, `guardrails.py`, `docs/architecture.md`, `docs/tool_dependency_design.md`
-**Status:** draft for SHI SHUYI to read, correct if needed, and own. Nothing here is signed on anyone's behalf.
+**Status:** read in full, confirmed and owned by **SHI SHUYI, 19 September 2026**. The design choice, the limitation and the verdict below are stated as this reviewer understands them; nothing here is signed on anyone else's behalf.
 
 ## The design choice I can explain
 
