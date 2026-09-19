@@ -1,10 +1,14 @@
 import copy
+import subprocess
+import sys
+import tempfile
 import unittest
 from unittest.mock import patch
+from pathlib import Path
 
 from harness import run_set, summarise
-from live_battery import artifact_hashes
-from live_analysis import case_balanced_metrics, validate_battery_set
+from live_battery import artifact_hashes, load_catalog
+from live_analysis import analyse, case_balanced_metrics, validate_battery_set
 
 
 class LiveAnalysisTests(unittest.TestCase):
@@ -12,12 +16,17 @@ class LiveAnalysisTests(unittest.TestCase):
     TEST_COMMIT = "1" * 40
 
     def setUp(self):
-        def git_identity(command, **kwargs):
-            self.assertEqual(command, ["git", "rev-parse", "HEAD"])
-            return self.TEST_COMMIT + "\n"
-        boundary = patch("live_analysis.subprocess.check_output", side_effect=git_identity)
+        boundary = patch(
+            "live_analysis._artifact_hashes_at_commit",
+            side_effect=lambda _commit, _version: artifact_hashes(_version),
+        )
         boundary.start()
         self.addCleanup(boundary.stop)
+        catalog_boundary = patch(
+            "live_analysis._catalog_at_commit", return_value=load_catalog()
+        )
+        catalog_boundary.start()
+        self.addCleanup(catalog_boundary.stop)
 
     def test_case_balanced_metrics_do_not_triple_weight_negative_cases(self):
         results = [
@@ -52,6 +61,7 @@ class LiveAnalysisTests(unittest.TestCase):
                 "artifact_hashes": {
                     **artifact_hashes(prompt),
                 },
+                "price": load_catalog()["models"][model],
             },
             "summary": summary,
             "results": results,
@@ -89,6 +99,38 @@ class LiveAnalysisTests(unittest.TestCase):
         result = validate_battery_set(payloads)
         self.assertEqual(result["commit"], commit)
         self.assertEqual(len(result["v2_models"]), 5)
+
+    def test_validation_accepts_historical_recorded_commit_without_matching_current_head(self):
+        payloads = self._valid_payloads()
+        result = validate_battery_set(payloads)
+        self.assertEqual(result["commit"], self.TEST_COMMIT)
+
+    def test_validation_rejects_recorded_commit_when_its_committed_fixture_differs(self):
+        payloads = self._valid_payloads()
+        with patch(
+            "live_analysis._artifact_hashes_at_commit",
+            side_effect=lambda _commit, version: {**artifact_hashes(version), "claims": "0" * 64},
+        ):
+            with self.assertRaisesRegex(ValueError, "recorded commit"):
+                validate_battery_set(payloads)
+
+    def test_zero_turns_has_null_step_reliability_and_note(self):
+        payloads = self._valid_payloads()
+        for row in payloads[0]["results"]:
+            row["record"]["turns"] = 0
+        payloads[0]["summary"] = summarise(payloads[0]["results"])
+        result = analyse(payloads)
+        row = next(item for item in result["models"] if item["model"] == "google/gemini-2.5-flash-lite" and item["prompt_version"] == "v2")
+        self.assertIsNone(row["implied_step_reliability"])
+        self.assertIn("zero", row["implied_step_reliability_note"])
+
+    def test_cli_accepts_an_explicit_historical_directory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            completed = subprocess.run(
+                [sys.executable, "live_analysis.py", "--directory", directory],
+                cwd=Path(__file__).resolve().parents[1], text=True, capture_output=True,
+            )
+        self.assertIn("No measured live batteries", completed.stderr + completed.stdout)
 
     def test_validation_rejects_duplicate_trial_rows(self):
         payloads = self._valid_payloads()
