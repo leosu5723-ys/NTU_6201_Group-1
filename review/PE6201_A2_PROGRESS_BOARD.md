@@ -1,45 +1,43 @@
 # PE6201 A2 · Progress Board / 项目总进度看板
 
-**Problem A · Team B-1 · Target: submit tonight / 目标：今晚提交**
+**Problem A · Team B-1 · Deadline: Sunday 20 September 2026, 23:59 SGT**
+**截止时间：2026年9月20日（周日）23:59**
 
 ---
 
 ## 1 · Where we are / 目前位置
 
-**EN:** The engineering work is finished — 101 unit tests pass and the offline scripted evaluation passes 60/60. Everything remaining is human work that each member must do personally. The brief does not allow one person to complete it on behalf of the team.
+**EN:** The engineering work is finished and frozen on GitHub — 101 unit tests pass and the offline scripted evaluation passes 60/60. One member's live battery is already complete. Everything remaining is human work that each member must do personally; the brief does not allow one person to do it on behalf of the team.
 
-**中文：** 工程部分已经做完——101项单元测试通过，离线评测 60/60。剩下的全部是人工作业，必须每位成员亲自完成，老师不允许由一个人代劳。
+**中文：** 工程部分已经完成并在 GitHub 上冻结——101项单元测试通过，离线评测 60/60。已经有一套 live battery 跑完。剩下的全部是人工作业，必须每位成员亲自完成，老师不允许由一个人代劳。
 
 ---
 
-## 2 · Big blocks / 大块任务
+## 2 · Progress / 进度
 
 | # | Task | 任务 | Status |
 |---|---|---|---|
 | 1 | System: single-agent loop, 7 tools, harness, guardrails, experiments, cost model | 工程系统：Agent循环、7个工具、评测框架、guardrails、实验、成本模型 | ✅ Done / 完成 |
 | 2 | 40-case evaluation set with exactly 10 negative cases | 40个评测案例（含10个 negative） | ✅ Done / 完成 |
-| 3 | Everyone writes 5–8 evaluation cases and signs them off | 全队案例撰写与签收（每人5–8个） | 🟡 5 of 6 received / 已交5人 |
-| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🔴 1 of 6 / 已交1人 |
+| 3 | Everyone writes 5–8 evaluation cases | 全队案例撰写（每人5–8个） | ✅ 6 of 6 / 已交6人 |
+| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 1 of 6 / 已交1人 |
 | 5 | Freeze one version and push to GitHub | 冻结统一版本并 push 到 GitHub | ✅ Done / 完成 |
-| 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | 🔴 0 of 6 |
-| 7 | Report, team self-appraisal, 10 human judgements | 报告、团队自评、10项人工判定 | 🟡 Draft exists / 草稿已有 |
-| 8 | 5-minute video, PDF, package and submit | 5分钟视频、PDF、打包提交 | ⬜ Today / 今天 |
+| 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | 🟡 **1 of 6**（SHI SHUYI 完成）|
+| 7 | Ten human judgements | 10项人工判定 | 🔴 0 of 10 |
+| 8 | Report with real live numbers | 报告填入真实数据 | 🟡 Draft exists / 草稿已有 |
 
 ---
 
-## 3 · What each member delivers / 每人要交的四样东西
+## 3 · What each member delivers now / 每人现在要交的三样东西
 
-1. **Case contracts** — decision, trigger, amounts and required fields for your assigned cases
-   **案例合同** — 你负责案例的决策、触发条件、金额与必须记录的字段
-
-2. **Code review** — findings or an explicit approval for your strand
-   **代码审阅** — 你负责模块的问题，或明确批准
-
-3. **Live result** — the complete JSON file from your assigned model
+1. **Live result** — the complete JSON file from your assigned model
    **Live 结果** — 你负责模型的完整 JSON 结果文件
 
-4. **Video segment** — your own spoken part in the 5-minute demonstration
-   **视频发言** — 5分钟演示中你自己那一段
+2. **Strand review** — findings or an explicit approval for your strand
+   **代码审阅** — 你负责模块的问题，或明确批准
+
+3. **Judgement cases** — the human verdict on the cases assigned to you
+   **人工判定** — 你负责案例的人工判定结果
 
 ---
 
@@ -48,7 +46,7 @@
 | Member | Model | Prompt |
 |---|---|---|
 | Meng Sijia | `google/gemini-2.5-flash-lite` | v2 |
-| SHI SHUYI | `qwen/qwen3-30b-a3b-instruct-2507` | v2 |
+| SHI SHUYI | `qwen/qwen3-30b-a3b-instruct-2507` | v2 ✅ done |
 | Su Yang | `anthropic/claude-haiku-4.5` | v2 |
 | Isha Kirti Ghia | `meta-llama/llama-4-maverick` | v2 |
 | Sun Hanyu | `deepseek/deepseek-v3.2` | v2 |
@@ -81,25 +79,28 @@
 ## 6 · Frozen version / 冻结版本
 
 **Repository:** `https://github.com/leosu5723-ys/NTU_6201_Group-1`
-**Frozen experiment commit:** the current tip of `main`. The code, prompt and cases are frozen; only documentation commits followed. Pull `main` and run `git rev-parse HEAD` — report that SHA with your result. SHI SHUYI confirms the accepted SHA in the group.
+**Frozen experiment commit:** `42253ad28fc58b36b9014808f9d8e3fd523c01ed` — the tip of `main`. `main` will not move until all six batteries are collected, so pulling `main` is enough. Confirm with `git rev-parse HEAD` before your paid run.
 
 ```bash
 git clone https://github.com/leosu5723-ys/NTU_6201_Group-1.git
 cd NTU_6201_Group-1
 
-python3 -m unittest discover -s tests -q   # expect 101 tests OK
-python3 run_eval.py                        # expect 60/60
+git rev-parse HEAD                        # must print 42253ad28fc...
+python3 -m unittest discover -s tests -q  # expect: OK (101 tests)
+python3 run_eval.py                       # expect: "passed": 60
 ```
+
+**Nobody pushes to `main`.** Each member pushes `member/<name>`; SHI SHUYI merges at the end.
 
 ---
 
-## 7 · Next steps / 接下来
+## 7 · Pipeline / 流程
 
 ```
-1. Freeze and push            → 冻结版本并推送          ✅ done / 已完成
-2. Everyone pulls and runs    → 全队 pull 并各自跑       ← now / 现在
-3. Collect six JSON results   → 收齐六份结果
-4. Report, costs, judgements  → 填报告、算成本、人工判定
-5. Record the video           → 录视频
-6. PDF, package, submit       → 生成 PDF、打包、提交
+1. Freeze and push            → 冻结版本并推送            ✅ done / 已完成
+2. Everyone runs their battery → 全队各自跑自己的 battery   ← now / 现在
+3. Send back your five answers → 回报五行简短回答
+4. Collect six results         → 收齐六份结果
+          ↓
+   Next step comes from SHI SHUYI / 下一步由 SHI SHUYI 发出
 ```
