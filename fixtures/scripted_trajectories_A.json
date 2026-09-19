@@ -1,0 +1,4401 @@
+{
+  "CLM-8842": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8842"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-02",
+            "claim_total": 2480
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-02",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1400
+              },
+              {
+                "code": "62480",
+                "amount": 780
+              },
+              {
+                "code": "31255",
+                "amount": 300
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "31255",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "date_of_service": "2026-09-02"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8842",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1400,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              },
+              {
+                "code": "62480",
+                "amount": 780,
+                "status": "covered",
+                "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+              },
+              {
+                "code": "31255",
+                "amount": 300,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              }
+            ],
+            "approved_total": 2180,
+            "refused_total": 300,
+            "reason": "3 lines resolved: 47120 covered for 1400 (47120 covered under POL-3310); 62480 covered for 780 (PA-5521 valid 2026-08-01 to 2026-10-31); 31255 excluded for 300 (EX-14 cosmetic dermatology). H-114 is on panel. approved_total 2180; refused_total 300. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "3 lines resolved: 47120 covered for 1400 (47120 covered under POL-3310); 62480 covered for 780 (PA-5521 valid 2026-08-01 to 2026-10-31); 31255 excluded for 300 (EX-14 cosmetic dermatology). H-114 is on panel. approved_total 2180; refused_total 300. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 2180,
+        "refused_total": 300,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1400,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          },
+          {
+            "code": "62480",
+            "amount": 780,
+            "status": "covered",
+            "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+          },
+          {
+            "code": "31255",
+            "amount": 300,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-8850": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8850"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-04",
+            "claim_total": 180
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-04",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 180
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8850",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 180,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              }
+            ],
+            "approved_total": 180,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 99213 covered for 180 (99213 covered under POL-6001). H-207 is on panel. approved_total 180; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 99213 covered for 180 (99213 covered under POL-6001). H-207 is on panel. approved_total 180; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 180,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 180,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-8861": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8861"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-05",
+            "claim_total": 8290
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-05",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 8200
+              },
+              {
+                "code": "80053",
+                "amount": 90
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "80053",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "date_of_service": "2026-09-05"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8861",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 8200,
+                "status": "covered",
+                "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+              },
+              {
+                "code": "80053",
+                "amount": 90,
+                "status": "covered",
+                "evidence": "80053 covered under POL-6001"
+              }
+            ],
+            "approved_total": 8290,
+            "refused_total": 0,
+            "reason": "2 lines resolved: 27447 covered for 8200 (PA-5702 valid 2026-07-01 to 2026-12-31); 80053 covered for 90 (80053 covered under POL-6001). H-207 is on panel. approved_total 8290; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "2 lines resolved: 27447 covered for 8200 (PA-5702 valid 2026-07-01 to 2026-12-31); 80053 covered for 90 (80053 covered under POL-6001). H-207 is on panel. approved_total 8290; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 8290,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "27447",
+            "amount": 8200,
+            "status": "covered",
+            "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+          },
+          {
+            "code": "80053",
+            "amount": 90,
+            "status": "covered",
+            "evidence": "80053 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-8874": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8874"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-06",
+            "claim_total": 620
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-330",
+            "date_of_service": "2026-09-06",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 620
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-330"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8874",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 620,
+                "status": "covered",
+                "evidence": "70553 covered under POL-3310"
+              }
+            ],
+            "approved_total": 620,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 70553 covered for 620 (70553 covered under POL-3310). H-330 is non-panel in SG. approved_total 620; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 70553 covered for 620 (70553 covered under POL-3310). H-330 is non-panel in SG. approved_total 620; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 620,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "70553",
+            "amount": 620,
+            "status": "covered",
+            "evidence": "70553 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-8888": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8888"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-6118",
+            "date_of_service": "2026-09-08",
+            "claim_total": 2400
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-6118",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-08",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 900
+              },
+              {
+                "code": "62480",
+                "amount": 1200
+              },
+              {
+                "code": "31255",
+                "amount": 300
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "62480",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "31255",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "62480",
+            "date_of_service": "2026-09-08"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8888",
+            "decision": "request_document",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 900,
+                "status": "covered",
+                "evidence": "47120 covered under POL-7220"
+              },
+              {
+                "code": "31255",
+                "amount": 300,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              }
+            ],
+            "approved_total": 900,
+            "refused_total": 300,
+            "reason": "No valid pre-authorisation was found for line 62480 on 2026-09-08.",
+            "missing": "pre-authorisation reference for line 62480, valid on 2026-09-08"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "request_document",
+        "missing": "pre-authorisation reference for line 62480, valid on 2026-09-08",
+        "reason": "No valid pre-authorisation was found for line 62480 on 2026-09-08.",
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 900,
+            "status": "covered",
+            "evidence": "47120 covered under POL-7220"
+          },
+          {
+            "code": "31255",
+            "amount": 300,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-8894": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8894"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-6118",
+            "date_of_service": "2026-09-09",
+            "claim_total": 1950
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-6118",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-09",
+            "lines": [
+              {
+                "code": "29881",
+                "amount": 1950
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "29881",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "29881",
+            "date_of_service": "2026-09-09"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8894",
+            "decision": "request_document",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "reason": "PA-5640 ended 2026-05-31 and does not cover service date 2026-09-09.",
+            "missing": "current pre-authorisation for line 29881, valid on 2026-09-09"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "request_document",
+        "missing": "current pre-authorisation for line 29881, valid on 2026-09-09",
+        "reason": "PA-5640 ended 2026-05-31 and does not cover service date 2026-09-09.",
+        "line_dispositions": []
+      }
+    }
+  ],
+  "CLM-8901": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8901"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-10",
+            "claim_total": 1150
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-10",
+            "lines": [
+              {
+                "code": "45378",
+                "amount": 1150
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "45378",
+            "attached_documents": []
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8901",
+            "decision": "request_document",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "reason": "itemised_bill is required for line 45378 and is not attached.",
+            "missing": "itemised bill for line 45378"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "request_document",
+        "missing": "itemised bill for line 45378",
+        "reason": "itemised_bill is required for line 45378 and is not attached.",
+        "line_dispositions": []
+      }
+    }
+  ],
+  "CLM-8910": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8910"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-4471",
+            "date_of_service": "2026-09-11",
+            "claim_total": 1840
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-4471",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-11",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1600
+              },
+              {
+                "code": "80053",
+                "amount": 90
+              },
+              {
+                "code": "99213",
+                "amount": 150
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8910",
+            "decision": "escalate",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "reason": "POL-5588 status is lapsed; escalate without reviewing individual lines.",
+            "trigger": "policy_lapsed",
+            "escalate_to": "human claims assessor"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "escalate",
+        "trigger": "policy_lapsed",
+        "escalate_to": "human claims assessor",
+        "reason": "POL-5588 status is lapsed; escalate without reviewing individual lines."
+      }
+    }
+  ],
+  "CLM-8917": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8917"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-05-20",
+            "claim_total": 200
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-05-20",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 200
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8917",
+            "decision": "escalate",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "reason": "Service date 2026-05-20 is outside POL-6001 dates 2026-06-01 to 2027-05-31.",
+            "trigger": "outside_policy_dates",
+            "escalate_to": "human claims assessor"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "escalate",
+        "trigger": "outside_policy_dates",
+        "escalate_to": "human claims assessor",
+        "reason": "Service date 2026-05-20 is outside POL-6001 dates 2026-06-01 to 2027-05-31."
+      }
+    }
+  ],
+  "CLM-8925": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8925"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-12",
+            "claim_total": 11400
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-12",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9800
+              },
+              {
+                "code": "47120",
+                "amount": 1400
+              },
+              {
+                "code": "70553",
+                "amount": 200
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8925",
+            "decision": "escalate",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "reason": "Claim total 11400 exceeds 9200 remaining on POL-3310; individual lines were not reviewed.",
+            "trigger": "annual_limit_exceeded",
+            "escalate_to": "human claims assessor"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "escalate",
+        "trigger": "annual_limit_exceeded",
+        "escalate_to": "human claims assessor",
+        "reason": "Claim total 11400 exceeds 9200 remaining on POL-3310; individual lines were not reviewed."
+      }
+    }
+  ],
+  "CLM-8933": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8933"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-08-20",
+            "claim_total": 1500
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-08-20",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1500
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The first-response facts are resolved. Record the decision behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8933",
+            "decision": "escalate",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "reason": "Prior decision CLM-8710 matches member, hospital, date of service and all lines.",
+            "trigger": "duplicate_claim",
+            "escalate_to": "human claims assessor"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated first-response record succeeded; return the structured decision.",
+      "final": {
+        "decision": "escalate",
+        "trigger": "duplicate_claim",
+        "escalate_to": "human claims assessor",
+        "reason": "Prior decision CLM-8710 matches member, hospital, date of service and all lines."
+      }
+    }
+  ],
+  "CLM-8941": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8941"
+          }
+        ]
+      ]
+    }
+  ],
+  "CLM-8952": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8952"
+          }
+        ]
+      ]
+    }
+  ],
+  "CLM-8960": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8960"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-15",
+            "claim_total": 1990
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-15",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 180
+              },
+              {
+                "code": "80053",
+                "amount": 90
+              },
+              {
+                "code": "70553",
+                "amount": 620
+              },
+              {
+                "code": "45378",
+                "amount": 1100
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "80053",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "45378",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8960",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 180,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              },
+              {
+                "code": "80053",
+                "amount": 90,
+                "status": "covered",
+                "evidence": "80053 covered under POL-6001"
+              },
+              {
+                "code": "70553",
+                "amount": 620,
+                "status": "covered",
+                "evidence": "70553 covered under POL-6001"
+              },
+              {
+                "code": "45378",
+                "amount": 1100,
+                "status": "covered",
+                "evidence": "45378 covered under POL-6001"
+              }
+            ],
+            "approved_total": 1990,
+            "refused_total": 0,
+            "reason": "4 lines resolved: 99213 covered for 180 (99213 covered under POL-6001); 80053 covered for 90 (80053 covered under POL-6001); 70553 covered for 620 (70553 covered under POL-6001); 45378 covered for 1100 (45378 covered under POL-6001). H-114 is on panel. approved_total 1990; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "4 lines resolved: 99213 covered for 180 (99213 covered under POL-6001); 80053 covered for 90 (80053 covered under POL-6001); 70553 covered for 620 (70553 covered under POL-6001); 45378 covered for 1100 (45378 covered under POL-6001). H-114 is on panel. approved_total 1990; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 1990,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 180,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          },
+          {
+            "code": "80053",
+            "amount": 90,
+            "status": "covered",
+            "evidence": "80053 covered under POL-6001"
+          },
+          {
+            "code": "70553",
+            "amount": 620,
+            "status": "covered",
+            "evidence": "70553 covered under POL-6001"
+          },
+          {
+            "code": "45378",
+            "amount": 1100,
+            "status": "covered",
+            "evidence": "45378 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-8971": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-8971"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-3390",
+            "date_of_service": "2026-09-16",
+            "claim_total": 170
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-3390",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-16",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 170
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-3390",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-8971",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 170,
+                "status": "covered",
+                "evidence": "99213 covered under POL-4102"
+              }
+            ],
+            "approved_total": 170,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 99213 covered for 170 (99213 covered under POL-4102). H-207 is on panel. approved_total 170; refused_total 0. Policy POL-4102 has 600 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 99213 covered for 170 (99213 covered under POL-4102). H-207 is on panel. approved_total 170; refused_total 0. Policy POL-4102 has 600 remaining.",
+        "approved_total": 170,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 170,
+            "status": "covered",
+            "evidence": "99213 covered under POL-4102"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9001": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9001"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-17",
+            "claim_total": 200
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-17",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 200
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9001",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 200,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              }
+            ],
+            "approved_total": 200,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 99213 covered for 200 (99213 covered under POL-6001). H-207 is on panel. approved_total 200; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 99213 covered for 200 (99213 covered under POL-6001). H-207 is on panel. approved_total 200; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 200,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 200,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9002": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9002"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-18",
+            "claim_total": 1700
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-18",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1700
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9002",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1700,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              }
+            ],
+            "approved_total": 1700,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 47120 covered for 1700 (47120 covered under POL-3310). H-114 is on panel. approved_total 1700; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 47120 covered for 1700 (47120 covered under POL-3310). H-114 is on panel. approved_total 1700; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 1700,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1700,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9003": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9003"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-19",
+            "claim_total": 120
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-330",
+            "date_of_service": "2026-09-19",
+            "lines": [
+              {
+                "code": "80053",
+                "amount": 120
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-330"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "80053",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9003",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "80053",
+                "amount": 120,
+                "status": "covered",
+                "evidence": "80053 covered under POL-3310"
+              }
+            ],
+            "approved_total": 120,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 80053 covered for 120 (80053 covered under POL-3310). H-330 is non-panel in SG. approved_total 120; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 80053 covered for 120 (80053 covered under POL-3310). H-330 is non-panel in SG. approved_total 120; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 120,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "80053",
+            "amount": 120,
+            "status": "covered",
+            "evidence": "80053 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9004": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9004"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-20",
+            "claim_total": 700
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-451",
+            "date_of_service": "2026-09-20",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 700
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-451"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9004",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 700,
+                "status": "covered",
+                "evidence": "70553 covered under POL-6001"
+              }
+            ],
+            "approved_total": 700,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 70553 covered for 700 (70553 covered under POL-6001). H-451 is non-panel in MY. approved_total 700; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 70553 covered for 700 (70553 covered under POL-6001). H-451 is non-panel in MY. approved_total 700; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 700,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "70553",
+            "amount": 700,
+            "status": "covered",
+            "evidence": "70553 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9005": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9005"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-08-01",
+            "claim_total": 2500
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-08-01",
+            "lines": [
+              {
+                "code": "62480",
+                "amount": 2500
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "date_of_service": "2026-08-01"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9005",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "62480",
+                "amount": 2500,
+                "status": "covered",
+                "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+              }
+            ],
+            "approved_total": 2500,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 62480 covered for 2500 (PA-5521 valid 2026-08-01 to 2026-10-31). H-114 is on panel. approved_total 2500; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 62480 covered for 2500 (PA-5521 valid 2026-08-01 to 2026-10-31). H-114 is on panel. approved_total 2500; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 2500,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "62480",
+            "amount": 2500,
+            "status": "covered",
+            "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9006": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9006"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-10-31",
+            "claim_total": 2600
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-10-31",
+            "lines": [
+              {
+                "code": "62480",
+                "amount": 2600
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "date_of_service": "2026-10-31"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9006",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "62480",
+                "amount": 2600,
+                "status": "covered",
+                "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+              }
+            ],
+            "approved_total": 2600,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 62480 covered for 2600 (PA-5521 valid 2026-08-01 to 2026-10-31). H-114 is on panel. approved_total 2600; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 62480 covered for 2600 (PA-5521 valid 2026-08-01 to 2026-10-31). H-114 is on panel. approved_total 2600; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 2600,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "62480",
+            "amount": 2600,
+            "status": "covered",
+            "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9007": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9007"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-07-01",
+            "claim_total": 9000
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-07-01",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9000
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "date_of_service": "2026-07-01"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9007",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9000,
+                "status": "covered",
+                "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+              }
+            ],
+            "approved_total": 9000,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 27447 covered for 9000 (PA-5702 valid 2026-07-01 to 2026-12-31). H-207 is on panel. approved_total 9000; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 27447 covered for 9000 (PA-5702 valid 2026-07-01 to 2026-12-31). H-207 is on panel. approved_total 9000; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 9000,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "27447",
+            "amount": 9000,
+            "status": "covered",
+            "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9008": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9008"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-12-31",
+            "claim_total": 9500
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-12-31",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9500
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "date_of_service": "2026-12-31"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9008",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9500,
+                "status": "covered",
+                "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+              }
+            ],
+            "approved_total": 9500,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 27447 covered for 9500 (PA-5702 valid 2026-07-01 to 2026-12-31). H-207 is on panel. approved_total 9500; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 27447 covered for 9500 (PA-5702 valid 2026-07-01 to 2026-12-31). H-207 is on panel. approved_total 9500; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 9500,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "27447",
+            "amount": 9500,
+            "status": "covered",
+            "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9009": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9009"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-21",
+            "claim_total": 2100
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-21",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1200
+              },
+              {
+                "code": "31255",
+                "amount": 400
+              },
+              {
+                "code": "15823",
+                "amount": 500
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "31255",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "15823",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9009",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1200,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              },
+              {
+                "code": "31255",
+                "amount": 400,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              },
+              {
+                "code": "15823",
+                "amount": 500,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              }
+            ],
+            "approved_total": 1200,
+            "refused_total": 900,
+            "reason": "3 lines resolved: 47120 covered for 1200 (47120 covered under POL-3310); 31255 excluded for 400 (EX-14 cosmetic dermatology); 15823 excluded for 500 (EX-14 cosmetic dermatology). H-114 is on panel. approved_total 1200; refused_total 900. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "3 lines resolved: 47120 covered for 1200 (47120 covered under POL-3310); 31255 excluded for 400 (EX-14 cosmetic dermatology); 15823 excluded for 500 (EX-14 cosmetic dermatology). H-114 is on panel. approved_total 1200; refused_total 900. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 1200,
+        "refused_total": 900,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1200,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          },
+          {
+            "code": "31255",
+            "amount": 400,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          },
+          {
+            "code": "15823",
+            "amount": 500,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9010": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9010"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-22",
+            "claim_total": 2300
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-22",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1500
+              },
+              {
+                "code": "15823",
+                "amount": 800
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "15823",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9010",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1500,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              },
+              {
+                "code": "15823",
+                "amount": 800,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              }
+            ],
+            "approved_total": 1500,
+            "refused_total": 800,
+            "reason": "2 lines resolved: 47120 covered for 1500 (47120 covered under POL-3310); 15823 excluded for 800 (EX-14 cosmetic dermatology). H-114 is on panel. approved_total 1500; refused_total 800. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "2 lines resolved: 47120 covered for 1500 (47120 covered under POL-3310); 15823 excluded for 800 (EX-14 cosmetic dermatology). H-114 is on panel. approved_total 1500; refused_total 800. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 1500,
+        "refused_total": 800,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1500,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          },
+          {
+            "code": "15823",
+            "amount": 800,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9011": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9011"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-6118",
+            "date_of_service": "2026-09-23",
+            "claim_total": 500
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-6118",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-23",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 150
+              },
+              {
+                "code": "31255",
+                "amount": 350
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "31255",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9011",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 150,
+                "status": "covered",
+                "evidence": "99213 covered under POL-7220"
+              },
+              {
+                "code": "31255",
+                "amount": 350,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              }
+            ],
+            "approved_total": 150,
+            "refused_total": 350,
+            "reason": "2 lines resolved: 99213 covered for 150 (99213 covered under POL-7220); 31255 excluded for 350 (EX-14 cosmetic dermatology). H-207 is on panel. approved_total 150; refused_total 350. Policy POL-7220 has 6800 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "2 lines resolved: 99213 covered for 150 (99213 covered under POL-7220); 31255 excluded for 350 (EX-14 cosmetic dermatology). H-207 is on panel. approved_total 150; refused_total 350. Policy POL-7220 has 6800 remaining.",
+        "approved_total": 150,
+        "refused_total": 350,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 150,
+            "status": "covered",
+            "evidence": "99213 covered under POL-7220"
+          },
+          {
+            "code": "31255",
+            "amount": 350,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9012": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9012"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-3390",
+            "date_of_service": "2026-09-24",
+            "claim_total": 600
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-3390",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-24",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 600
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-3390",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9012",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 600,
+                "status": "covered",
+                "evidence": "70553 covered under POL-4102"
+              }
+            ],
+            "approved_total": 600,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 70553 covered for 600 (70553 covered under POL-4102). H-207 is on panel. approved_total 600; refused_total 0. Policy POL-4102 has 600 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 70553 covered for 600 (70553 covered under POL-4102). H-207 is on panel. approved_total 600; refused_total 0. Policy POL-4102 has 600 remaining.",
+        "approved_total": 600,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "70553",
+            "amount": 600,
+            "status": "covered",
+            "evidence": "70553 covered under POL-4102"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9013": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9013"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-3390",
+            "date_of_service": "2026-09-25",
+            "claim_total": 599
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-3390",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-25",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 599
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-3390",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9013",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 599,
+                "status": "covered",
+                "evidence": "70553 covered under POL-4102"
+              }
+            ],
+            "approved_total": 599,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 70553 covered for 599 (70553 covered under POL-4102). H-207 is on panel. approved_total 599; refused_total 0. Policy POL-4102 has 600 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 70553 covered for 599 (70553 covered under POL-4102). H-207 is on panel. approved_total 599; refused_total 0. Policy POL-4102 has 600 remaining.",
+        "approved_total": 599,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "70553",
+            "amount": 599,
+            "status": "covered",
+            "evidence": "70553 covered under POL-4102"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9014": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9014"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-06-01",
+            "claim_total": 160
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-06-01",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 160
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9014",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 160,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              }
+            ],
+            "approved_total": 160,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 99213 covered for 160 (99213 covered under POL-6001). H-207 is on panel. approved_total 160; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 99213 covered for 160 (99213 covered under POL-6001). H-207 is on panel. approved_total 160; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 160,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 160,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9015": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9015"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2027-05-31",
+            "claim_total": 165
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2027-05-31",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 165
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9015",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 165,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              }
+            ],
+            "approved_total": 165,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 99213 covered for 165 (99213 covered under POL-6001). H-207 is on panel. approved_total 165; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 99213 covered for 165 (99213 covered under POL-6001). H-207 is on panel. approved_total 165; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 165,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 165,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9016": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9016"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-04-01",
+            "claim_total": 1300
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-04-01",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1300
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9016",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1300,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              }
+            ],
+            "approved_total": 1300,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 47120 covered for 1300 (47120 covered under POL-3310). H-114 is on panel. approved_total 1300; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 47120 covered for 1300 (47120 covered under POL-3310). H-114 is on panel. approved_total 1300; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 1300,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1300,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9017": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9017"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2027-03-31",
+            "claim_total": 1350
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2027-03-31",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1350
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9017",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1350,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              }
+            ],
+            "approved_total": 1350,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 47120 covered for 1350 (47120 covered under POL-3310). H-114 is on panel. approved_total 1350; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 47120 covered for 1350 (47120 covered under POL-3310). H-114 is on panel. approved_total 1350; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 1350,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1350,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9018": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9018"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-26",
+            "claim_total": 1990
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-26",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 180
+              },
+              {
+                "code": "80053",
+                "amount": 90
+              },
+              {
+                "code": "70553",
+                "amount": 620
+              },
+              {
+                "code": "45378",
+                "amount": 1100
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "80053",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "45378",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9018",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 180,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              },
+              {
+                "code": "80053",
+                "amount": 90,
+                "status": "covered",
+                "evidence": "80053 covered under POL-6001"
+              },
+              {
+                "code": "70553",
+                "amount": 620,
+                "status": "covered",
+                "evidence": "70553 covered under POL-6001"
+              },
+              {
+                "code": "45378",
+                "amount": 1100,
+                "status": "covered",
+                "evidence": "45378 covered under POL-6001"
+              }
+            ],
+            "approved_total": 1990,
+            "refused_total": 0,
+            "reason": "4 lines resolved: 99213 covered for 180 (99213 covered under POL-6001); 80053 covered for 90 (80053 covered under POL-6001); 70553 covered for 620 (70553 covered under POL-6001); 45378 covered for 1100 (45378 covered under POL-6001). H-114 is on panel. approved_total 1990; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "4 lines resolved: 99213 covered for 180 (99213 covered under POL-6001); 80053 covered for 90 (80053 covered under POL-6001); 70553 covered for 620 (70553 covered under POL-6001); 45378 covered for 1100 (45378 covered under POL-6001). H-114 is on panel. approved_total 1990; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 1990,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 180,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          },
+          {
+            "code": "80053",
+            "amount": 90,
+            "status": "covered",
+            "evidence": "80053 covered under POL-6001"
+          },
+          {
+            "code": "70553",
+            "amount": 620,
+            "status": "covered",
+            "evidence": "70553 covered under POL-6001"
+          },
+          {
+            "code": "45378",
+            "amount": 1100,
+            "status": "covered",
+            "evidence": "45378 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9019": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9019"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-27",
+            "claim_total": 3700
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-330",
+            "date_of_service": "2026-09-27",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1200
+              },
+              {
+                "code": "62480",
+                "amount": 2000
+              },
+              {
+                "code": "15823",
+                "amount": 500
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-330"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "15823",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "62480",
+            "date_of_service": "2026-09-27"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9019",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "47120",
+                "amount": 1200,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              },
+              {
+                "code": "62480",
+                "amount": 2000,
+                "status": "covered",
+                "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+              },
+              {
+                "code": "15823",
+                "amount": 500,
+                "status": "excluded",
+                "evidence": "EX-14 cosmetic dermatology"
+              }
+            ],
+            "approved_total": 3200,
+            "refused_total": 500,
+            "reason": "3 lines resolved: 47120 covered for 1200 (47120 covered under POL-3310); 62480 covered for 2000 (PA-5521 valid 2026-08-01 to 2026-10-31); 15823 excluded for 500 (EX-14 cosmetic dermatology). H-330 is non-panel in SG. approved_total 3200; refused_total 500. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "3 lines resolved: 47120 covered for 1200 (47120 covered under POL-3310); 62480 covered for 2000 (PA-5521 valid 2026-08-01 to 2026-10-31); 15823 excluded for 500 (EX-14 cosmetic dermatology). H-330 is non-panel in SG. approved_total 3200; refused_total 500. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 3200,
+        "refused_total": 500,
+        "line_dispositions": [
+          {
+            "code": "47120",
+            "amount": 1200,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          },
+          {
+            "code": "62480",
+            "amount": 2000,
+            "status": "covered",
+            "evidence": "PA-5521 valid 2026-08-01 to 2026-10-31"
+          },
+          {
+            "code": "15823",
+            "amount": 500,
+            "status": "excluded",
+            "evidence": "EX-14 cosmetic dermatology"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9020": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9020"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-10-01",
+            "claim_total": 9300
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-10-01",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9000
+              },
+              {
+                "code": "80053",
+                "amount": 100
+              },
+              {
+                "code": "99213",
+                "amount": 200
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "80053",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Only the non-excluded lines marked requires_preauth need this conditional lookup; those lookups are independent.",
+      "calls": [
+        [
+          "get_preauthorisation",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "27447",
+            "date_of_service": "2026-10-01"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9020",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "27447",
+                "amount": 9000,
+                "status": "covered",
+                "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+              },
+              {
+                "code": "80053",
+                "amount": 100,
+                "status": "covered",
+                "evidence": "80053 covered under POL-6001"
+              },
+              {
+                "code": "99213",
+                "amount": 200,
+                "status": "covered",
+                "evidence": "99213 covered under POL-6001"
+              }
+            ],
+            "approved_total": 9300,
+            "refused_total": 0,
+            "reason": "3 lines resolved: 27447 covered for 9000 (PA-5702 valid 2026-07-01 to 2026-12-31); 80053 covered for 100 (80053 covered under POL-6001); 99213 covered for 200 (99213 covered under POL-6001). H-207 is on panel. approved_total 9300; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "3 lines resolved: 27447 covered for 9000 (PA-5702 valid 2026-07-01 to 2026-12-31); 80053 covered for 100 (80053 covered under POL-6001); 99213 covered for 200 (99213 covered under POL-6001). H-207 is on panel. approved_total 9300; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 9300,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "27447",
+            "amount": 9000,
+            "status": "covered",
+            "evidence": "PA-5702 valid 2026-07-01 to 2026-12-31"
+          },
+          {
+            "code": "80053",
+            "amount": 100,
+            "status": "covered",
+            "evidence": "80053 covered under POL-6001"
+          },
+          {
+            "code": "99213",
+            "amount": 200,
+            "status": "covered",
+            "evidence": "99213 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9021": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9021"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-6118",
+            "date_of_service": "2026-09-28",
+            "claim_total": 1740
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-6118",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-28",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 150
+              },
+              {
+                "code": "80053",
+                "amount": 90
+              },
+              {
+                "code": "70553",
+                "amount": 500
+              },
+              {
+                "code": "45378",
+                "amount": 1000
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "80053",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-6118",
+            "procedure_code": "45378",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9021",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "99213",
+                "amount": 150,
+                "status": "covered",
+                "evidence": "99213 covered under POL-7220"
+              },
+              {
+                "code": "80053",
+                "amount": 90,
+                "status": "covered",
+                "evidence": "80053 covered under POL-7220"
+              },
+              {
+                "code": "70553",
+                "amount": 500,
+                "status": "covered",
+                "evidence": "70553 covered under POL-7220"
+              },
+              {
+                "code": "45378",
+                "amount": 1000,
+                "status": "covered",
+                "evidence": "45378 covered under POL-7220"
+              }
+            ],
+            "approved_total": 1740,
+            "refused_total": 0,
+            "reason": "4 lines resolved: 99213 covered for 150 (99213 covered under POL-7220); 80053 covered for 90 (80053 covered under POL-7220); 70553 covered for 500 (70553 covered under POL-7220); 45378 covered for 1000 (45378 covered under POL-7220). H-114 is on panel. approved_total 1740; refused_total 0. Policy POL-7220 has 6800 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "4 lines resolved: 99213 covered for 150 (99213 covered under POL-7220); 80053 covered for 90 (80053 covered under POL-7220); 70553 covered for 500 (70553 covered under POL-7220); 45378 covered for 1000 (45378 covered under POL-7220). H-114 is on panel. approved_total 1740; refused_total 0. Policy POL-7220 has 6800 remaining.",
+        "approved_total": 1740,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "99213",
+            "amount": 150,
+            "status": "covered",
+            "evidence": "99213 covered under POL-7220"
+          },
+          {
+            "code": "80053",
+            "amount": 90,
+            "status": "covered",
+            "evidence": "80053 covered under POL-7220"
+          },
+          {
+            "code": "70553",
+            "amount": 500,
+            "status": "covered",
+            "evidence": "70553 covered under POL-7220"
+          },
+          {
+            "code": "45378",
+            "amount": 1000,
+            "status": "covered",
+            "evidence": "45378 covered under POL-7220"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9022": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9022"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-5502",
+            "date_of_service": "2026-09-29",
+            "claim_total": 1150
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-5502",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-09-29",
+            "lines": [
+              {
+                "code": "45378",
+                "amount": 1150
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-5502",
+            "procedure_code": "45378",
+            "attached_documents": [
+              "itemised_bill"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9022",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "45378",
+                "amount": 1150,
+                "status": "covered",
+                "evidence": "45378 covered under POL-6001"
+              }
+            ],
+            "approved_total": 1150,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 45378 covered for 1150 (45378 covered under POL-6001). H-114 is on panel. approved_total 1150; refused_total 0. Policy POL-6001 has 15000 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 45378 covered for 1150 (45378 covered under POL-6001). H-114 is on panel. approved_total 1150; refused_total 0. Policy POL-6001 has 15000 remaining.",
+        "approved_total": 1150,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "45378",
+            "amount": 1150,
+            "status": "covered",
+            "evidence": "45378 covered under POL-6001"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9023": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9023"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-09-30",
+            "claim_total": 1200
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-207",
+            "date_of_service": "2026-09-30",
+            "lines": [
+              {
+                "code": "45378",
+                "amount": 1200
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-207"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "45378",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9023",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "45378",
+                "amount": 1200,
+                "status": "covered",
+                "evidence": "45378 covered under POL-3310"
+              }
+            ],
+            "approved_total": 1200,
+            "refused_total": 0,
+            "reason": "1 lines resolved: 45378 covered for 1200 (45378 covered under POL-3310). H-207 is on panel. approved_total 1200; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "1 lines resolved: 45378 covered for 1200 (45378 covered under POL-3310). H-207 is on panel. approved_total 1200; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 1200,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "45378",
+            "amount": 1200,
+            "status": "covered",
+            "evidence": "45378 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9024": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9024"
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Policy eligibility and duplicate history can both terminate the run, so check them before pricing individual lines.",
+      "calls": [
+        [
+          "get_policy_context",
+          {
+            "member_id": "M-2214",
+            "date_of_service": "2026-10-02",
+            "claim_total": 2180
+          }
+        ],
+        [
+          "find_prior_decision",
+          {
+            "member_id": "M-2214",
+            "hospital_id": "H-114",
+            "date_of_service": "2026-10-02",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 600
+              },
+              {
+                "code": "99213",
+                "amount": 180
+              },
+              {
+                "code": "47120",
+                "amount": 1400
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Hospital status and all per-line reviews are independent after the decisive eligibility checks pass.",
+      "calls": [
+        [
+          "get_hospital_status",
+          {
+            "hospital_id": "H-114"
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "70553",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "99213",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ],
+        [
+          "review_claim_line",
+          {
+            "member_id": "M-2214",
+            "procedure_code": "47120",
+            "attached_documents": [
+              "itemised_bill",
+              "discharge_summary"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "Every line is resolved. Take the single irreversible action behind the confirmation gate.",
+      "calls": [
+        [
+          "issue_decision_letter",
+          {
+            "claim_id": "CLM-9024",
+            "decision": "approve_in_principle",
+            "lines": [
+              {
+                "code": "70553",
+                "amount": 600,
+                "status": "covered",
+                "evidence": "70553 covered under POL-3310"
+              },
+              {
+                "code": "99213",
+                "amount": 180,
+                "status": "covered",
+                "evidence": "99213 covered under POL-3310"
+              },
+              {
+                "code": "47120",
+                "amount": 1400,
+                "status": "covered",
+                "evidence": "47120 covered under POL-3310"
+              }
+            ],
+            "approved_total": 2180,
+            "refused_total": 0,
+            "reason": "3 lines resolved: 70553 covered for 600 (70553 covered under POL-3310); 99213 covered for 180 (99213 covered under POL-3310); 47120 covered for 1400 (47120 covered under POL-3310). H-114 is on panel. approved_total 2180; refused_total 0. Policy POL-3310 has 9200 remaining."
+          }
+        ]
+      ]
+    },
+    {
+      "thought": "The gated action succeeded; return the structured decision.",
+      "final": {
+        "decision": "approve_in_principle",
+        "reason": "3 lines resolved: 70553 covered for 600 (70553 covered under POL-3310); 99213 covered for 180 (99213 covered under POL-3310); 47120 covered for 1400 (47120 covered under POL-3310). H-114 is on panel. approved_total 2180; refused_total 0. Policy POL-3310 has 9200 remaining.",
+        "approved_total": 2180,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "70553",
+            "amount": 600,
+            "status": "covered",
+            "evidence": "70553 covered under POL-3310"
+          },
+          {
+            "code": "99213",
+            "amount": 180,
+            "status": "covered",
+            "evidence": "99213 covered under POL-3310"
+          },
+          {
+            "code": "47120",
+            "amount": 1400,
+            "status": "covered",
+            "evidence": "47120 covered under POL-3310"
+          }
+        ]
+      }
+    }
+  ],
+  "CLM-9025": [
+    {
+      "thought": "Fetch the claim. No decision is allowed before this lookup.",
+      "calls": [
+        [
+          "get_claim",
+          {
+            "claim_id": "CLM-9025"
+          }
+        ]
+      ]
+    }
+  ]
+}

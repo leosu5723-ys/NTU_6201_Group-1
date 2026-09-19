@@ -1,0 +1,425 @@
+{
+  "loop_control": {
+    "case_id": "CLM-8842",
+    "layer": "code / loop control",
+    "deleted_component": "action de-duplication",
+    "controlled_failure_trajectory": "identical in the guarded and minus-guard conditions",
+    "instrumentation": "turns, ordered tool calls, tokens and cost recorded per run",
+    "working": {
+      "decision": "approve_in_principle",
+      "trigger": null,
+      "turns": 5,
+      "tool_calls": 9,
+      "tokens_in": 16760,
+      "tokens_out": 770,
+      "cost_usd": 0.001984,
+      "stopped_by": null
+    },
+    "fault_injected_with_guard": {
+      "decision": "escalate",
+      "trigger": "duplicate_action",
+      "turns": 3,
+      "tool_calls": 3,
+      "tokens_in": 6692,
+      "tokens_out": 251,
+      "cost_usd": 0.0007696,
+      "stopped_by": "duplicate_action"
+    },
+    "minus_guard": {
+      "decision": "approve_in_principle",
+      "trigger": null,
+      "turns": 7,
+      "tool_calls": 13,
+      "tokens_in": 24461,
+      "tokens_out": 978,
+      "cost_usd": 0.0028373,
+      "stopped_by": null
+    },
+    "finding": "The faulty run still reached the same decision, so pass rate alone would miss the extra turns and cost.",
+    "why_other_layers_are_wrong": "A prompt cannot reliably remember for the model; a step cap bounds damage later but does not identify the repeated action."
+  },
+  "tool_interface": {
+    "case_id": "CLM-8901",
+    "layer": "tool interface",
+    "deleted_component": "the 45378 required-document rule from review_claim_line",
+    "same_reactive_backend_in_both_conditions": true,
+    "working": {
+      "passed": true,
+      "failures": [],
+      "record": {
+        "decision": "request_document",
+        "missing": "itemised bill for line 45378",
+        "reason": "itemised_bill is required for line 45378 and is not attached.",
+        "line_dispositions": [],
+        "case_id": "CLM-8901",
+        "evidence": [
+          "get_claim",
+          "get_policy_context",
+          "find_prior_decision",
+          "get_hospital_status",
+          "review_claim_line",
+          "issue_decision_letter"
+        ],
+        "turns": 4,
+        "tokens_in": 7989,
+        "tokens_out": 303,
+        "cost_usd": 0.0009201,
+        "catalog_cost_usd": 0.0009201,
+        "provider_cost_usd": null,
+        "provider_cost_delta_usd": null,
+        "provider_usage": [],
+        "http_attempts": [],
+        "seconds": 0.0,
+        "guardrails_fired": [
+          {
+            "guardrail": "gate_passed",
+            "detail": "issue_decision_letter (autonomy=confirm)"
+          }
+        ],
+        "stopped_by": null,
+        "backend": "scripted",
+        "model": null,
+        "prompt_version": "v2",
+        "action_count": 1,
+        "action_receipt": {
+          "recorded": true,
+          "claim_id": "CLM-8901",
+          "decision": "request_document",
+          "receipt_sha256": "d049653c6d587a2c6fe36827eaa40048511516c7cd06b4368afc33025d405792",
+          "record": {
+            "ts": "2026-09-09T00:00:00Z",
+            "claim_id": "CLM-8901",
+            "decision": "request_document",
+            "reason": "itemised_bill is required for line 45378 and is not attached.",
+            "lines": [],
+            "approved_total": 0,
+            "refused_total": 0,
+            "missing": "itemised bill for line 45378",
+            "trigger": null,
+            "escalate_to": null,
+            "evidence": [
+              "get_claim",
+              "get_policy_context",
+              "find_prior_decision",
+              "get_hospital_status",
+              "review_claim_line",
+              "issue_decision_letter"
+            ],
+            "gate": {
+              "autonomy": "confirm",
+              "approved": true,
+              "turn": 4
+            },
+            "turns": 5,
+            "tokens_in": 5845,
+            "tokens_out": 243,
+            "cost_usd": 0.0006817
+          },
+          "recovered_after_write_error": false
+        },
+        "persisted_decision": {
+          "ts": "2026-09-09T00:00:00Z",
+          "claim_id": "CLM-8901",
+          "decision": "request_document",
+          "reason": "itemised_bill is required for line 45378 and is not attached.",
+          "lines": [],
+          "approved_total": 0,
+          "refused_total": 0,
+          "missing": "itemised bill for line 45378",
+          "trigger": null,
+          "escalate_to": null,
+          "evidence": [
+            "get_claim",
+            "get_policy_context",
+            "find_prior_decision",
+            "get_hospital_status",
+            "review_claim_line",
+            "issue_decision_letter"
+          ],
+          "gate": {
+            "autonomy": "confirm",
+            "approved": true,
+            "turn": 4
+          },
+          "turns": 5,
+          "tokens_in": 5845,
+          "tokens_out": 243,
+          "cost_usd": 0.0006817
+        },
+        "request_ids": [
+          "scripted:document-interface:1",
+          "scripted:document-interface:2",
+          "scripted:document-interface:3",
+          "scripted:document-interface:4",
+          "scripted:document-interface:5"
+        ],
+        "decision_log": "CLM-8901.jsonl",
+        "observation_metrics": [
+          {
+            "turn": 1,
+            "tool": "get_claim",
+            "characters": 211,
+            "tokens_estimate_chars_div_4": 52
+          },
+          {
+            "turn": 2,
+            "tool": "get_policy_context",
+            "characters": 316,
+            "tokens_estimate_chars_div_4": 79
+          },
+          {
+            "turn": 2,
+            "tool": "find_prior_decision",
+            "characters": 4,
+            "tokens_estimate_chars_div_4": 1
+          },
+          {
+            "turn": 3,
+            "tool": "get_hospital_status",
+            "characters": 85,
+            "tokens_estimate_chars_div_4": 21
+          },
+          {
+            "turn": 3,
+            "tool": "review_claim_line",
+            "characters": 227,
+            "tokens_estimate_chars_div_4": 56
+          },
+          {
+            "turn": 4,
+            "tool": "issue_decision_letter",
+            "characters": 782,
+            "tokens_estimate_chars_div_4": 195
+          }
+        ],
+        "observation_tokens_estimate": 404
+      }
+    },
+    "minus_document_fields": {
+      "passed": false,
+      "failures": [
+        "decision 'approve_in_principle', expected 'request_document'",
+        "missing None, expected 'itemised bill for line 45378'",
+        "missing None, expected 'itemised bill for line 45378'",
+        "line identities [('45378', 1150)], expected []"
+      ],
+      "record": {
+        "decision": "approve_in_principle",
+        "reason": "Line 45378 appeared covered because the tool return omitted its required-document fields.",
+        "approved_total": 1150,
+        "refused_total": 0,
+        "line_dispositions": [
+          {
+            "code": "45378",
+            "amount": 1150,
+            "status": "covered",
+            "evidence": "No document requirement was exposed by the faulty interface."
+          }
+        ],
+        "case_id": "CLM-8901",
+        "evidence": [
+          "get_claim",
+          "get_policy_context",
+          "find_prior_decision",
+          "get_hospital_status",
+          "review_claim_line",
+          "issue_decision_letter"
+        ],
+        "turns": 4,
+        "tokens_in": 8080,
+        "tokens_out": 379,
+        "cost_usd": 0.0009596,
+        "catalog_cost_usd": 0.0009596,
+        "provider_cost_usd": null,
+        "provider_cost_delta_usd": null,
+        "provider_usage": [],
+        "http_attempts": [],
+        "seconds": 0.0,
+        "guardrails_fired": [
+          {
+            "guardrail": "gate_passed",
+            "detail": "issue_decision_letter (autonomy=confirm)"
+          }
+        ],
+        "stopped_by": null,
+        "backend": "scripted",
+        "model": null,
+        "prompt_version": "v2",
+        "action_count": 1,
+        "action_receipt": {
+          "recorded": true,
+          "claim_id": "CLM-8901",
+          "decision": "approve_in_principle",
+          "receipt_sha256": "589e90888a531f50b626ee906df714bcfc9d202e336c4e485d35e8f6be8f92a0",
+          "record": {
+            "ts": "2026-09-09T00:00:00Z",
+            "claim_id": "CLM-8901",
+            "decision": "approve_in_principle",
+            "reason": "Line 45378 appeared covered because the tool return omitted its required-document fields.",
+            "lines": [
+              {
+                "code": "45378",
+                "amount": 1150,
+                "status": "covered",
+                "evidence": "No document requirement was exposed by the faulty interface."
+              }
+            ],
+            "approved_total": 1150,
+            "refused_total": 0,
+            "missing": null,
+            "trigger": null,
+            "escalate_to": null,
+            "evidence": [
+              "get_claim",
+              "get_policy_context",
+              "find_prior_decision",
+              "get_hospital_status",
+              "review_claim_line",
+              "issue_decision_letter"
+            ],
+            "gate": {
+              "autonomy": "confirm",
+              "approved": true,
+              "turn": 4
+            },
+            "turns": 5,
+            "tokens_in": 5842,
+            "tokens_out": 274,
+            "cost_usd": 0.0006938
+          },
+          "recovered_after_write_error": false
+        },
+        "persisted_decision": {
+          "ts": "2026-09-09T00:00:00Z",
+          "claim_id": "CLM-8901",
+          "decision": "approve_in_principle",
+          "reason": "Line 45378 appeared covered because the tool return omitted its required-document fields.",
+          "lines": [
+            {
+              "code": "45378",
+              "amount": 1150,
+              "status": "covered",
+              "evidence": "No document requirement was exposed by the faulty interface."
+            }
+          ],
+          "approved_total": 1150,
+          "refused_total": 0,
+          "missing": null,
+          "trigger": null,
+          "escalate_to": null,
+          "evidence": [
+            "get_claim",
+            "get_policy_context",
+            "find_prior_decision",
+            "get_hospital_status",
+            "review_claim_line",
+            "issue_decision_letter"
+          ],
+          "gate": {
+            "autonomy": "confirm",
+            "approved": true,
+            "turn": 4
+          },
+          "turns": 5,
+          "tokens_in": 5842,
+          "tokens_out": 274,
+          "cost_usd": 0.0006938
+        },
+        "request_ids": [
+          "scripted:document-interface:1",
+          "scripted:document-interface:2",
+          "scripted:document-interface:3",
+          "scripted:document-interface:4",
+          "scripted:document-interface:5"
+        ],
+        "decision_log": "CLM-8901.jsonl",
+        "observation_metrics": [
+          {
+            "turn": 1,
+            "tool": "get_claim",
+            "characters": 211,
+            "tokens_estimate_chars_div_4": 52
+          },
+          {
+            "turn": 2,
+            "tool": "get_policy_context",
+            "characters": 316,
+            "tokens_estimate_chars_div_4": 79
+          },
+          {
+            "turn": 2,
+            "tool": "find_prior_decision",
+            "characters": 4,
+            "tokens_estimate_chars_div_4": 1
+          },
+          {
+            "turn": 3,
+            "tool": "get_hospital_status",
+            "characters": 85,
+            "tokens_estimate_chars_div_4": 21
+          },
+          {
+            "turn": 3,
+            "tool": "review_claim_line",
+            "characters": 215,
+            "tokens_estimate_chars_div_4": 53
+          },
+          {
+            "turn": 4,
+            "tool": "issue_decision_letter",
+            "characters": 925,
+            "tokens_estimate_chars_div_4": 231
+          }
+        ],
+        "observation_tokens_estimate": 437
+      }
+    },
+    "finding": "Removing the document rule converted a required-document request into a longer, more expensive and unsafe approval.",
+    "why_other_layers_are_wrong": "A prompt cannot use a fact the tool never returns; loop controls do not repair missing ground truth. The fix belongs in the bounded return schema."
+  },
+  "restoration": {
+    "trials": 60,
+    "passed": 60,
+    "pass_rate": 1.0,
+    "negative_trials": 30,
+    "negative_passed": 30,
+    "negative_pass_rate": 1.0,
+    "median_turns": 4.0,
+    "worst_case_turns": 5,
+    "step_cap_hits": 0,
+    "tokens_in": 671351,
+    "tokens_out": 25172,
+    "observation_tokens_estimate": 26121,
+    "observation_calls": 333,
+    "mean_observation_tokens_estimate_per_call": 78.44144144144144,
+    "cost_usd": 0.0772039,
+    "catalog_cost_usd": 0.0772039,
+    "provider_cost_usd": null,
+    "backend": "scripted",
+    "model": null,
+    "prompt_version": "v2",
+    "full_set_without_guard": {
+      "trials": 60,
+      "passed": 60,
+      "pass_rate": 1.0,
+      "negative_trials": 30,
+      "negative_passed": 30,
+      "negative_pass_rate": 1.0,
+      "median_turns": 4.0,
+      "worst_case_turns": 5,
+      "step_cap_hits": 0,
+      "tokens_in": 671351,
+      "tokens_out": 25172,
+      "observation_tokens_estimate": 26121,
+      "observation_calls": 333,
+      "mean_observation_tokens_estimate_per_call": 78.44144144144144,
+      "cost_usd": 0.0772039,
+      "catalog_cost_usd": 0.0772039,
+      "provider_cost_usd": null,
+      "backend": "scripted",
+      "model": null,
+      "prompt_version": "v2"
+    },
+    "valid_trajectory_decisions_identical": true
+  }
+}

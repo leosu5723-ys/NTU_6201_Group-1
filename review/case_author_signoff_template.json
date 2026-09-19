@@ -1,0 +1,299 @@
+{
+  "instructions": "Each member must review every assigned case from Appendix A without seeing model output, record a case-specific decision review and authorship or substantive revision, and sign only after all named work is merged. Copy this template to case_author_signoff.json after completion.",
+  "members": [
+    {
+      "name": "Meng Sijia",
+      "case_ids": [
+        "CLM-8842",
+        "CLM-8901",
+        "CLM-8910",
+        "CLM-9001",
+        "CLM-9007",
+        "CLM-9012",
+        "CLM-9018"
+      ],
+      "signed": false,
+      "date": null,
+      "case_records": [
+        {
+          "case_id": "CLM-8842",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8901",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8910",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9001",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9007",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9012",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9018",
+          "decision_review": null,
+          "authorship_or_revision": null
+        }
+      ]
+    },
+    {
+      "name": "SHI SHUYI",
+      "case_ids": [
+        "CLM-8850",
+        "CLM-8888",
+        "CLM-8925",
+        "CLM-9002",
+        "CLM-9008",
+        "CLM-9013",
+        "CLM-9019"
+      ],
+      "signed": false,
+      "date": null,
+      "case_records": [
+        {
+          "case_id": "CLM-8850",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8888",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8925",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9002",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9008",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9013",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9019",
+          "decision_review": null,
+          "authorship_or_revision": null
+        }
+      ]
+    },
+    {
+      "name": "Su Yang",
+      "case_ids": [
+        "CLM-8861",
+        "CLM-8894",
+        "CLM-8933",
+        "CLM-9003",
+        "CLM-9009",
+        "CLM-9014",
+        "CLM-9020"
+      ],
+      "signed": false,
+      "date": null,
+      "case_records": [
+        {
+          "case_id": "CLM-8861",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8894",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8933",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9003",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9009",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9014",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9020",
+          "decision_review": null,
+          "authorship_or_revision": null
+        }
+      ]
+    },
+    {
+      "name": "Isha Kirti Ghia",
+      "case_ids": [
+        "CLM-8874",
+        "CLM-8941",
+        "CLM-8960",
+        "CLM-9004",
+        "CLM-9010",
+        "CLM-9015",
+        "CLM-9021"
+      ],
+      "signed": false,
+      "date": null,
+      "case_records": [
+        {
+          "case_id": "CLM-8874",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8941",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8960",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9004",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9010",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9015",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9021",
+          "decision_review": null,
+          "authorship_or_revision": null
+        }
+      ]
+    },
+    {
+      "name": "Sun Hanyu",
+      "case_ids": [
+        "CLM-8917",
+        "CLM-8952",
+        "CLM-8971",
+        "CLM-9005",
+        "CLM-9011",
+        "CLM-9016",
+        "CLM-9022"
+      ],
+      "signed": false,
+      "date": null,
+      "case_records": [
+        {
+          "case_id": "CLM-8917",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8952",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-8971",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9005",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9011",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9016",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9022",
+          "decision_review": null,
+          "authorship_or_revision": null
+        }
+      ]
+    },
+    {
+      "name": "Zhang Jiayang",
+      "case_ids": [
+        "CLM-9006",
+        "CLM-9017",
+        "CLM-9023",
+        "CLM-9024",
+        "CLM-9025"
+      ],
+      "signed": false,
+      "date": null,
+      "case_records": [
+        {
+          "case_id": "CLM-9006",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9017",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9023",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9024",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9025",
+          "decision_review": null,
+          "authorship_or_revision": null
+        }
+      ]
+    }
+  ]
+}

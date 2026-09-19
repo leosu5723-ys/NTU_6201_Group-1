@@ -1,0 +1,26 @@
+{
+  "status": "rejected pre-implementation candidate",
+  "rationale": "These two narrow lookups were considered and cut before the seven-tool implementation. Their facts are returned by get_policy_context and review_claim_line, so keeping them would add standing prompt cost and confusable neighbouring calls without enabling a task that otherwise fails.",
+  "candidate_tools": [
+    {
+      "name": "lookup_member",
+      "signature": "lookup_member(member_id: str) -> MemberLink | None",
+      "purpose": "Return the policy identifier linked to one member.",
+      "when": "After get_claim and before a separate policy lookup.",
+      "args": {"member_id": "Exact member identifier; unknown values return None."},
+      "returns": "At most one object containing member_id and policy_id; no more than 30 tokens.",
+      "failure": "Returns None for an unknown member identifier.",
+      "irreversible": "No. Read-only."
+    },
+    {
+      "name": "get_required_document_rule",
+      "signature": "get_required_document_rule(procedure_code: str) -> DocumentRule | None",
+      "purpose": "Return the required document for one procedure code.",
+      "when": "After a separate line-coverage lookup.",
+      "args": {"procedure_code": "Exact submitted procedure code; malformed or unknown values return None."},
+      "returns": "At most one object containing procedure_code and required_document; no more than 35 tokens.",
+      "failure": "Returns None when no separate document rule exists.",
+      "irreversible": "No. Read-only."
+    }
+  ]
+}

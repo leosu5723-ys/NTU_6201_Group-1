@@ -1,0 +1,35 @@
+Hi everyone, please replace the earlier PE6201 A2 review materials with the attached R2 pack.
+
+The previous worksheet was incomplete: it omitted five cases and placed CLM-9014 and CLM-9020 under SHI SHUYI instead of Su Yang. It also contained truncated source facts. These errors have been corrected; the agreed allocation itself has not changed.
+
+The corrected worksheet now has all 40 cases:
+• Meng Sijia: 7
+• SHI SHUYI: 7
+• Su Yang: 7
+• Isha Kirti Ghia: 7
+• Sun Hanyu: 7
+• Zhang Jiayang: 5
+
+Su Yang's complete section is: CLM-8861, CLM-8894, CLM-8933, CLM-9003, CLM-9009, CLM-9014 and CLM-9020.
+
+Please follow this order:
+
+1. Open the PHASE_A_CASE_AUTHORING_R2 ZIP and read START_HERE.md and review/TEAM_ACTION_PACK.md. Find your section in review/CASE_WORKSHEETS.md.
+
+2. Independently write the final evaluation contracts for your assigned cases using the source facts and official Appendix A. Include the decision, exact trigger/missing item where applicable, totals and line dispositions where applicable, evidence, decision boundary, fixed checks and case-specific must_record requirements. A simple “looks correct” is not enough. Return your completed section and proposed corrections to me before opening Phase B.
+
+3. Then open the PHASE_B_CODE_REVIEW_R2 ZIP. Read CODE_WALKTHROUGH.md and inspect the files for your declared strand. Return one design choice you can explain, any questions/corrections, and your name/date. Free offline tests are included; setup instructions are in START_HERE.md.
+
+Please do not use your API key yet. After everyone's case work and feedback are merged, we will announce one frozen Git commit and the final commands. Everyone will then run the assigned full battery on their own key. The model allocation is unchanged:
+• Meng Sijia: Gemini 2.5 Flash Lite, v2
+• SHI SHUYI: Qwen3 30B A3B Instruct, v2
+• Su Yang: Claude Haiku 4.5, v2
+• Isha Kirti Ghia: Llama 4 Maverick, v2
+• Sun Hanyu: DeepSeek V3.2, v2
+• Zhang Jiayang: Gemini 2.5 Flash Lite, v1
+
+The R2 code package has been independently extracted and checked: 101 unit tests passed, 60/60 scripted trials passed, and 10/10 guardrail cases passed. These are offline engineering checks, not live-model results.
+
+If you already worked on the old worksheet, please keep your work and send it with the case IDs. We will preserve the actual author/reviewer and transfer the responses correctly. Do not discard your work or sign for another member.
+
+Please reply with confirmation that you found your correct section, any questions, and your expected completion time for Phase A. Never share an API key in the group or in a file.

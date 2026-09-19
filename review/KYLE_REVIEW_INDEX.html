@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>PE6201 A2 审阅入口</title>
+<style>
+  * { box-sizing: border-box; }
+  body { color: var(--foreground); padding: 18px; max-width: 940px; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  h2 { font-size: 15px; margin: 22px 0 10px; }
+  p { line-height: 1.55; margin: 5px 0; }
+  .muted { color: var(--muted-foreground); }
+  .status { border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-top: 14px; background: var(--card); }
+  .grid { display: grid; grid-template-columns: repeat(4, minmax(120px, 1fr)); gap: 10px; margin-top: 12px; }
+  .metric { border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+  .metric b { display: block; font-size: 20px; margin-bottom: 3px; }
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 9px; }
+  .node { border: 1px solid var(--border); border-radius: 10px; padding: 11px; text-align: center; }
+  .arrow { color: var(--muted-foreground); }
+  .files { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .file { border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+  .file strong { display: block; margin-bottom: 4px; }
+  ul { margin: 8px 0 0 20px; padding: 0; line-height: 1.55; }
+  .ok { color: var(--accent); font-weight: 650; }
+  @media (max-width: 700px) { .grid, .files { grid-template-columns: 1fr 1fr; } .flow { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); text-align: center; } }
+</style>
+</head>
+<body>
+  <h1>PE6201 Assignment 2 · Problem A</h1>
+  <p class="muted">Kyle 审阅入口 · 当前是冻结前工程候选，不是最终提交包</p>
+
+  <div class="status">
+    <p><span class="ok">工程候选已完成</span>：单 Agent ReAct、7个工具、40个案例、离线评测、guardrails、ACI与成本实验框架均已实现。</p>
+    <p><strong>尚未完成：</strong>六人案例签字、10项人工 judgement、6套 live batteries、最终 PDF、视频与 ZIP。</p>
+  </div>
+
+  <div class="grid">
+    <div class="metric"><b>101/101</b><span class="muted">单元测试</span></div>
+    <div class="metric"><b>60/60</b><span class="muted">scripted trials</span></div>
+    <div class="metric"><b>10/10</b><span class="muted">guardrail cases</span></div>
+    <div class="metric"><b>0</b><span class="muted">live API calls</span></div>
+  </div>
+
+  <h2>系统主流程</h2>
+  <div class="flow">
+    <div class="node"><strong>Claim evidence</strong><br><span class="muted">policy · duplicate · hospital · lines</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><strong>Single ReAct agent</strong><br><span class="muted">manual loop · parallel safe calls</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><strong>Confirmed first response</strong><br><span class="muted">approve · request · escalate</span></div>
+  </div>
+
+  <h2>你现在可以审阅的四份材料</h2>
+  <div class="files">
+    <div class="file"><strong>1. Report Draft</strong><span class="muted">当前完整报告正文；live结果位置明确保留占位符。</span></div>
+    <div class="file"><strong>2. Evidence Tables</strong><span class="muted">scripted、parallel、guardrail、D7实验的实际生成结果。</span></div>
+    <div class="file"><strong>3. Team Action Pack</strong><span class="muted">六人的strand、案例、live模型、报告和视频职责。</span></div>
+    <div class="file"><strong>4. Case Worksheets</strong><span class="muted">每位成员5–7个source-only案例审核表，不泄漏模型输出。</span></div>
+  </div>
+
+  <h2>冻结前真实下一步</h2>
+  <ul>
+    <li>六名成员逐案例填写 worksheet，并记录具体 authorship/revision。</li>
+    <li>团队确认当前30 positive / 10 negative设计后签署 case record。</li>
+    <li>Kyle审阅工程候选后，才创建 frozen commit。</li>
+    <li>从同一commit运行五个v2模型与一个Gemini v1 battery。</li>
+  </ul>
+</body>
+</html>

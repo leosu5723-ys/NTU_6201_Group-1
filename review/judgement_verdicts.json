@@ -1,0 +1,15 @@
+{
+  "instructions": "Complete only after an independent reviewer reads the saved transcript and the listed requirements. Set verdict to pass or fail, add the reviewer's real name, and add evidence-grounded notes.",
+  "cases": [
+    {"case_id": "CLM-8842", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8888", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8894", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8901", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8910", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8925", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8933", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8941", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-8952", "verdict": null, "graded_by": null, "notes": null},
+    {"case_id": "CLM-9019", "verdict": null, "graded_by": null, "notes": null}
+  ]
+}

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.venv/
+/results.json
+results/smoke/
+A2_Scaffold_Tour_*.ipynb
+/PE6201_A2_Adding_Extra_Cases.pdf
+A2_reference_data/*.pdf

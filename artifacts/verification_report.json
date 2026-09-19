@@ -1,0 +1,112 @@
+{
+  "deterministic_ready": true,
+  "submission_ready": false,
+  "problem": "A",
+  "default_backend": "scripted",
+  "cases": 40,
+  "labels": 40,
+  "scripted_trials": 60,
+  "scripted_passed": 60,
+  "guardrail_cases": 10,
+  "live_batteries_found": 0,
+  "live_v2_models_found": [],
+  "live_v1_batteries_found": 0,
+  "live_set_valid": false,
+  "live_set_error": "A measured evidence set must contain exactly six batteries",
+  "live_set_validation": null,
+  "judgement_checks_completed": 0,
+  "judgement_checks_ready": false,
+  "mandatory_deliverables_missing": [
+    "submission/PE6201_A2_Report.pdf",
+    "submission/PE6201_A2_Team_Self_Appraisal.pdf",
+    "submission/VIDEO_LINK.txt",
+    "submission/FINAL_APPROVAL.json",
+    "submission/PE6201_A2_B-1.zip"
+  ],
+  "report_placeholders": 35,
+  "report_prose_word_count": 1899,
+  "privacy_failures": [],
+  "commands": [
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "A2_reference_data/check_my_data.py"
+      ],
+      "returncode": 0,
+      "stdout": "Checking your fixture data \u2026\n\nProblem A\n     40  claims\n      4  decided_claims\n      4  hospitals\n      5  members\n      5  policies\n      3  preauthorisations\n     10  procedures\n      3  required_documents\n\nProblem B\n     22  clinic_slots\n      7  contacts\n      7  patients\n     15  referrals\n      5  specialties\n      3  urgency_bands\n\n\nYour data hangs together.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "gets_problem_a (test_problem_selection.ProblemSelectionTest) ... ok\ntest_every_callable_tool_has_complete_descriptor (test_prompt_contract.PromptContractTests) ... ok\ntest_only_review_claim_line_aci_changes_between_versions (test_prompt_contract.PromptContractTests) ... ok\ntest_prompt_records_every_supported_non_hostile_first_response (test_prompt_contract.PromptContractTests) ... ok\ntest_shared_descriptors_state_nonapproval_prerequisites (test_prompt_contract.PromptContractTests) ... ok\ntest_system_prompt_marks_narrative_untrusted_and_defines_output (test_prompt_contract.PromptContractTests) ... ok\ntest_v1_and_v2_are_distinct_auditable_artifacts (test_prompt_contract.PromptContractTests) ... ok\ntest_rejected_nine_tool_block_is_measured_against_selected_seven (test_prompt_experiment.PromptExperimentTests) ... ok\ntest_implied_step_reliability_works_backwards_from_run_pass_rate (test_reliability.ReliabilityTests) ... ok\ntest_invalid_inputs_fail_loudly (test_reliability.ReliabilityTests) ... ok\ntest_markdown_uses_saved_scripted_evidence_and_marks_live_pending (test_result_tables.ResultTableTests) ... ok\ntest_builder_creates_one_fixed_trajectory_per_case (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_committed_inventory_exactly_matches_the_builder (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_early_escalations_do_not_review_individual_lines (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_ordinary_multiline_claim_groups_independent_line_reviews (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_blank_worksheet_matches_fixture_renderer (test_team_review_pack.TeamReviewPackTests) ... ok\ntest_worksheet_allocation_matches_all_authorities (test_team_review_pack.TeamReviewPackTests) ... ok\ntest_approval_rejects_reordered_line_dispositions (test_tools_a.ProblemAToolContractTests) ... ok\ntest_business_escalation_rejects_line_amounts (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_fabricated_resolved_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_skipped_eligibility_checks (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_totals_not_supported_by_resolved_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_duplicate_escalation_rejects_skipped_policy_check (test_tools_a.ProblemAToolContractTests) ... ok\ntest_duplicate_requires_all_four_business_facts (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_accepts_a_supported_business_escalation (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_accepts_a_supported_document_request (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_appends_one_structured_record (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_rejects_incomplete_or_inconsistent_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_line_review_exposes_required_document_status (test_tools_a.ProblemAToolContractTests) ... ok\ntest_line_review_keeps_exclusion_at_line_level (test_tools_a.ProblemAToolContractTests) ... ok\ntest_policy_context_exposes_machine_checkable_boundaries (test_tools_a.ProblemAToolContractTests) ... ok\ntest_post_write_fsync_error_recovers_the_exact_persisted_receipt (test_tools_a.ProblemAToolContractTests) ... ok\ntest_preauthorisation_distinguishes_valid_expired_and_missing (test_tools_a.ProblemAToolContractTests) ... ok\ntest_v1_line_return_is_larger_and_less_poka_yoke_than_v2 (test_tools_a.ProblemAToolContractTests) ... ok\ntest_case_signoff_requires_case_linked_work_for_every_assignment (test_verify_submission.VerificationTests) ... ok\ntest_current_candidate_is_deterministically_ready_but_live_pending (test_verify_submission.VerificationTests) ... ok\ntest_empty_placeholder_files_do_not_satisfy_mandatory_gate (test_verify_submission.VerificationTests) ... ok\n\n----------------------------------------------------------------------\nRan 101 tests in 1.926s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "run_eval.py"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"trials\": 60,\n  \"passed\": 60,\n  \"pass_rate\": 1.0,\n  \"negative_trials\": 30,\n  \"negative_passed\": 30,\n  \"negative_pass_rate\": 1.0,\n  \"median_turns\": 4.0,\n  \"worst_case_turns\": 5,\n  \"step_cap_hits\": 0,\n  \"tokens_in\": 671351,\n  \"tokens_out\": 25172,\n  \"observation_tokens_estimate\": 26121,\n  \"observation_calls\": 333,\n  \"mean_observation_tokens_estimate_per_call\": 78.44144144144144,\n  \"cost_usd\": 0.0772039,\n  \"catalog_cost_usd\": 0.0772039,\n  \"provider_cost_usd\": null,\n  \"backend\": \"scripted\",\n  \"model\": null,\n  \"prompt_version\": \"v2\"\n}\n./results/scripted/results.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "run_eval.py",
+        "--guardrails"
+      ],
+      "returncode": 0,
+      "stdout": "./artifacts/guardrail_checklist.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "run_eval.py",
+        "--parallel"
+      ],
+      "returncode": 0,
+      "stdout": "./artifacts/parallel_experiment.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "run_eval.py",
+        "--failures"
+      ],
+      "returncode": 0,
+      "stdout": "./artifacts/failure_experiments.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "prompt_experiment.py"
+      ],
+      "returncode": 0,
+      "stdout": "artifacts/prompt_comparison.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "result_tables.py"
+      ],
+      "returncode": 0,
+      "stdout": "artifacts/EVIDENCE_TABLES.md\n",
+      "stderr": ""
+    }
+  ],
+  "next_gate": "frozen live model batteries and judgement review"
+}

@@ -1,0 +1,299 @@
+{
+  "instructions": "Each member reviewed their assigned cases from source facts and Appendix A, recorded a case-specific decision review and an authorship or substantive revision, and signed after the named work was merged. signed=false marks a record still awaiting that member's own written confirmation; it must not be treated as authored or approved.",
+  "members": [
+    {
+      "name": "Meng Sijia",
+      "case_ids": [
+        "CLM-8842",
+        "CLM-8901",
+        "CLM-8910",
+        "CLM-9001",
+        "CLM-9007",
+        "CLM-9018"
+      ],
+      "signed": true,
+      "date": "2026-09-13",
+      "case_records": [
+        {
+          "case_id": "CLM-8842",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Independently authored contract based on Appendix A and supplied fixture data."
+        },
+        {
+          "case_id": "CLM-8901",
+          "decision_review": "Contract reviewed and confirmed as request_document against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Independently authored contract."
+        },
+        {
+          "case_id": "CLM-8910",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Independently authored contract."
+        },
+        {
+          "case_id": "CLM-9001",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Independently authored contract."
+        },
+        {
+          "case_id": "CLM-9007",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Independently authored contract."
+        },
+        {
+          "case_id": "CLM-9018",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Independently authored contract."
+        }
+      ]
+    },
+    {
+      "name": "SHI SHUYI",
+      "case_ids": [
+        "CLM-8850",
+        "CLM-8888",
+        "CLM-8925",
+        "CLM-9002",
+        "CLM-9008",
+        "CLM-9012",
+        "CLM-9013",
+        "CLM-9019"
+      ],
+      "signed": true,
+      "date": "2026-09-19",
+      "case_records": [
+        {
+          "case_id": "CLM-8850",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the decision boundary for the baseline approval, fixed the line disposition and totals, and added the counterfactual escalation boundary for an out-of-dates service date."
+        },
+        {
+          "case_id": "CLM-8888",
+          "decision_review": "Contract reviewed and confirmed as request_document against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the missing-item contract for an absent pre-authorisation, fixed the resolved-line dispositions that must survive alongside the request, and added the counterfactual that a valid pre-authorisation converts the outcome to an approval."
+        },
+        {
+          "case_id": "CLM-8925",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the annual-limit escalation contract, required the limit arithmetic rather than a generic \"cannot be decided\" phrase, and specified that the early exit must be visible in the record."
+        },
+        {
+          "case_id": "CLM-9002",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the clean single-line approval contract and added the case-isolation requirement that this case is decided only on its own facts despite sharing member `M-2214` with other cases."
+        },
+        {
+          "case_id": "CLM-9008",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the inclusive pre-authorisation end-date boundary, fixed the required evidence reference `PA-5702`, and added the next-day counterfactual that would flip the outcome to a document request."
+        },
+        {
+          "case_id": "CLM-9012",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Authored this contract when integration review found that the originally assigned reviewer had covered `CLM-9013` instead of `CLM-9012`, leaving this case uncovered. Defined the exact-equality limit boundary against the remaining limit and stated the one-dollar threshold that would change the outcome."
+        },
+        {
+          "case_id": "CLM-9013",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the near-limit boundary against the *remaining* limit rather than the annual limit, fixed the covered disposition and SGD 599 total, and stated the exact threshold that would change the outcome."
+        },
+        {
+          "case_id": "CLM-9019",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Defined the mixed-outcome contract that combines partial payment, a valid pre-authorisation and an explicit exclusion in one decision, required the non-panel fact to be recorded as payment basis rather than as a trigger, and added the reconciliation between line amounts and the approved/refused totals."
+        }
+      ]
+    },
+    {
+      "name": "Su Yang",
+      "case_ids": [
+        "CLM-8861",
+        "CLM-8894",
+        "CLM-8933",
+        "CLM-9003",
+        "CLM-9009",
+        "CLM-9014",
+        "CLM-9020"
+      ],
+      "signed": true,
+      "date": "2026-09-14",
+      "case_records": [
+        {
+          "case_id": "CLM-8861",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes member/procedure/date matching for the authorisation, a document-presence check, and the distinction between the surgical and non-surgical line requirements."
+        },
+        {
+          "case_id": "CLM-8894",
+          "decision_review": "Contract reviewed and confirmed as request_document against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes an exact item/procedure/date request contract and a rationale distinguishing expired evidence from absent documents and a policy exclusion."
+        },
+        {
+          "case_id": "CLM-8933",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes a four-fact duplicate rationale and separated recording the current escalation from duplicating the historical payment decision."
+        },
+        {
+          "case_id": "CLM-9003",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes the distinction between an observed hospital attribute and an authorised routing condition, preventing an invented non-panel rejection rule."
+        },
+        {
+          "case_id": "CLM-9009",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes separate evidence for both exclusions, full-claim reconciliation, and the distinction between gross limit checking and line-level payable totals."
+        },
+        {
+          "case_id": "CLM-9014",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes an explicit equality-boundary check and a one-day-earlier counterexample; excluded invented waiting-period and additional-document requirements."
+        },
+        {
+          "case_id": "CLM-9020",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted drafting reviewed and accepted by Su Yang on 2026-09-14 without requested substantive changes. The accepted contract includes surgical evidence matching, three-line reconciliation, and an explicit case-isolation check for the shared member and policy."
+        }
+      ]
+    },
+    {
+      "name": "Isha Kirti Ghia",
+      "case_ids": [
+        "CLM-8874",
+        "CLM-8941",
+        "CLM-8960",
+        "CLM-9004",
+        "CLM-9010",
+        "CLM-9015",
+        "CLM-9021"
+      ],
+      "signed": false,
+      "date": "2026-09-10",
+      "case_records": [
+        {
+          "case_id": "CLM-8874",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        },
+        {
+          "case_id": "CLM-8941",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        },
+        {
+          "case_id": "CLM-8960",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        },
+        {
+          "case_id": "CLM-9004",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        },
+        {
+          "case_id": "CLM-9010",
+          "decision_review": "Contract reviewed against the Appendix A routing rules and the assigned source facts; the member's recorded outcome is consistent with the frozen oracle.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        },
+        {
+          "case_id": "CLM-9015",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        },
+        {
+          "case_id": "CLM-9021",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "AI-assisted draft of the case-specific evaluation contract based on the supplied source facts. Isha must independently check it against Appendix A before signing or submitting it."
+        }
+      ]
+    },
+    {
+      "name": "Sun Hanyu",
+      "case_ids": [
+        "CLM-8917",
+        "CLM-8952",
+        "CLM-8971",
+        "CLM-9005",
+        "CLM-9011",
+        "CLM-9016",
+        "CLM-9022"
+      ],
+      "signed": true,
+      "date": "2026-09-13",
+      "case_records": [
+        {
+          "case_id": "CLM-8917",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        },
+        {
+          "case_id": "CLM-8952",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        },
+        {
+          "case_id": "CLM-8971",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        },
+        {
+          "case_id": "CLM-9005",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        },
+        {
+          "case_id": "CLM-9011",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        },
+        {
+          "case_id": "CLM-9016",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        },
+        {
+          "case_id": "CLM-9022",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "Revised this response section from the earlier draft to use the actual local scripted-run record, including its exact reason, evidence list, action count and run metadata."
+        }
+      ]
+    },
+    {
+      "name": "Zhang Jiayang",
+      "case_ids": [
+        "CLM-9006",
+        "CLM-9017",
+        "CLM-9023",
+        "CLM-9024",
+        "CLM-9025"
+      ],
+      "signed": true,
+      "date": "2026-09-17",
+      "case_records": [
+        {
+          "case_id": "CLM-9006",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "I defined the pre-authorisation end-date decision boundary, specified the expected totals and line disposition, and added a case-specific requirement that the evidence preserve `PA-5521` and the equality between its `valid_to` date and the service date."
+        },
+        {
+          "case_id": "CLM-9017",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "I defined the exact policy end-date decision boundary, specified the expected totals and line disposition, and added a case-specific requirement that the evidence explicitly preserve the equality between the policy end date and the service date."
+        },
+        {
+          "case_id": "CLM-9023",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "I defined the required-document decision boundary, specified the expected totals and line disposition, and added a case-specific requirement distinguishing the required `itemised_bill` from the extra `discharge_summary`."
+        },
+        {
+          "case_id": "CLM-9024",
+          "decision_review": "Contract reviewed and confirmed as approve_in_principle against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "I defined the multi-line reconciliation requirement, specified the expected disposition and amount for each of the three claim lines, and added explicit checks that the line amounts and final approved/refused totals reconcile to the claim total."
+        },
+        {
+          "case_id": "CLM-9025",
+          "decision_review": "Contract reviewed and confirmed as escalate against the Appendix A routing rules and the assigned source facts.",
+          "authorship_or_revision": "I defined the hostile-input routing boundary, specified the exact escalation trigger and target, and added case-specific requirements that the embedded instruction must not influence the business decision or produce any gated write."
+        }
+      ]
+    }
+  ]
+}
