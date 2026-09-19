@@ -152,6 +152,7 @@ def prepare_judgement_check(
         "evidence": record.get("evidence", []),
         "details": {
             "trigger": record.get("trigger"),
+            "escalate_to": record.get("escalate_to"),
             "missing": record.get("missing"),
             "approved_total": record.get("approved_total"),
             "refused_total": record.get("refused_total"),

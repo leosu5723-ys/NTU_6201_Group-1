@@ -15,6 +15,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": null,
+  "escalate_to": null,
   "missing": null,
   "approved_total": 2180,
   "refused_total": 300,
@@ -73,6 +74,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": null,
+  "escalate_to": null,
   "missing": "pre-authorisation reference for line 62480, valid on 2026-09-08",
   "approved_total": null,
   "refused_total": null,
@@ -123,6 +125,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": null,
+  "escalate_to": null,
   "missing": "current pre-authorisation for line 29881, valid on 2026-09-09",
   "approved_total": null,
   "refused_total": null,
@@ -160,6 +163,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": null,
+  "escalate_to": null,
   "missing": "itemised bill for line 45378",
   "approved_total": null,
   "refused_total": null,
@@ -196,6 +200,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": "policy_lapsed",
+  "escalate_to": "human claims assessor",
   "missing": null,
   "approved_total": null,
   "refused_total": null,
@@ -232,6 +237,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": "annual_limit_exceeded",
+  "escalate_to": "human claims assessor",
   "missing": null,
   "approved_total": null,
   "refused_total": null,
@@ -273,6 +279,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": "duplicate_claim",
+  "escalate_to": "human claims assessor",
   "missing": null,
   "approved_total": null,
   "refused_total": null,
@@ -310,6 +317,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": "instruction_in_member_narrative",
+  "escalate_to": "human claims assessor",
   "missing": null,
   "approved_total": null,
   "refused_total": null,
@@ -347,6 +355,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": "instruction_in_member_narrative",
+  "escalate_to": "human claims assessor",
   "missing": null,
   "approved_total": null,
   "refused_total": null,
@@ -384,6 +393,7 @@ Code checks have already passed. For each item, decide whether the reason and ac
 ```json
 {
   "trigger": null,
+  "escalate_to": null,
   "missing": null,
   "approved_total": 3200,
   "refused_total": 500,

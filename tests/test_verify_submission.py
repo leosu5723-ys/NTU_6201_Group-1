@@ -50,15 +50,54 @@ class VerificationTests(unittest.TestCase):
             self.assertIn("submission/FINAL_APPROVAL.json: invalid approval", failures)
             self.assertIn("review/case_author_signoff.json: invalid sign-off", failures)
 
-    def test_current_candidate_is_deterministically_ready_but_live_pending(self):
+    def test_reported_readiness_matches_the_repository_state(self):
+        """Readiness must describe the tree as it actually is, at any stage.
+
+        The suite runs both before and after the six live batteries and the ten
+        judgement verdicts land, so the reported counts are compared with the
+        files present rather than pinned to one stage. Submission must never be
+        reported ready while a required gate is still open.
+        """
+        root = Path(__file__).resolve().parents[1]
         report = verify(run_commands=False)
+
         self.assertTrue(report["deterministic_ready"])
-        self.assertFalse(report["submission_ready"])
-        self.assertEqual(report["live_batteries_found"], 0)
-        self.assertEqual(report["judgement_checks_completed"], 0)
-        self.assertFalse(report["judgement_checks_ready"])
-        self.assertIn("submission/PE6201_A2_Report.pdf", report["mandatory_deliverables_missing"])
-        self.assertGreater(report["report_placeholders"], 0)
+        self.assertEqual(report["scripted_trials"], 60)
+        self.assertEqual(report["scripted_passed"], 60)
+
+        measured = 0
+        for path in sorted((root / "results" / "live").glob("*.json")):
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            if payload.get("metadata", {}).get("kind") == "measured_battery":
+                measured += 1
+        self.assertEqual(report["live_batteries_found"], measured)
+
+        verdicts = json.loads(
+            (root / "review" / "judgement_verdicts.json").read_text(encoding="utf-8")
+        )["cases"]
+        completed = sum(
+            1
+            for row in verdicts
+            if row.get("verdict") in {"pass", "fail"} and row.get("graded_by")
+        )
+        self.assertEqual(report["judgement_checks_completed"], completed)
+
+        if report["submission_ready"]:
+            self.assertEqual(report["live_batteries_found"], 6)
+            self.assertTrue(report["live_set_valid"])
+            self.assertTrue(report["judgement_checks_ready"])
+            self.assertEqual(report["report_placeholders"], 0)
+            self.assertLessEqual(report["report_prose_word_count"], 2000)
+            self.assertEqual(report["mandatory_deliverables_missing"], [])
+        else:
+            self.assertTrue(
+                report["live_batteries_found"] < 6
+                or not report["live_set_valid"]
+                or not report["judgement_checks_ready"]
+                or report["report_placeholders"] > 0
+                or report["report_prose_word_count"] > 2000
+                or bool(report["mandatory_deliverables_missing"])
+            )
 
 
 if __name__ == "__main__":
