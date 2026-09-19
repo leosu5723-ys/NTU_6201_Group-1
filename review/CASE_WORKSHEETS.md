@@ -129,29 +129,6 @@ The assignment authority is `case_review_assignments.md`; the signoff template a
 - My authorship or substantive revision (identify what I wrote or changed):
 - Name and date:
 
-### CLM-9012
-
-- Claim: member `M-3390`; hospital `H-207`; service date `2026-09-24`; total `600`
-- Documents: `itemised_bill`
-- Narrative: MRI brain with contrast.
-- Policy context: `{"annual_limit": 6000, "annual_limit_exceeded": false, "claim_total": 600, "end_date": "2026-12-31", "member_id": "M-3390", "policy_active": true, "policy_id": "POL-4102", "product": "Shield Basic", "remaining": 600, "service_date_covered": true, "start_date": "2026-01-01", "status": "active", "used_to_date": 5400}`
-- Prior exact duplicate: `null`
-- Hospital: `{"country": "SG", "hospital_id": "H-207", "name": "Mount Elizabeth East", "panel": true}`
-- Lines:
-  - billed `70553` / `600`; review `{"code": "70553", "description": "MRI brain with contrast", "excluded": false, "exclusion_rule": null, "policy_id": "POL-4102", "required_document": null, "required_document_present": true, "requires_preauth": false}`
-
-**Member response**
-
-- Decision:
-- Trigger or missing item and escalation target (if applicable):
-- Approved total / refused total (or explain why not applicable):
-- Required line dispositions or evidence IDs:
-- Decision boundary and business-rule rationale:
-- Fixed machine-check fields and action-count requirement:
-- Case-specific `must_record` requirements:
-- My authorship or substantive revision (identify what I wrote or changed):
-- Name and date:
-
 ### CLM-9018
 
 - Claim: member `M-5502`; hospital `H-114`; service date `2026-09-26`; total `1990`
@@ -286,6 +263,29 @@ The assignment authority is `case_review_assignments.md`; the signoff template a
 - Hospital: `{"country": "SG", "hospital_id": "H-207", "name": "Mount Elizabeth East", "panel": true}`
 - Lines:
   - billed `27447` / `9500`; review `{"code": "27447", "description": "Total knee replacement", "excluded": false, "exclusion_rule": null, "policy_id": "POL-6001", "required_document": "discharge_summary", "required_document_present": true, "requires_preauth": true}`; pre-authorisation `{"member_id": "M-5502", "preauth_id": "PA-5702", "procedure_code": "27447", "status": "valid", "valid_from": "2026-07-01", "valid_to": "2026-12-31"}`
+
+**Member response**
+
+- Decision:
+- Trigger or missing item and escalation target (if applicable):
+- Approved total / refused total (or explain why not applicable):
+- Required line dispositions or evidence IDs:
+- Decision boundary and business-rule rationale:
+- Fixed machine-check fields and action-count requirement:
+- Case-specific `must_record` requirements:
+- My authorship or substantive revision (identify what I wrote or changed):
+- Name and date:
+
+### CLM-9012
+
+- Claim: member `M-3390`; hospital `H-207`; service date `2026-09-24`; total `600`
+- Documents: `itemised_bill`
+- Narrative: MRI brain with contrast.
+- Policy context: `{"annual_limit": 6000, "annual_limit_exceeded": false, "claim_total": 600, "end_date": "2026-12-31", "member_id": "M-3390", "policy_active": true, "policy_id": "POL-4102", "product": "Shield Basic", "remaining": 600, "service_date_covered": true, "start_date": "2026-01-01", "status": "active", "used_to_date": 5400}`
+- Prior exact duplicate: `null`
+- Hospital: `{"country": "SG", "hospital_id": "H-207", "name": "Mount Elizabeth East", "panel": true}`
+- Lines:
+  - billed `70553` / `600`; review `{"code": "70553", "description": "MRI brain with contrast", "excluded": false, "exclusion_rule": null, "policy_id": "POL-4102", "required_document": null, "required_document_present": true, "requires_preauth": false}`
 
 **Member response**
 

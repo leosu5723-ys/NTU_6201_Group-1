@@ -9,7 +9,6 @@
         "CLM-8910",
         "CLM-9001",
         "CLM-9007",
-        "CLM-9012",
         "CLM-9018"
       ],
       "signed": false,
@@ -41,11 +40,6 @@
           "authorship_or_revision": null
         },
         {
-          "case_id": "CLM-9012",
-          "decision_review": null,
-          "authorship_or_revision": null
-        },
-        {
           "case_id": "CLM-9018",
           "decision_review": null,
           "authorship_or_revision": null
@@ -60,6 +54,7 @@
         "CLM-8925",
         "CLM-9002",
         "CLM-9008",
+        "CLM-9012",
         "CLM-9013",
         "CLM-9019"
       ],
@@ -88,6 +83,11 @@
         },
         {
           "case_id": "CLM-9008",
+          "decision_review": null,
+          "authorship_or_revision": null
+        },
+        {
+          "case_id": "CLM-9012",
           "decision_review": null,
           "authorship_or_revision": null
         },
