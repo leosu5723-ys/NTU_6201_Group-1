@@ -22,7 +22,7 @@
 | 1 | System: single-agent loop, 7 tools, harness, guardrails, experiments, cost model | 工程系统：Agent循环、7个工具、评测框架、guardrails、实验、成本模型 | ✅ Done / 完成 |
 | 2 | 40-case evaluation set with exactly 10 negative cases | 40个评测案例（含10个 negative） | ✅ Done / 完成 |
 | 3 | Everyone writes 5–8 evaluation cases | 全队案例撰写（每人5–8个） | ✅ 6 of 6 / 已交6人 |
-| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 **3 of 6**（SHI SHUYI、Isha、Zhang 已交）|
+| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 **4 of 6 已交**（SHI SHUYI、Isha、Zhang 已在仓库；Meng 已通过团队 bot 提交，待推送到她的分支）|
 | 5 | Freeze one version and push to GitHub | 冻结统一版本并 push 到 GitHub | ✅ Done / 完成 |
 | 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | 🟡 **5 of 6 已跑**（4 套已入库；Sun Hanyu 待按规范提交）|
 | 7 | Ten human judgements | 10项人工判定 | 🟡 **2 of 10**（SHI SHUYI 的两项已填；其余在六套合并后统一收集）|
@@ -47,12 +47,15 @@
 
 | Member | Battery | Strand review | Note / 备注 |
 |---|---|---|---|
-| Meng Sijia | ✅ done | ⏳ not yet | 结果已在 `member/meng-sijia` |
+| Meng Sijia | ✅ done | ✅ returned | 结果已在 `member/meng-sijia`；审阅通过团队 bot 于 9月19日 16:31 提交，**尚未在仓库里**，需她推到 `review/member_work/` |
 | SHI SHUYI | ✅ done | ✅ returned | 结果与审阅均在 `member/shi-shuyi` |
 | Su Yang | ⏳ not yet | ⏳ not yet | 分支尚未建立 / branch not created yet |
 | Isha Kirti Ghia | ✅ done | ✅ returned | Phase A 仍待她本人确认签署 |
 | Sun Hanyu | ⚠️ run complete, needs re-commit | ⏳ not yet | 结果以压缩包上传到 `results/scripted/`，需改放 `results/live/` |
 | Zhang Jiayang | ✅ done | ✅ returned | — |
+
+**One correction to send back to Meng Sijia / 需要退回给 Meng 的一处更正：** her Phase B review states that the ten *negative* cases are `CLM-8842, 8888, 8894, 8901, 8910, 8925, 8933, 8941, 8952, 9019`. Those are the ten **human-judgement** cases, not the negatives. The rule she quotes is correct (`is_negative` = expected decision `request_document` or `escalate`), and both sets happen to contain ten cases, so her 40→60 arithmetic still holds — but the case lists differ. The real negative set is `CLM-8888, 8894, 8901, 8910, **8917**, 8925, 8933, 8941, 8952, **9025**`; `CLM-8842` and `CLM-9019` are in the judgement queue but are ordinary approvals (one trial each). She should correct this before it goes into the report or the video.
+她的 Phase B 审阅把"十个人工判定案例"当成了"十个负面案例"。她引用的判定规则是对的（负面 = 期望结果是 `request_document` 或 `escalate`），两组恰好都是 10 个，所以 40→60 的算术没错，但名单不同。真正的负面集合见上；`CLM-8842`、`CLM-9019` 在判定队列里，但属于普通通过案例（只跑一次）。建议她在报告和视频里更正这一点。
 
 ---
 
