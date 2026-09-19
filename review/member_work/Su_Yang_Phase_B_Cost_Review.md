@@ -43,7 +43,11 @@ SHA-256: `94d625ad1e0753c85bbbdfaba6e9963a96ed8f083fef740e9925c8b7b0191ecc`.
 
 The token-price calculation is `121394 / 1e6 × 1 + 4636 / 1e6 × 5 = $0.144574`. Individual successful HTTP responses retain provider charges; the null aggregate must not be described as complete loss of billing data. The two HTTP 429 failures need billing reconciliation.
 
-The 58 returned responses contain fenced JSON. The strict parser rejects that format; its error-final lacks the required escalation destination and fails validation before a tool turn. This is an interface failure in the measured system, not evidence that Claude completed and misjudged all 60 claims. Removing fences for diagnostic inspection does not produce a new measured success rate. Preserve 0/60.
+**Report interpretation: Claude Haiku 4.5 — 0/60 strict end-to-end passes. The model did not comply with the required output format, and the harness recorded an escalation under its fail-closed policy. This is an output-format compliance issue, not a model capability score.**
+
+All 60 trials stopped with zero tool turns. In the 58 trials with returned responses, Claude wrapped JSON in Markdown code fences despite the prompt requiring JSON only. The strict parser rejected the responses; its fallback final object also omitted the required `escalate_to` field, causing validation to stop with `tool_or_schema_error`. The other two trials failed with HTTP 429 and must be reported separately as request failures, not attributed to JSON formatting.
+
+The result therefore measures the frozen system's end-to-end failure to execute these trials, not Claude's ability to adjudicate the claims. Removing fences for diagnostic inspection does not establish task success or justify changing the observed 0/60. Keep the original result and failure breakdown unchanged. For D6, retain these failures and their costs in the frozen-system baseline, but label the row as a format-compliance/integration failure rather than a capability ranking.
 
 This expenditure is the observed battery cost, not a demonstrated cost for successfully processing a claim. The cheap early stop must not be presented as a performance improvement.
 
