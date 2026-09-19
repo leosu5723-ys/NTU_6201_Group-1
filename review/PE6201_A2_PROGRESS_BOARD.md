@@ -81,12 +81,13 @@
 ## 6 · Frozen version / 冻结版本
 
 **Repository:** `https://github.com/leosu5723-ys/NTU_6201_Group-1`
-**Frozen commit:** `33b5083ca4355b2ea92bec6f5c8eb9557768fe87` (short: `33b5083`)
+**Frozen experiment commit:** `e64d2aa` — this is the commit every battery must use.
+Later documentation commits on `main` do not change the code, prompt or cases, so check out `e64d2aa` explicitly rather than trusting the branch tip.
 
 ```bash
 git clone https://github.com/leosu5723-ys/NTU_6201_Group-1.git
 cd NTU_6201_Group-1
-git checkout 33b5083
+git checkout e64d2aa
 python3 -m unittest discover -s tests -q   # expect 101 tests OK
 python3 run_eval.py                        # expect 60/60
 ```
