@@ -146,3 +146,13 @@ Most important failure or surprising behaviour:
 Was the quality worth the measured cost? Why?
 Name and date:
 ```
+
+---
+
+## 11 · Note on one case reassignment
+
+`CLM-9013` and `CLM-9012` are two different claims. The original allocation gave `CLM-9012` to Meng Sijia and `CLM-9013` to SHI SHUYI. Meng's submitted document instead reviewed `CLM-9013`, so `CLM-9012` was left uncovered and SHI SHUYI authored it during integration.
+
+Final allocation after integration: Meng Sijia authors 6 cases (`CLM-8842`, `CLM-8901`, `CLM-8910`, `CLM-9001`, `CLM-9007`, `CLM-9018`) and her `CLM-9013` review is retained as an additional cross-check; SHI SHUYI authors 8 cases (`CLM-8850`, `CLM-8888`, `CLM-8925`, `CLM-9002`, `CLM-9008`, `CLM-9012`, `CLM-9013`, `CLM-9019`). All 40 cases are covered exactly once.
+
+If someone asks about `CLM-9012` or `CLM-9013`, explain this reassignment rather than telling anyone they owe a contract they do not owe.

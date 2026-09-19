@@ -234,7 +234,7 @@ Every member must check that the final report accurately represents their work a
 
 ### Phase A cases
 
-`CLM-8842`, `CLM-8901`, `CLM-8910`, `CLM-9001`, `CLM-9007`, `CLM-9012`, `CLM-9018`
+`CLM-8842`, `CLM-8901`, `CLM-8910`, `CLM-9001`, `CLM-9007`, `CLM-9018`
 
 Complete your section in [`CASE_WORKSHEETS.md`](CASE_WORKSHEETS.md). Pay particular attention to partial payment, exact document naming, lapsed policy, pre-authorisation boundary dates, exact annual-limit equality and multi-line reconciliation.
 
@@ -278,7 +278,7 @@ Review `CLM-8952` and `CLM-9019`.
 
 ### Phase A cases
 
-`CLM-8850`, `CLM-8888`, `CLM-8925`, `CLM-9002`, `CLM-9008`, `CLM-9013`, `CLM-9019`
+`CLM-8850`, `CLM-8888`, `CLM-8925`, `CLM-9002`, `CLM-9008`, `CLM-9012`, `CLM-9013`, `CLM-9019`
 
 Complete your section in [`CASE_WORKSHEETS.md`](CASE_WORKSHEETS.md). Pay particular attention to missing pre-authorisation, routing priority, annual-limit escalation, mixed covered/excluded lines and multi-condition approvals.
 
