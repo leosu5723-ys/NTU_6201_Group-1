@@ -179,4 +179,6 @@ Key review documents include `design/D0_PREBUILD_CONTRACT.md`, `docs/tool_select
 
 ## Evidence status
 
-The scripted harness, data integrity, guardrail checklist, parallel comparison and both failure reproductions are complete and reproducible. Live model measurements, human judgement verdicts, final cost conclusions, report figures and video claims remain pending until the team runs the frozen live batteries. No pending result is represented as measured.
+The scripted harness, data integrity, guardrail checklist, parallel comparison and both failure reproductions are complete and reproducible. All six first-round measured batteries are preserved unchanged under `results/round1/`, with a SHA-256 manifest. They belong to experiment `42253ad28fc58b36b9014808f9d8e3fd523c01ed`, not to the revised runtime. Round-two outputs belong under `results/live/` and must not be mixed with round one.
+
+See `review/PROJECT_STATE.md` for the current handoff and `review/ROUND2_RUN_INSTRUCTIONS.md` for the pending second round. A new paid run requires the exact verified SHA announced by the integration owner. Human judgements, final cost conclusions, report figures and video remain incomplete; historical live results are not evidence that the revised runtime has been measured.

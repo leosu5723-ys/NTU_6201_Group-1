@@ -1,0 +1,31 @@
+{
+  "experiment_commit": "42253ad28fc58b36b9014808f9d8e3fd523c01ed",
+  "purpose": "Historical first-round evidence; do not pool with results/live round two. Raw bytes and recorded metadata unchanged. Original results/live paths inside the raw payloads refer to their original run location.",
+  "files": {
+    "results/round1/anthropic__claude-haiku-4.5__v2.json": "94d625ad1e0753c85bbbdfaba6e9963a96ed8f083fef740e9925c8b7b0191ecc",
+    "results/round1/deepseek__deepseek-v3.2__v2.json": "f33fa44cde4a8d83e55343d58cea13084f0d43a3d896f50332d0850801d21d24",
+    "results/round1/google__gemini-2.5-flash-lite__v1-logs/CLM-8960-trial-1/decision_logs/CLM-8960-trial-1.jsonl": "53d62f942b7c35dcedede8847cabde008ba95fd15a007ba3149e943be7a5169b",
+    "results/round1/google__gemini-2.5-flash-lite__v1-logs/CLM-9012-trial-1/decision_logs/CLM-9012-trial-1.jsonl": "d5a004524c6602ad6eda28ff6bd0d9b2ce0135d5d045bb5409b25cfbe7a8b6ab",
+    "results/round1/google__gemini-2.5-flash-lite__v1-logs/CLM-9015-trial-1/decision_logs/CLM-9015-trial-1.jsonl": "c7715ff85146ba08511dc6126ae6dd9995aaf17070097eb8fb281420e745f79b",
+    "results/round1/google__gemini-2.5-flash-lite__v1-logs/CLM-9018-trial-1/decision_logs/CLM-9018-trial-1.jsonl": "31b87f2c085b959a5dcd2d84e75b463910456f7bf469539d102a2ac7bc58afc6",
+    "results/round1/google__gemini-2.5-flash-lite__v1.json": "15b445c1ea34607c94bb512855de15026c477c4f242b9eaa639845f91251d2bb",
+    "results/round1/google__gemini-2.5-flash-lite__v2.json": "6a71d0d6634b04102613fd99b7af5be87ad8356f5e2088505b008618a638c7e0",
+    "results/round1/meta-llama__llama-4-maverick__v2-logs/CLM-8960-trial-1/decision_logs/CLM-8960-trial-1.jsonl": "fe34bcf18cd7186acee9a97e472ff2ec655f379953ff31948c5780480ffdfb35",
+    "results/round1/meta-llama__llama-4-maverick__v2-logs/CLM-9018-trial-1/decision_logs/CLM-9018-trial-1.jsonl": "c913059753a3598f6d58b2985a976e85b281a7d1d6ff759a40e696d3e7bc6ec0",
+    "results/round1/meta-llama__llama-4-maverick__v2-logs/CLM-9020-trial-1/decision_logs/CLM-9020-trial-1.jsonl": "577c33df1ef8fa50bd4518b782b62b2784d14cfe9ac6a780c1100d9bd0ee9a76",
+    "results/round1/meta-llama__llama-4-maverick__v2-logs/CLM-9021-trial-1/decision_logs/CLM-9021-trial-1.jsonl": "3c6b954a45dd5cfa04b8c0abc6762e516ceec1daf63fdc618c71dfbc54bb8156",
+    "results/round1/meta-llama__llama-4-maverick__v2.json": "54ce82fce4aac45dc184e8bd60e8445ad824d4061bdd9252cf86c9eb654dae82",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-8861-trial-1/decision_logs/CLM-8861-trial-1.jsonl": "5160074ec0a704f589c52fb04368cb62eb357b9f42dd165d6ea43be21ab40062",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-8917-trial-2/decision_logs/CLM-8917-trial-1.jsonl": "effd5fc98bdc9453fb377a34dc68f981272b9baba6eb56957c305079a52a3970",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-8925-trial-1/decision_logs/CLM-8925-trial-1.jsonl": "40ee132ebcb78b28746152a66eadb49a074d2e20a8445c43bb14e852222c1bac",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-8960-trial-1/decision_logs/CLM-8960-trial-1.jsonl": "dfb247224009f5531e1d1e5d9dcfa75537ca2d6150c0faa0ae5755e0e15f42b3",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-8971-trial-1/decision_logs/CLM-8971-trial-1.jsonl": "420b7235e55d4bbc2ccf2e1000a6ff358eb7c8d25b42d71e1427a9374c69a83b",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-9004-trial-1/decision_logs/CLM-9004-trial-1.jsonl": "03c4724c836fc5f58ad1bfb298eab76fac40f6495c3e1a081156820b46ffa11d",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-9006-trial-1/decision_logs/CLM-9006-trial-1.jsonl": "b3dc4af12408d8b5e0e7dcfbf93ce5982a97913e8406b3f7da7a8a965ec3ca6a",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-9012-trial-1/decision_logs/CLM-9012-trial-1.jsonl": "3a3ea321085791032ad1ac6e4a32bdf876c5548af0c3a7289a2a78f421eed632",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-9015-trial-1/decision_logs/CLM-9015-trial-1.jsonl": "b3e8df4f9785b14486c9f6922846049986e2682c92c7e1e7da26749e704e5f7c",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-9018-trial-1/decision_logs/CLM-9018-trial-1.jsonl": "a715d7c620e3ee7f51420590eba1a66a9b7b8f7cb41ab876cda364fa78f2420e",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2-logs/CLM-9020-trial-1/decision_logs/CLM-9020-trial-1.jsonl": "8d4e6795f76903ca24d14aca75f66d92a6db0b8c1ba892f421d259fa31a45825",
+    "results/round1/qwen__qwen3-30b-a3b-instruct-2507__v2.json": "3801310f723f58de370947b31186dbd1761824118c01599cc487587d9ffa688f"
+  }
+}

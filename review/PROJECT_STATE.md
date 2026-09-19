@@ -2,7 +2,22 @@
 
 Snapshot for whoever picks this up next. Read this first, then `review/PE6201_A2_TEAM_FAQ.md` for the member-facing answers and `review/PE6201_A2_PROGRESS_BOARD.md` for the board we share with the team.
 
-**Last updated:** 2026-09-19, 18:20 SGT. **Deadline: Sunday 2026-09-20, 23:59 SGT for every artefact** — report, repository, self-appraisal, video link and the peer rating (confirmed by Kyle against the instructor's posting of 9 September; the brief PDF still prints the superseded 13 September date, and the Document Updates sheet still lists the peer rating at 16 September, so the shorter date no longer governs). One member uploads for the group to Blackboard → Assignments → Submission - A2.
+## Current handoff — round-two preparation, 19 September evening
+
+**Team target: run round two tonight and aim to finish and submit tonight. Official deadline: Sunday 20 September 2026, 23:59 SGT.** One member uploads to Blackboard → Assignments → Submission - A2. Do not interpret the historical snapshot below as the current run instruction.
+
+- All six round-one member branches have been merged into the local integration candidate using ordinary merges, preserving original commits and authors. Publication is pending verification.
+- All six batteries passed row/summary/receipt and frozen-hash checks against experiment `42253ad28fc58b36b9014808f9d8e3fd523c01ed`. Original JSONs and companion logs have been moved byte-identically to `results/round1/`, with a hash manifest. `results/live/` is reserved for round two.
+- Six of six strand reviews are present. Sun's path and review, Meng's negative-case list and Su's account linkage have been corrected. Isha's Phase A header conflicts with its signed ending; member clarification remains outstanding.
+- Two of ten human judgements are recorded. Do not generate the other members' signatures.
+- Agent repairs and analysis corrections are being implemented and tested in isolated worktrees. Isha's code-fix PR is distinct from her already integrated result/review PR. No second-round battery is yet measured.
+- The exact new experiment SHA must be announced only after integration verification. `review/ROUND2_RUN_INSTRUCTIONS.md` governs the next run. Six members run from that one SHA, including the v1 control; never pool the two rounds.
+- First-round low strict scores are mostly integration failures, not pure model capability. Final-label agreement is also misleading where the harness overwrites errors with escalation. Preserve raw failures and explain stop causes.
+- Final report, cost analysis, self-appraisal, video, code copy, approvals and package remain to be completed. No third optimisation round is planned.
+
+## Historical snapshot — superseded where the current handoff differs
+
+The following is the 18:20 SGT snapshot retained for context. Its main-tip, file-path, missing-review and attribution statements are historical, not instructions for round two. Deadline confirmation was provided by Kyle against the instructor's posting of 9 September; older PDF dates do not govern.
 
 ## What this is
 

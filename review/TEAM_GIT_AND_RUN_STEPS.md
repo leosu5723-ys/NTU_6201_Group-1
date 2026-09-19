@@ -1,5 +1,7 @@
 # Pull, run, and push — step by step
 
+> Historical round-one guide. For the second round use `ROUND2_RUN_INSTRUCTIONS.md` and the exact SHA announced in the group. Do not create a new run from a moving `main` tip or reuse the old member branch instructions below.
+
 **Frozen experiment commit: the current tip of `main`**
 **Repository: https://github.com/leosu5723-ys/NTU_6201_Group-1**
 
