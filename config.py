@@ -48,6 +48,7 @@ PROBLEM = "A"
 # and a cap of 30 is decoration.
 # ─────────────────────────────────────────────────────────────────────
 MAX_TURNS = 8                 # observed legitimate max 5 + 3 recovery turns
+MAX_RECOVERABLE_TOOL_ERRORS = 1  # one repair attempt; then halt instead of looping
 MAX_TOKENS_PER_RUN = 25000    # observed scripted max 15,763 + 59% headroom
 MAX_OUTPUT_TOKENS = 2000       # provider-side ceiling on each paid response
 A2_API_BUDGET_PER_MEMBER_USD = 3.0  # brief: redesign if one member's battery exceeds this

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import time
 import urllib.error
 import urllib.request
@@ -105,6 +106,9 @@ class LiveBackend:
 
 
 def _parse_move(text: str) -> dict[str, Any]:
+    fenced = re.fullmatch(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n```[ \t]*", text, re.DOTALL)
+    if fenced:
+        text = fenced.group(1)
     try:
         move = json.loads(text)
     except json.JSONDecodeError as error:

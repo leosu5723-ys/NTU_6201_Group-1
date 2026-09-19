@@ -234,6 +234,7 @@ def run_case(
     persisted_decision: dict[str, Any] | None = None
     final_corrections = 0
     move_schema_corrections = 0
+    recoverable_tool_errors = 0
     stopped_by: str | None = None
     started = time.perf_counter()
     record: dict[str, Any] | None = None
@@ -372,20 +373,23 @@ def run_case(
             for name, args in calls:
                 guards.check_duplicate(name, args)
                 gate_record: dict[str, Any] = {}
-                if name == tools.GATED_ACTION[problem]:
-                    approved = guards.gate(name, args, approve)
-                    gate_record = {
-                        "autonomy": config.AUTONOMY,
-                        "approved": approved,
-                        "turn": turns,
-                    }
-                    if not approved:
-                        raise GuardrailStop(
-                            "gate_held",
-                            f"{name} awaits operator confirmation",
-                        )
-
                 try:
+                    if name == tools.GATED_ACTION[problem]:
+                        # Do not ask a human to confirm an unsupported payload.
+                        tools.validate_decision_payload(
+                            **args, evidence_trace=trusted_evidence_trace
+                        )
+                        approved = guards.gate(name, args, approve)
+                        gate_record = {
+                            "autonomy": config.AUTONOMY,
+                            "approved": approved,
+                            "turn": turns,
+                        }
+                        if not approved:
+                            raise GuardrailStop(
+                                "gate_held",
+                                f"{name} awaits operator confirmation",
+                            )
                     result = tools.call(
                         problem,
                         name,
@@ -416,6 +420,13 @@ def run_case(
                     # observations in a ReAct loop. Return them to the model so
                     # it can repair the payload; hard guardrail and backend
                     # failures still escape and stop the run loudly.
+                    recoverable_tool_errors += 1
+                    if recoverable_tool_errors > config.MAX_RECOVERABLE_TOOL_ERRORS:
+                        raise GuardrailStop(
+                            "recoverable_tool_error_cap",
+                            "exceeded %d recoverable tool-validation error(s)"
+                            % config.MAX_RECOVERABLE_TOOL_ERRORS,
+                        )
                     observations.append(
                         {
                             "tool": name,

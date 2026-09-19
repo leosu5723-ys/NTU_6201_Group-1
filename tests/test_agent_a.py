@@ -5,11 +5,25 @@ from pathlib import Path
 
 import config
 import prompt
-from backends import ScriptedBackend
+from backends import ScriptedBackend, _parse_move
 from agent import _validate_move, run_case
 
 
 class AgentContractTests(unittest.TestCase):
+    def test_parser_accepts_exactly_one_json_fence_without_prose(self):
+        move = _parse_move(
+            '```json\n{"final":{"decision":"escalate","trigger":"manual_review",'
+            '"escalate_to":"human claims assessor","reason":"Needs review."}}\n```'
+        )
+        self.assertEqual(move["final"]["decision"], "escalate")
+
+        rejected = _parse_move(
+            'Here is the result:\n```json\n{"final":{"decision":"escalate",'
+            '"trigger":"manual_review","escalate_to":"human claims assessor",'
+            '"reason":"Needs review."}}\n```'
+        )
+        self.assertIn("parse_error", rejected)
+
     def test_move_schema_rejects_both_calls_and_final(self):
         with self.assertRaises(ValueError):
             _validate_move({"thought": "bad", "calls": [], "final": {"decision": "escalate"}})
@@ -215,8 +229,26 @@ class AgentContractTests(unittest.TestCase):
                 }
             ]
         }
-        result = run_case("CLM-8850", problem="A", scripted_scripts=scripts)
+        confirmations = []
+        result = run_case(
+            "CLM-8850",
+            problem="A",
+            scripted_scripts=scripts,
+            approve=lambda name, payload: confirmations.append((name, payload)) or True,
+        )
         self.assertEqual(result["stopped_by"], "tool_or_schema_error")
+        self.assertEqual(result["action_count"], 0)
+        self.assertEqual(confirmations, [])
+
+    def test_only_one_recoverable_tool_validation_error_is_allowed(self):
+        scripts = {
+            "CLM-8850": [
+                {"calls": [["unknown_tool", {}]]},
+                {"calls": [["another_unknown_tool", {}]]},
+            ]
+        }
+        result = run_case("CLM-8850", problem="A", scripted_scripts=scripts)
+        self.assertEqual(result["stopped_by"], "recoverable_tool_error_cap")
         self.assertEqual(result["action_count"], 0)
 
     def test_final_outcome_must_match_the_recorded_gated_action(self):
