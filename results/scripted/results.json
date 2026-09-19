@@ -16,13 +16,13 @@
     "median_turns": 4.0,
     "worst_case_turns": 5,
     "step_cap_hits": 0,
-    "tokens_in": 671351,
+    "tokens_in": 827330,
     "tokens_out": 25172,
-    "observation_tokens_estimate": 26121,
+    "observation_tokens_estimate": 26120,
     "observation_calls": 333,
-    "mean_observation_tokens_estimate_per_call": 78.44144144144144,
-    "cost_usd": 0.0772039,
-    "catalog_cost_usd": 0.0772039,
+    "mean_observation_tokens_estimate_per_call": 78.43843843843844,
+    "cost_usd": 0.0928018,
+    "catalog_cost_usd": 0.0928018,
     "provider_cost_usd": null,
     "backend": "scripted",
     "model": null,
@@ -74,10 +74,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16760,
+        "tokens_in": 20278,
         "tokens_out": 770,
-        "cost_usd": 0.001984,
-        "catalog_cost_usd": 0.001984,
+        "cost_usd": 0.0023358,
+        "catalog_cost_usd": 0.0023358,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -98,7 +98,7 @@
           "recorded": true,
           "claim_id": "CLM-8842",
           "decision": "approve_in_principle",
-          "receipt_sha256": "b09ecf6424d5de658cfd4c99c4e48648007e299288d94acbb5cdf1fc074442fc",
+          "receipt_sha256": "6e40f16b419796f0fa6b011da4ef8720c387f10d9212c76fd4b58f7056a1f969",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8842",
@@ -146,9 +146,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12840,
+            "tokens_in": 15772,
             "tokens_out": 572,
-            "cost_usd": 0.0015128
+            "cost_usd": 0.001806
           },
           "recovered_after_write_error": false
         },
@@ -199,9 +199,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12840,
+          "tokens_in": 15772,
           "tokens_out": 572,
-          "cost_usd": 0.0015128
+          "cost_usd": 0.001806
         },
         "request_ids": [
           "scripted:CLM-8842:1",
@@ -264,11 +264,11 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 1364,
-            "tokens_estimate_chars_div_4": 341
+            "characters": 1363,
+            "tokens_estimate_chars_div_4": 340
           }
         ],
-        "observation_tokens_estimate": 747
+        "observation_tokens_estimate": 746
       }
     },
     {
@@ -301,10 +301,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12362,
+        "tokens_in": 15294,
         "tokens_out": 451,
-        "cost_usd": 0.0014166,
-        "catalog_cost_usd": 0.0014166,
+        "cost_usd": 0.0017098,
+        "catalog_cost_usd": 0.0017098,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -325,7 +325,7 @@
           "recorded": true,
           "claim_id": "CLM-8850",
           "decision": "approve_in_principle",
-          "receipt_sha256": "34dbada12042a5f39837c506eecc3bbac288e3f649ecaeb5d5872e36ec223856",
+          "receipt_sha256": "e2f453d7ca896261d8c46aa01f470d78e59c99c9dc6b940cffa5d2f935b4f8dc",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8850",
@@ -358,9 +358,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9216,
+            "tokens_in": 11561,
             "tokens_out": 335,
-            "cost_usd": 0.0010556
+            "cost_usd": 0.0012901
           },
           "recovered_after_write_error": false
         },
@@ -396,9 +396,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9216,
+          "tokens_in": 11561,
           "tokens_out": 335,
-          "cost_usd": 0.0010556
+          "cost_usd": 0.0012901
         },
         "request_ids": [
           "scripted:CLM-8850:1",
@@ -442,7 +442,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 966,
+            "characters": 967,
             "tokens_estimate_chars_div_4": 241
           }
         ],
@@ -487,10 +487,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16031,
+        "tokens_in": 19549,
         "tokens_out": 648,
-        "cost_usd": 0.0018623,
-        "catalog_cost_usd": 0.0018623,
+        "cost_usd": 0.0022141,
+        "catalog_cost_usd": 0.0022141,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -511,7 +511,7 @@
           "recorded": true,
           "claim_id": "CLM-8861",
           "decision": "approve_in_principle",
-          "receipt_sha256": "3b869d72d41dc7050ef282cfb0d7325c51180b2bf0fe5d5f70bafc0f7ebaa138",
+          "receipt_sha256": "0458f2a5630bd806d004dd2c09bcec44737df6d93fb555adb8e4b06da8198a64",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8861",
@@ -552,9 +552,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12412,
+            "tokens_in": 15344,
             "tokens_out": 489,
-            "cost_usd": 0.0014368
+            "cost_usd": 0.00173
           },
           "recovered_after_write_error": false
         },
@@ -598,9 +598,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12412,
+          "tokens_in": 15344,
           "tokens_out": 489,
-          "cost_usd": 0.0014368
+          "cost_usd": 0.00173
         },
         "request_ids": [
           "scripted:CLM-8861:1",
@@ -657,7 +657,7 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 1187,
+            "characters": 1185,
             "tokens_estimate_chars_div_4": 296
           }
         ],
@@ -694,10 +694,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12387,
+        "tokens_in": 15320,
         "tokens_out": 454,
-        "cost_usd": 0.0014203,
-        "catalog_cost_usd": 0.0014203,
+        "cost_usd": 0.0017136,
+        "catalog_cost_usd": 0.0017136,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -718,7 +718,7 @@
           "recorded": true,
           "claim_id": "CLM-8874",
           "decision": "approve_in_principle",
-          "receipt_sha256": "39b28ac52eddb3825605715ce64dfca2a413a16f24de4f4442b27ea3622a582b",
+          "receipt_sha256": "41eece6799f92c1b831c9fa89bb501317ba37d6beff7ef8393d392f025fa4224",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8874",
@@ -751,9 +751,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9231,
+            "tokens_in": 11577,
             "tokens_out": 337,
-            "cost_usd": 0.0010579
+            "cost_usd": 0.0012925
           },
           "recovered_after_write_error": false
         },
@@ -789,9 +789,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9231,
+          "tokens_in": 11577,
           "tokens_out": 337,
-          "cost_usd": 0.0010579
+          "cost_usd": 0.0012925
         },
         "request_ids": [
           "scripted:CLM-8874:1",
@@ -835,7 +835,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 972,
+            "characters": 973,
             "tokens_estimate_chars_div_4": 243
           }
         ],
@@ -880,10 +880,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16463,
+        "tokens_in": 19981,
         "tokens_out": 635,
-        "cost_usd": 0.0019003,
-        "catalog_cost_usd": 0.0019003,
+        "cost_usd": 0.0022521,
+        "catalog_cost_usd": 0.0022521,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -904,7 +904,7 @@
           "recorded": true,
           "claim_id": "CLM-8888",
           "decision": "request_document",
-          "receipt_sha256": "42cee9008edd4167ec072a7940915d55bb0f9e4925bcf36adf195fb53026bb00",
+          "receipt_sha256": "b78354ea828e813abd34a946b135d67e5f05d64e9290035b31f8c71e8e15392a",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8888",
@@ -946,9 +946,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12779,
+            "tokens_in": 15710,
             "tokens_out": 508,
-            "cost_usd": 0.0014811
+            "cost_usd": 0.0017742
           },
           "recovered_after_write_error": false
         },
@@ -993,9 +993,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12779,
+          "tokens_in": 15710,
           "tokens_out": 508,
-          "cost_usd": 0.0014811
+          "cost_usd": 0.0017742
         },
         "request_ids": [
           "scripted:CLM-8888:1",
@@ -1103,10 +1103,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16463,
+        "tokens_in": 19981,
         "tokens_out": 635,
-        "cost_usd": 0.0019003,
-        "catalog_cost_usd": 0.0019003,
+        "cost_usd": 0.0022521,
+        "catalog_cost_usd": 0.0022521,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -1127,7 +1127,7 @@
           "recorded": true,
           "claim_id": "CLM-8888",
           "decision": "request_document",
-          "receipt_sha256": "42cee9008edd4167ec072a7940915d55bb0f9e4925bcf36adf195fb53026bb00",
+          "receipt_sha256": "b78354ea828e813abd34a946b135d67e5f05d64e9290035b31f8c71e8e15392a",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8888",
@@ -1169,9 +1169,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12779,
+            "tokens_in": 15710,
             "tokens_out": 508,
-            "cost_usd": 0.0014811
+            "cost_usd": 0.0017742
           },
           "recovered_after_write_error": false
         },
@@ -1216,9 +1216,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12779,
+          "tokens_in": 15710,
           "tokens_out": 508,
-          "cost_usd": 0.0014811
+          "cost_usd": 0.0017742
         },
         "request_ids": [
           "scripted:CLM-8888:1",
@@ -1326,10 +1326,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16463,
+        "tokens_in": 19981,
         "tokens_out": 635,
-        "cost_usd": 0.0019003,
-        "catalog_cost_usd": 0.0019003,
+        "cost_usd": 0.0022521,
+        "catalog_cost_usd": 0.0022521,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -1350,7 +1350,7 @@
           "recorded": true,
           "claim_id": "CLM-8888",
           "decision": "request_document",
-          "receipt_sha256": "42cee9008edd4167ec072a7940915d55bb0f9e4925bcf36adf195fb53026bb00",
+          "receipt_sha256": "b78354ea828e813abd34a946b135d67e5f05d64e9290035b31f8c71e8e15392a",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8888",
@@ -1392,9 +1392,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12779,
+            "tokens_in": 15710,
             "tokens_out": 508,
-            "cost_usd": 0.0014811
+            "cost_usd": 0.0017742
           },
           "recovered_after_write_error": false
         },
@@ -1439,9 +1439,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12779,
+          "tokens_in": 15710,
           "tokens_out": 508,
-          "cost_usd": 0.0014811
+          "cost_usd": 0.0017742
         },
         "request_ids": [
           "scripted:CLM-8888:1",
@@ -1534,10 +1534,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15312,
+        "tokens_in": 18829,
         "tokens_out": 450,
-        "cost_usd": 0.0017112,
-        "catalog_cost_usd": 0.0017112,
+        "cost_usd": 0.0020629,
+        "catalog_cost_usd": 0.0020629,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -1558,7 +1558,7 @@
           "recorded": true,
           "claim_id": "CLM-8894",
           "decision": "request_document",
-          "receipt_sha256": "0002ef73dc5eb344c96247c12a7430360cebdff30aad787d4d1128d98ca1b564",
+          "receipt_sha256": "c3c699cf46733db62890dad6e273244aa473575f695f1f33ebf61f1d12ae392c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8894",
@@ -1585,9 +1585,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12082,
+            "tokens_in": 15013,
             "tokens_out": 372,
-            "cost_usd": 0.001357
+            "cost_usd": 0.0016501
           },
           "recovered_after_write_error": false
         },
@@ -1617,9 +1617,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12082,
+          "tokens_in": 15013,
           "tokens_out": 372,
-          "cost_usd": 0.001357
+          "cost_usd": 0.0016501
         },
         "request_ids": [
           "scripted:CLM-8894:1",
@@ -1670,7 +1670,7 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 846,
+            "characters": 847,
             "tokens_estimate_chars_div_4": 211
           }
         ],
@@ -1700,10 +1700,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15312,
+        "tokens_in": 18829,
         "tokens_out": 450,
-        "cost_usd": 0.0017112,
-        "catalog_cost_usd": 0.0017112,
+        "cost_usd": 0.0020629,
+        "catalog_cost_usd": 0.0020629,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -1724,7 +1724,7 @@
           "recorded": true,
           "claim_id": "CLM-8894",
           "decision": "request_document",
-          "receipt_sha256": "0002ef73dc5eb344c96247c12a7430360cebdff30aad787d4d1128d98ca1b564",
+          "receipt_sha256": "c3c699cf46733db62890dad6e273244aa473575f695f1f33ebf61f1d12ae392c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8894",
@@ -1751,9 +1751,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12082,
+            "tokens_in": 15013,
             "tokens_out": 372,
-            "cost_usd": 0.001357
+            "cost_usd": 0.0016501
           },
           "recovered_after_write_error": false
         },
@@ -1783,9 +1783,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12082,
+          "tokens_in": 15013,
           "tokens_out": 372,
-          "cost_usd": 0.001357
+          "cost_usd": 0.0016501
         },
         "request_ids": [
           "scripted:CLM-8894:1",
@@ -1836,7 +1836,7 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 846,
+            "characters": 847,
             "tokens_estimate_chars_div_4": 211
           }
         ],
@@ -1866,10 +1866,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15312,
+        "tokens_in": 18829,
         "tokens_out": 450,
-        "cost_usd": 0.0017112,
-        "catalog_cost_usd": 0.0017112,
+        "cost_usd": 0.0020629,
+        "catalog_cost_usd": 0.0020629,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -1890,7 +1890,7 @@
           "recorded": true,
           "claim_id": "CLM-8894",
           "decision": "request_document",
-          "receipt_sha256": "0002ef73dc5eb344c96247c12a7430360cebdff30aad787d4d1128d98ca1b564",
+          "receipt_sha256": "c3c699cf46733db62890dad6e273244aa473575f695f1f33ebf61f1d12ae392c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8894",
@@ -1917,9 +1917,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12082,
+            "tokens_in": 15013,
             "tokens_out": 372,
-            "cost_usd": 0.001357
+            "cost_usd": 0.0016501
           },
           "recovered_after_write_error": false
         },
@@ -1949,9 +1949,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12082,
+          "tokens_in": 15013,
           "tokens_out": 372,
-          "cost_usd": 0.001357
+          "cost_usd": 0.0016501
         },
         "request_ids": [
           "scripted:CLM-8894:1",
@@ -2002,7 +2002,7 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 846,
+            "characters": 847,
             "tokens_estimate_chars_div_4": 211
           }
         ],
@@ -2031,10 +2031,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12206,
+        "tokens_in": 15139,
         "tokens_out": 359,
-        "cost_usd": 0.0013642,
-        "catalog_cost_usd": 0.0013642,
+        "cost_usd": 0.0016575,
+        "catalog_cost_usd": 0.0016575,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2055,7 +2055,7 @@
           "recorded": true,
           "claim_id": "CLM-8901",
           "decision": "request_document",
-          "receipt_sha256": "76eb17e5f340d74e2f96d24eb5f20e5e410bdb6bdfd95962c8029c3179a3e3c5",
+          "receipt_sha256": "9751d00618748875a237326bf3e701244a670e79713f058e884b8f0d937e72a8",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8901",
@@ -2081,9 +2081,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9197,
+            "tokens_in": 11543,
             "tokens_out": 291,
-            "cost_usd": 0.0010361
+            "cost_usd": 0.0012707
           },
           "recovered_after_write_error": false
         },
@@ -2112,9 +2112,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9197,
+          "tokens_in": 11543,
           "tokens_out": 291,
-          "cost_usd": 0.0010361
+          "cost_usd": 0.0012707
         },
         "request_ids": [
           "scripted:CLM-8901:1",
@@ -2158,7 +2158,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 782,
+            "characters": 783,
             "tokens_estimate_chars_div_4": 195
           }
         ],
@@ -2187,10 +2187,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12206,
+        "tokens_in": 15139,
         "tokens_out": 359,
-        "cost_usd": 0.0013642,
-        "catalog_cost_usd": 0.0013642,
+        "cost_usd": 0.0016575,
+        "catalog_cost_usd": 0.0016575,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2211,7 +2211,7 @@
           "recorded": true,
           "claim_id": "CLM-8901",
           "decision": "request_document",
-          "receipt_sha256": "76eb17e5f340d74e2f96d24eb5f20e5e410bdb6bdfd95962c8029c3179a3e3c5",
+          "receipt_sha256": "9751d00618748875a237326bf3e701244a670e79713f058e884b8f0d937e72a8",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8901",
@@ -2237,9 +2237,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9197,
+            "tokens_in": 11543,
             "tokens_out": 291,
-            "cost_usd": 0.0010361
+            "cost_usd": 0.0012707
           },
           "recovered_after_write_error": false
         },
@@ -2268,9 +2268,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9197,
+          "tokens_in": 11543,
           "tokens_out": 291,
-          "cost_usd": 0.0010361
+          "cost_usd": 0.0012707
         },
         "request_ids": [
           "scripted:CLM-8901:1",
@@ -2314,7 +2314,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 782,
+            "characters": 783,
             "tokens_estimate_chars_div_4": 195
           }
         ],
@@ -2343,10 +2343,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12206,
+        "tokens_in": 15139,
         "tokens_out": 359,
-        "cost_usd": 0.0013642,
-        "catalog_cost_usd": 0.0013642,
+        "cost_usd": 0.0016575,
+        "catalog_cost_usd": 0.0016575,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2367,7 +2367,7 @@
           "recorded": true,
           "claim_id": "CLM-8901",
           "decision": "request_document",
-          "receipt_sha256": "76eb17e5f340d74e2f96d24eb5f20e5e410bdb6bdfd95962c8029c3179a3e3c5",
+          "receipt_sha256": "9751d00618748875a237326bf3e701244a670e79713f058e884b8f0d937e72a8",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8901",
@@ -2393,9 +2393,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9197,
+            "tokens_in": 11543,
             "tokens_out": 291,
-            "cost_usd": 0.0010361
+            "cost_usd": 0.0012707
           },
           "recovered_after_write_error": false
         },
@@ -2424,9 +2424,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9197,
+          "tokens_in": 11543,
           "tokens_out": 291,
-          "cost_usd": 0.0010361
+          "cost_usd": 0.0012707
         },
         "request_ids": [
           "scripted:CLM-8901:1",
@@ -2470,7 +2470,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 782,
+            "characters": 783,
             "tokens_estimate_chars_div_4": 195
           }
         ],
@@ -2497,10 +2497,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9505,
+        "tokens_in": 11851,
         "tokens_out": 315,
-        "cost_usd": 0.0010765,
-        "catalog_cost_usd": 0.0010765,
+        "cost_usd": 0.0013111,
+        "catalog_cost_usd": 0.0013111,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2521,7 +2521,7 @@
           "recorded": true,
           "claim_id": "CLM-8910",
           "decision": "escalate",
-          "receipt_sha256": "84e785cb054f41e037b5e03c8fd6e85d2a09767e4776d7a15af6040c54dd787e",
+          "receipt_sha256": "0b26462687f65d0e0084d62c6d465852996044e682dfd6ce728c2ee92fc9b9e0",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8910",
@@ -2545,9 +2545,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6652,
+            "tokens_in": 8412,
             "tokens_out": 246,
-            "cost_usd": 0.0007636
+            "cost_usd": 0.0009396
           },
           "recovered_after_write_error": false
         },
@@ -2574,9 +2574,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6652,
+          "tokens_in": 8412,
           "tokens_out": 246,
-          "cost_usd": 0.0007636
+          "cost_usd": 0.0009396
         },
         "request_ids": [
           "scripted:CLM-8910:1",
@@ -2634,10 +2634,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9505,
+        "tokens_in": 11851,
         "tokens_out": 315,
-        "cost_usd": 0.0010765,
-        "catalog_cost_usd": 0.0010765,
+        "cost_usd": 0.0013111,
+        "catalog_cost_usd": 0.0013111,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2658,7 +2658,7 @@
           "recorded": true,
           "claim_id": "CLM-8910",
           "decision": "escalate",
-          "receipt_sha256": "84e785cb054f41e037b5e03c8fd6e85d2a09767e4776d7a15af6040c54dd787e",
+          "receipt_sha256": "0b26462687f65d0e0084d62c6d465852996044e682dfd6ce728c2ee92fc9b9e0",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8910",
@@ -2682,9 +2682,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6652,
+            "tokens_in": 8412,
             "tokens_out": 246,
-            "cost_usd": 0.0007636
+            "cost_usd": 0.0009396
           },
           "recovered_after_write_error": false
         },
@@ -2711,9 +2711,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6652,
+          "tokens_in": 8412,
           "tokens_out": 246,
-          "cost_usd": 0.0007636
+          "cost_usd": 0.0009396
         },
         "request_ids": [
           "scripted:CLM-8910:1",
@@ -2771,10 +2771,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9505,
+        "tokens_in": 11851,
         "tokens_out": 315,
-        "cost_usd": 0.0010765,
-        "catalog_cost_usd": 0.0010765,
+        "cost_usd": 0.0013111,
+        "catalog_cost_usd": 0.0013111,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2795,7 +2795,7 @@
           "recorded": true,
           "claim_id": "CLM-8910",
           "decision": "escalate",
-          "receipt_sha256": "84e785cb054f41e037b5e03c8fd6e85d2a09767e4776d7a15af6040c54dd787e",
+          "receipt_sha256": "0b26462687f65d0e0084d62c6d465852996044e682dfd6ce728c2ee92fc9b9e0",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8910",
@@ -2819,9 +2819,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6652,
+            "tokens_in": 8412,
             "tokens_out": 246,
-            "cost_usd": 0.0007636
+            "cost_usd": 0.0009396
           },
           "recovered_after_write_error": false
         },
@@ -2848,9 +2848,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6652,
+          "tokens_in": 8412,
           "tokens_out": 246,
-          "cost_usd": 0.0007636
+          "cost_usd": 0.0009396
         },
         "request_ids": [
           "scripted:CLM-8910:1",
@@ -2908,10 +2908,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9367,
+        "tokens_in": 11713,
         "tokens_out": 303,
-        "cost_usd": 0.0010579,
-        "catalog_cost_usd": 0.0010579,
+        "cost_usd": 0.0012925,
+        "catalog_cost_usd": 0.0012925,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -2932,7 +2932,7 @@
           "recorded": true,
           "claim_id": "CLM-8917",
           "decision": "escalate",
-          "receipt_sha256": "b5a5b07c15f7880d7a359c13feab15ff7b3ae1860a9e619546d623e1509a71b0",
+          "receipt_sha256": "7f15314511e327f835470a2841223daa4de9712e814e88d3970c9961f5b18fa4",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8917",
@@ -2956,9 +2956,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6567,
+            "tokens_in": 8326,
             "tokens_out": 231,
-            "cost_usd": 0.0007491
+            "cost_usd": 0.000925
           },
           "recovered_after_write_error": false
         },
@@ -2985,9 +2985,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6567,
+          "tokens_in": 8326,
           "tokens_out": 231,
-          "cost_usd": 0.0007491
+          "cost_usd": 0.000925
         },
         "request_ids": [
           "scripted:CLM-8917:1",
@@ -3018,7 +3018,7 @@
           {
             "turn": 3,
             "tool": "issue_decision_letter",
-            "characters": 747,
+            "characters": 746,
             "tokens_estimate_chars_div_4": 186
           }
         ],
@@ -3045,10 +3045,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9367,
+        "tokens_in": 11713,
         "tokens_out": 303,
-        "cost_usd": 0.0010579,
-        "catalog_cost_usd": 0.0010579,
+        "cost_usd": 0.0012925,
+        "catalog_cost_usd": 0.0012925,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3069,7 +3069,7 @@
           "recorded": true,
           "claim_id": "CLM-8917",
           "decision": "escalate",
-          "receipt_sha256": "b5a5b07c15f7880d7a359c13feab15ff7b3ae1860a9e619546d623e1509a71b0",
+          "receipt_sha256": "7f15314511e327f835470a2841223daa4de9712e814e88d3970c9961f5b18fa4",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8917",
@@ -3093,9 +3093,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6567,
+            "tokens_in": 8326,
             "tokens_out": 231,
-            "cost_usd": 0.0007491
+            "cost_usd": 0.000925
           },
           "recovered_after_write_error": false
         },
@@ -3122,9 +3122,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6567,
+          "tokens_in": 8326,
           "tokens_out": 231,
-          "cost_usd": 0.0007491
+          "cost_usd": 0.000925
         },
         "request_ids": [
           "scripted:CLM-8917:1",
@@ -3155,7 +3155,7 @@
           {
             "turn": 3,
             "tool": "issue_decision_letter",
-            "characters": 747,
+            "characters": 746,
             "tokens_estimate_chars_div_4": 186
           }
         ],
@@ -3182,10 +3182,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9367,
+        "tokens_in": 11713,
         "tokens_out": 303,
-        "cost_usd": 0.0010579,
-        "catalog_cost_usd": 0.0010579,
+        "cost_usd": 0.0012925,
+        "catalog_cost_usd": 0.0012925,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3206,7 +3206,7 @@
           "recorded": true,
           "claim_id": "CLM-8917",
           "decision": "escalate",
-          "receipt_sha256": "b5a5b07c15f7880d7a359c13feab15ff7b3ae1860a9e619546d623e1509a71b0",
+          "receipt_sha256": "7f15314511e327f835470a2841223daa4de9712e814e88d3970c9961f5b18fa4",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8917",
@@ -3230,9 +3230,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6567,
+            "tokens_in": 8326,
             "tokens_out": 231,
-            "cost_usd": 0.0007491
+            "cost_usd": 0.000925
           },
           "recovered_after_write_error": false
         },
@@ -3259,9 +3259,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6567,
+          "tokens_in": 8326,
           "tokens_out": 231,
-          "cost_usd": 0.0007491
+          "cost_usd": 0.000925
         },
         "request_ids": [
           "scripted:CLM-8917:1",
@@ -3292,7 +3292,7 @@
           {
             "turn": 3,
             "tool": "issue_decision_letter",
-            "characters": 747,
+            "characters": 746,
             "tokens_estimate_chars_div_4": 186
           }
         ],
@@ -3319,10 +3319,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9550,
+        "tokens_in": 11894,
         "tokens_out": 328,
-        "cost_usd": 0.0010862,
-        "catalog_cost_usd": 0.0010862,
+        "cost_usd": 0.0013206,
+        "catalog_cost_usd": 0.0013206,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3343,7 +3343,7 @@
           "recorded": true,
           "claim_id": "CLM-8925",
           "decision": "escalate",
-          "receipt_sha256": "510b1e53b280556776c52127ee5406292ed93fd0399ccc0b1a8c544ad36eed5c",
+          "receipt_sha256": "beed364a0871e76cdfbbb7c56326471055b9a01452f697e59597e5041c785670",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8925",
@@ -3367,9 +3367,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6669,
+            "tokens_in": 8427,
             "tokens_out": 253,
-            "cost_usd": 0.0007681
+            "cost_usd": 0.0009439
           },
           "recovered_after_write_error": false
         },
@@ -3396,9 +3396,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6669,
+          "tokens_in": 8427,
           "tokens_out": 253,
-          "cost_usd": 0.0007681
+          "cost_usd": 0.0009439
         },
         "request_ids": [
           "scripted:CLM-8925:1",
@@ -3456,10 +3456,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9550,
+        "tokens_in": 11894,
         "tokens_out": 328,
-        "cost_usd": 0.0010862,
-        "catalog_cost_usd": 0.0010862,
+        "cost_usd": 0.0013206,
+        "catalog_cost_usd": 0.0013206,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3480,7 +3480,7 @@
           "recorded": true,
           "claim_id": "CLM-8925",
           "decision": "escalate",
-          "receipt_sha256": "510b1e53b280556776c52127ee5406292ed93fd0399ccc0b1a8c544ad36eed5c",
+          "receipt_sha256": "beed364a0871e76cdfbbb7c56326471055b9a01452f697e59597e5041c785670",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8925",
@@ -3504,9 +3504,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6669,
+            "tokens_in": 8427,
             "tokens_out": 253,
-            "cost_usd": 0.0007681
+            "cost_usd": 0.0009439
           },
           "recovered_after_write_error": false
         },
@@ -3533,9 +3533,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6669,
+          "tokens_in": 8427,
           "tokens_out": 253,
-          "cost_usd": 0.0007681
+          "cost_usd": 0.0009439
         },
         "request_ids": [
           "scripted:CLM-8925:1",
@@ -3593,10 +3593,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9550,
+        "tokens_in": 11894,
         "tokens_out": 328,
-        "cost_usd": 0.0010862,
-        "catalog_cost_usd": 0.0010862,
+        "cost_usd": 0.0013206,
+        "catalog_cost_usd": 0.0013206,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3617,7 +3617,7 @@
           "recorded": true,
           "claim_id": "CLM-8925",
           "decision": "escalate",
-          "receipt_sha256": "510b1e53b280556776c52127ee5406292ed93fd0399ccc0b1a8c544ad36eed5c",
+          "receipt_sha256": "beed364a0871e76cdfbbb7c56326471055b9a01452f697e59597e5041c785670",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8925",
@@ -3641,9 +3641,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6669,
+            "tokens_in": 8427,
             "tokens_out": 253,
-            "cost_usd": 0.0007681
+            "cost_usd": 0.0009439
           },
           "recovered_after_write_error": false
         },
@@ -3670,9 +3670,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6669,
+          "tokens_in": 8427,
           "tokens_out": 253,
-          "cost_usd": 0.0007681
+          "cost_usd": 0.0009439
         },
         "request_ids": [
           "scripted:CLM-8925:1",
@@ -3730,10 +3730,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9531,
+        "tokens_in": 11877,
         "tokens_out": 304,
-        "cost_usd": 0.0010747,
-        "catalog_cost_usd": 0.0010747,
+        "cost_usd": 0.0013093,
+        "catalog_cost_usd": 0.0013093,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3754,7 +3754,7 @@
           "recorded": true,
           "claim_id": "CLM-8933",
           "decision": "escalate",
-          "receipt_sha256": "10244d05e0729b3a82e1c084f29fb34fd0e16b2e69f8d42875a00fc5b04ec9e0",
+          "receipt_sha256": "66c9a2cdd3a88295f7825febf42f1bf750dcb9b9820ebc4447028ca709397c0c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8933",
@@ -3778,9 +3778,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6658,
+            "tokens_in": 8417,
             "tokens_out": 232,
-            "cost_usd": 0.0007586
+            "cost_usd": 0.0009345
           },
           "recovered_after_write_error": false
         },
@@ -3807,9 +3807,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6658,
+          "tokens_in": 8417,
           "tokens_out": 232,
-          "cost_usd": 0.0007586
+          "cost_usd": 0.0009345
         },
         "request_ids": [
           "scripted:CLM-8933:1",
@@ -3867,10 +3867,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9531,
+        "tokens_in": 11877,
         "tokens_out": 304,
-        "cost_usd": 0.0010747,
-        "catalog_cost_usd": 0.0010747,
+        "cost_usd": 0.0013093,
+        "catalog_cost_usd": 0.0013093,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -3891,7 +3891,7 @@
           "recorded": true,
           "claim_id": "CLM-8933",
           "decision": "escalate",
-          "receipt_sha256": "10244d05e0729b3a82e1c084f29fb34fd0e16b2e69f8d42875a00fc5b04ec9e0",
+          "receipt_sha256": "66c9a2cdd3a88295f7825febf42f1bf750dcb9b9820ebc4447028ca709397c0c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8933",
@@ -3915,9 +3915,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6658,
+            "tokens_in": 8417,
             "tokens_out": 232,
-            "cost_usd": 0.0007586
+            "cost_usd": 0.0009345
           },
           "recovered_after_write_error": false
         },
@@ -3944,9 +3944,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6658,
+          "tokens_in": 8417,
           "tokens_out": 232,
-          "cost_usd": 0.0007586
+          "cost_usd": 0.0009345
         },
         "request_ids": [
           "scripted:CLM-8933:1",
@@ -4004,10 +4004,10 @@
           "issue_decision_letter"
         ],
         "turns": 3,
-        "tokens_in": 9531,
+        "tokens_in": 11877,
         "tokens_out": 304,
-        "cost_usd": 0.0010747,
-        "catalog_cost_usd": 0.0010747,
+        "cost_usd": 0.0013093,
+        "catalog_cost_usd": 0.0013093,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4028,7 +4028,7 @@
           "recorded": true,
           "claim_id": "CLM-8933",
           "decision": "escalate",
-          "receipt_sha256": "10244d05e0729b3a82e1c084f29fb34fd0e16b2e69f8d42875a00fc5b04ec9e0",
+          "receipt_sha256": "66c9a2cdd3a88295f7825febf42f1bf750dcb9b9820ebc4447028ca709397c0c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8933",
@@ -4052,9 +4052,9 @@
               "turn": 3
             },
             "turns": 4,
-            "tokens_in": 6658,
+            "tokens_in": 8417,
             "tokens_out": 232,
-            "cost_usd": 0.0007586
+            "cost_usd": 0.0009345
           },
           "recovered_after_write_error": false
         },
@@ -4081,9 +4081,9 @@
             "turn": 3
           },
           "turns": 4,
-          "tokens_in": 6658,
+          "tokens_in": 8417,
           "tokens_out": 232,
-          "cost_usd": 0.0007586
+          "cost_usd": 0.0009345
         },
         "request_ids": [
           "scripted:CLM-8933:1",
@@ -4138,10 +4138,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4192,10 +4192,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4246,10 +4246,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4300,10 +4300,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4354,10 +4354,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4408,10 +4408,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4496,10 +4496,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 13721,
+        "tokens_in": 16655,
         "tokens_out": 795,
-        "cost_usd": 0.0016901,
-        "catalog_cost_usd": 0.0016901,
+        "cost_usd": 0.0019835,
+        "catalog_cost_usd": 0.0019835,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4520,7 +4520,7 @@
           "recorded": true,
           "claim_id": "CLM-8960",
           "decision": "approve_in_principle",
-          "receipt_sha256": "148844a6f0a68acb6dcf8ec893a82d8b354da09370242da079a1c030f384bd68",
+          "receipt_sha256": "4c842455cd448bce978370a2484a3abc03cb9822705ffeafc3b64c76c9f0aeda",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8960",
@@ -4574,9 +4574,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9769,
+            "tokens_in": 12116,
             "tokens_out": 564,
-            "cost_usd": 0.0012025
+            "cost_usd": 0.0014372
           },
           "recovered_after_write_error": false
         },
@@ -4633,9 +4633,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9769,
+          "tokens_in": 12116,
           "tokens_out": 564,
-          "cost_usd": 0.0012025
+          "cost_usd": 0.0014372
         },
         "request_ids": [
           "scripted:CLM-8960:1",
@@ -4697,7 +4697,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1490,
+            "characters": 1491,
             "tokens_estimate_chars_div_4": 372
           }
         ],
@@ -4734,10 +4734,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12345,
+        "tokens_in": 15277,
         "tokens_out": 450,
-        "cost_usd": 0.0014145,
-        "catalog_cost_usd": 0.0014145,
+        "cost_usd": 0.0017077,
+        "catalog_cost_usd": 0.0017077,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4758,7 +4758,7 @@
           "recorded": true,
           "claim_id": "CLM-8971",
           "decision": "approve_in_principle",
-          "receipt_sha256": "ba23cc2ab24c918a68ecdf30c33f28174378017f6d53bd7d23ccca6f43918b81",
+          "receipt_sha256": "f22b35fb26127b8b678936d252bfbe1632c825b098ccd90b28a5cce81006a5cd",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-8971",
@@ -4791,9 +4791,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9204,
+            "tokens_in": 11550,
             "tokens_out": 335,
-            "cost_usd": 0.0010544
+            "cost_usd": 0.001289
           },
           "recovered_after_write_error": false
         },
@@ -4829,9 +4829,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9204,
+          "tokens_in": 11550,
           "tokens_out": 335,
-          "cost_usd": 0.0010544
+          "cost_usd": 0.001289
         },
         "request_ids": [
           "scripted:CLM-8971:1",
@@ -4912,10 +4912,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12375,
+        "tokens_in": 15307,
         "tokens_out": 451,
-        "cost_usd": 0.0014179,
-        "catalog_cost_usd": 0.0014179,
+        "cost_usd": 0.0017111,
+        "catalog_cost_usd": 0.0017111,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -4936,7 +4936,7 @@
           "recorded": true,
           "claim_id": "CLM-9001",
           "decision": "approve_in_principle",
-          "receipt_sha256": "f25bc46f80110361b520a7cc27dce1330a7c08f592b10f3f16d2305611845db3",
+          "receipt_sha256": "03e0cc1b02e5e55af2caa908a76faa48fc2b7e97967e34f9d9438891b0fe43e8",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9001",
@@ -4969,9 +4969,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9226,
+            "tokens_in": 11571,
             "tokens_out": 335,
-            "cost_usd": 0.0010566
+            "cost_usd": 0.0012911
           },
           "recovered_after_write_error": false
         },
@@ -5007,9 +5007,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9226,
+          "tokens_in": 11571,
           "tokens_out": 335,
-          "cost_usd": 0.0010566
+          "cost_usd": 0.0012911
         },
         "request_ids": [
           "scripted:CLM-9001:1",
@@ -5053,7 +5053,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 966,
+            "characters": 967,
             "tokens_estimate_chars_div_4": 241
           }
         ],
@@ -5090,10 +5090,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12429,
+        "tokens_in": 15360,
         "tokens_out": 458,
-        "cost_usd": 0.0014261,
-        "catalog_cost_usd": 0.0014261,
+        "cost_usd": 0.0017192,
+        "catalog_cost_usd": 0.0017192,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -5114,7 +5114,7 @@
           "recorded": true,
           "claim_id": "CLM-9002",
           "decision": "approve_in_principle",
-          "receipt_sha256": "3b1cf746af931c28763e4c3af9c895b4d377bc25014bec8b0f1d95a6139a2fa6",
+          "receipt_sha256": "6609de18a2689b7408d879cee100419c94837e4ade3d0d147ff699ee240f222f",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9002",
@@ -5147,9 +5147,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9259,
+            "tokens_in": 11603,
             "tokens_out": 342,
-            "cost_usd": 0.0010627
+            "cost_usd": 0.0012971
           },
           "recovered_after_write_error": false
         },
@@ -5185,9 +5185,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9259,
+          "tokens_in": 11603,
           "tokens_out": 342,
-          "cost_usd": 0.0010627
+          "cost_usd": 0.0012971
         },
         "request_ids": [
           "scripted:CLM-9002:1",
@@ -5231,7 +5231,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 969,
+            "characters": 970,
             "tokens_estimate_chars_div_4": 242
           }
         ],
@@ -5268,10 +5268,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12382,
+        "tokens_in": 15314,
         "tokens_out": 454,
-        "cost_usd": 0.0014198,
-        "catalog_cost_usd": 0.0014198,
+        "cost_usd": 0.001713,
+        "catalog_cost_usd": 0.001713,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -5292,7 +5292,7 @@
           "recorded": true,
           "claim_id": "CLM-9003",
           "decision": "approve_in_principle",
-          "receipt_sha256": "06ee90bf4286561570f1a975b067cdf14c14557a2332bbc2c6ee2f9f5aabc5a2",
+          "receipt_sha256": "7aa9cbfe439e86680107279117cdd491f664235a03544cd280086291852ea53a",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9003",
@@ -5325,9 +5325,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9227,
+            "tokens_in": 11572,
             "tokens_out": 337,
-            "cost_usd": 0.0010575
+            "cost_usd": 0.001292
           },
           "recovered_after_write_error": false
         },
@@ -5363,9 +5363,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9227,
+          "tokens_in": 11572,
           "tokens_out": 337,
-          "cost_usd": 0.0010575
+          "cost_usd": 0.001292
         },
         "request_ids": [
           "scripted:CLM-9003:1",
@@ -5446,10 +5446,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12371,
+        "tokens_in": 15305,
         "tokens_out": 454,
-        "cost_usd": 0.0014187,
-        "catalog_cost_usd": 0.0014187,
+        "cost_usd": 0.0017121,
+        "catalog_cost_usd": 0.0017121,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -5470,7 +5470,7 @@
           "recorded": true,
           "claim_id": "CLM-9004",
           "decision": "approve_in_principle",
-          "receipt_sha256": "fb2f26f11655366d70dbb458578c731dbd61e2fd62451e2ea60fc09fa797c6ef",
+          "receipt_sha256": "ff716fa55fa59f74a6a4ce49f7bf67a0c5b7cffdad46a1b342517e1bc08577ad",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9004",
@@ -5503,9 +5503,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9219,
+            "tokens_in": 11566,
             "tokens_out": 337,
-            "cost_usd": 0.0010567
+            "cost_usd": 0.0012914
           },
           "recovered_after_write_error": false
         },
@@ -5541,9 +5541,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9219,
+          "tokens_in": 11566,
           "tokens_out": 337,
-          "cost_usd": 0.0010567
+          "cost_usd": 0.0012914
         },
         "request_ids": [
           "scripted:CLM-9004:1",
@@ -5587,7 +5587,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 973,
+            "characters": 974,
             "tokens_estimate_chars_div_4": 243
           }
         ],
@@ -5625,10 +5625,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15431,
+        "tokens_in": 18950,
         "tokens_out": 530,
-        "cost_usd": 0.0017551,
-        "catalog_cost_usd": 0.0017551,
+        "cost_usd": 0.002107,
+        "catalog_cost_usd": 0.002107,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -5649,7 +5649,7 @@
           "recorded": true,
           "claim_id": "CLM-9005",
           "decision": "approve_in_principle",
-          "receipt_sha256": "96a7b7deb8028a202df9c1e9c5e3bc40a03b54b8e7891c407aa35a7286686a20",
+          "receipt_sha256": "d7e566c227bcbd6868da16da3555ebc022e25c829ec259ccd5f9c88e32f0e1f6",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9005",
@@ -5683,9 +5683,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12084,
+            "tokens_in": 15016,
             "tokens_out": 409,
-            "cost_usd": 0.001372
+            "cost_usd": 0.0016652
           },
           "recovered_after_write_error": false
         },
@@ -5722,9 +5722,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12084,
+          "tokens_in": 15016,
           "tokens_out": 409,
-          "cost_usd": 0.001372
+          "cost_usd": 0.0016652
         },
         "request_ids": [
           "scripted:CLM-9005:1",
@@ -5775,7 +5775,7 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 1013,
+            "characters": 1014,
             "tokens_estimate_chars_div_4": 253
           }
         ],
@@ -5813,10 +5813,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15431,
+        "tokens_in": 18950,
         "tokens_out": 530,
-        "cost_usd": 0.0017551,
-        "catalog_cost_usd": 0.0017551,
+        "cost_usd": 0.002107,
+        "catalog_cost_usd": 0.002107,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -5837,7 +5837,7 @@
           "recorded": true,
           "claim_id": "CLM-9006",
           "decision": "approve_in_principle",
-          "receipt_sha256": "6f990ebab85962d548968a78e9ea4e1899f034265244d9610dc6629bb05c3f01",
+          "receipt_sha256": "1b799e980eea8dfd944451fa550b2dd2aebf8da71f6a3cd2e32a8bd94adc1e50",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9006",
@@ -5871,9 +5871,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12084,
+            "tokens_in": 15016,
             "tokens_out": 409,
-            "cost_usd": 0.001372
+            "cost_usd": 0.0016652
           },
           "recovered_after_write_error": false
         },
@@ -5910,9 +5910,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12084,
+          "tokens_in": 15016,
           "tokens_out": 409,
-          "cost_usd": 0.001372
+          "cost_usd": 0.0016652
         },
         "request_ids": [
           "scripted:CLM-9006:1",
@@ -5963,7 +5963,7 @@
           {
             "turn": 5,
             "tool": "issue_decision_letter",
-            "characters": 1013,
+            "characters": 1014,
             "tokens_estimate_chars_div_4": 253
           }
         ],
@@ -6001,10 +6001,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15437,
+        "tokens_in": 18955,
         "tokens_out": 531,
-        "cost_usd": 0.0017561,
-        "catalog_cost_usd": 0.0017561,
+        "cost_usd": 0.0021079,
+        "catalog_cost_usd": 0.0021079,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -6025,7 +6025,7 @@
           "recorded": true,
           "claim_id": "CLM-9007",
           "decision": "approve_in_principle",
-          "receipt_sha256": "e39cd7d5c37e68784b748b9b1dc7721bf73ca09fa52882a29fb745d442ab8387",
+          "receipt_sha256": "c5203d05a8b4f08c50115f4232ff3c8c64a0482d90ee98a9097cc5e234320bc2",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9007",
@@ -6059,9 +6059,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12088,
+            "tokens_in": 15019,
             "tokens_out": 409,
-            "cost_usd": 0.0013724
+            "cost_usd": 0.0016655
           },
           "recovered_after_write_error": false
         },
@@ -6098,9 +6098,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12088,
+          "tokens_in": 15019,
           "tokens_out": 409,
-          "cost_usd": 0.0013724
+          "cost_usd": 0.0016655
         },
         "request_ids": [
           "scripted:CLM-9007:1",
@@ -6189,10 +6189,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 15437,
+        "tokens_in": 18955,
         "tokens_out": 531,
-        "cost_usd": 0.0017561,
-        "catalog_cost_usd": 0.0017561,
+        "cost_usd": 0.0021079,
+        "catalog_cost_usd": 0.0021079,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -6213,7 +6213,7 @@
           "recorded": true,
           "claim_id": "CLM-9008",
           "decision": "approve_in_principle",
-          "receipt_sha256": "79aea56ab27b7c2d0689eb72102b760c371bc233e6ef0f09c728e116d04c52f1",
+          "receipt_sha256": "402f4f0ca127b97945b82e608d5e7511f3bfab805a080a08f2eee3ffe38ab3e9",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9008",
@@ -6247,9 +6247,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12088,
+            "tokens_in": 15019,
             "tokens_out": 409,
-            "cost_usd": 0.0013724
+            "cost_usd": 0.0016655
           },
           "recovered_after_write_error": false
         },
@@ -6286,9 +6286,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12088,
+          "tokens_in": 15019,
           "tokens_out": 409,
-          "cost_usd": 0.0013724
+          "cost_usd": 0.0016655
         },
         "request_ids": [
           "scripted:CLM-9008:1",
@@ -6390,10 +6390,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 13382,
+        "tokens_in": 16316,
         "tokens_out": 698,
-        "cost_usd": 0.0016174,
-        "catalog_cost_usd": 0.0016174,
+        "cost_usd": 0.0019108,
+        "catalog_cost_usd": 0.0019108,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -6414,7 +6414,7 @@
           "recorded": true,
           "claim_id": "CLM-9009",
           "decision": "approve_in_principle",
-          "receipt_sha256": "959443a5b53af76a5f783db9a53c9d24bfa45188cf5978ef1e0f8990c7ac94b9",
+          "receipt_sha256": "e35786826cdf08e1650afd372027f522b10b49d8d674f0175f5ce861cf57fb5d",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9009",
@@ -6461,9 +6461,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9648,
+            "tokens_in": 11995,
             "tokens_out": 505,
-            "cost_usd": 0.0011668
+            "cost_usd": 0.0014015
           },
           "recovered_after_write_error": false
         },
@@ -6513,9 +6513,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9648,
+          "tokens_in": 11995,
           "tokens_out": 505,
-          "cost_usd": 0.0011668
+          "cost_usd": 0.0014015
         },
         "request_ids": [
           "scripted:CLM-9009:1",
@@ -6571,7 +6571,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1317,
+            "characters": 1318,
             "tokens_estimate_chars_div_4": 329
           }
         ],
@@ -6615,10 +6615,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12912,
+        "tokens_in": 15842,
         "tokens_out": 578,
-        "cost_usd": 0.0015224,
-        "catalog_cost_usd": 0.0015224,
+        "cost_usd": 0.0018154,
+        "catalog_cost_usd": 0.0018154,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -6639,7 +6639,7 @@
           "recorded": true,
           "claim_id": "CLM-9010",
           "decision": "approve_in_principle",
-          "receipt_sha256": "4123edfe64bb70a94586cb18d86cb600c9bdc6ecb29acbc393166a10cc59cf12",
+          "receipt_sha256": "f3c5e98a82161ce7da438ab870fac8d4e41f43d31bdc95b4dcbdea741d65b5e3",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9010",
@@ -6679,9 +6679,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9457,
+            "tokens_in": 11801,
             "tokens_out": 423,
-            "cost_usd": 0.0011149
+            "cost_usd": 0.0013493
           },
           "recovered_after_write_error": false
         },
@@ -6724,9 +6724,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9457,
+          "tokens_in": 11801,
           "tokens_out": 423,
-          "cost_usd": 0.0011149
+          "cost_usd": 0.0013493
         },
         "request_ids": [
           "scripted:CLM-9010:1",
@@ -6776,7 +6776,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1145,
+            "characters": 1146,
             "tokens_estimate_chars_div_4": 286
           }
         ],
@@ -6820,10 +6820,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12835,
+        "tokens_in": 15768,
         "tokens_out": 566,
-        "cost_usd": 0.0015099,
-        "catalog_cost_usd": 0.0015099,
+        "cost_usd": 0.0018032,
+        "catalog_cost_usd": 0.0018032,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -6844,7 +6844,7 @@
           "recorded": true,
           "claim_id": "CLM-9011",
           "decision": "approve_in_principle",
-          "receipt_sha256": "324e3ab81752a22d71e5753d14e315a3246cb9b8b9da31bfd292c44d53646b69",
+          "receipt_sha256": "2cfd011b7aa803317c0c19d5958afb29f55df19e7f56a86b4de1c9a86cf8fa29",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9011",
@@ -6884,9 +6884,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9413,
+            "tokens_in": 11759,
             "tokens_out": 412,
-            "cost_usd": 0.0011061
+            "cost_usd": 0.0013407
           },
           "recovered_after_write_error": false
         },
@@ -6929,9 +6929,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9413,
+          "tokens_in": 11759,
           "tokens_out": 412,
-          "cost_usd": 0.0011061
+          "cost_usd": 0.0013407
         },
         "request_ids": [
           "scripted:CLM-9011:1",
@@ -6981,7 +6981,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1141,
+            "characters": 1142,
             "tokens_estimate_chars_div_4": 285
           }
         ],
@@ -7018,10 +7018,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12351,
+        "tokens_in": 15283,
         "tokens_out": 450,
-        "cost_usd": 0.0014151,
-        "catalog_cost_usd": 0.0014151,
+        "cost_usd": 0.0017083,
+        "catalog_cost_usd": 0.0017083,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -7042,7 +7042,7 @@
           "recorded": true,
           "claim_id": "CLM-9012",
           "decision": "approve_in_principle",
-          "receipt_sha256": "3f4b7642a3b2a547964c9deb79c73484f7cf19ea202cc59853d5fa683a00501a",
+          "receipt_sha256": "0a2edeccec0d4c4d5cb6a3178160ec9bde044de45bb127aadfcb2e6c88e508a3",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9012",
@@ -7075,9 +7075,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9209,
+            "tokens_in": 11554,
             "tokens_out": 335,
-            "cost_usd": 0.0010549
+            "cost_usd": 0.0012894
           },
           "recovered_after_write_error": false
         },
@@ -7113,9 +7113,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9209,
+          "tokens_in": 11554,
           "tokens_out": 335,
-          "cost_usd": 0.0010549
+          "cost_usd": 0.0012894
         },
         "request_ids": [
           "scripted:CLM-9012:1",
@@ -7159,7 +7159,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 964,
+            "characters": 965,
             "tokens_estimate_chars_div_4": 241
           }
         ],
@@ -7196,10 +7196,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12351,
+        "tokens_in": 15283,
         "tokens_out": 450,
-        "cost_usd": 0.0014151,
-        "catalog_cost_usd": 0.0014151,
+        "cost_usd": 0.0017083,
+        "catalog_cost_usd": 0.0017083,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -7220,7 +7220,7 @@
           "recorded": true,
           "claim_id": "CLM-9013",
           "decision": "approve_in_principle",
-          "receipt_sha256": "7227b9a20212f9a695380ac597990504bceb34e1ad51f04f139164e7ba2250bd",
+          "receipt_sha256": "9b6b95ab8dfe1cbdf041050579e9e4e06b1852948ac8fdd3e2d295394d28a15f",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9013",
@@ -7253,9 +7253,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9209,
+            "tokens_in": 11554,
             "tokens_out": 335,
-            "cost_usd": 0.0010549
+            "cost_usd": 0.0012894
           },
           "recovered_after_write_error": false
         },
@@ -7291,9 +7291,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9209,
+          "tokens_in": 11554,
           "tokens_out": 335,
-          "cost_usd": 0.0010549
+          "cost_usd": 0.0012894
         },
         "request_ids": [
           "scripted:CLM-9013:1",
@@ -7337,7 +7337,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 964,
+            "characters": 965,
             "tokens_estimate_chars_div_4": 241
           }
         ],
@@ -7374,10 +7374,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12367,
+        "tokens_in": 15299,
         "tokens_out": 451,
-        "cost_usd": 0.0014171,
-        "catalog_cost_usd": 0.0014171,
+        "cost_usd": 0.0017103,
+        "catalog_cost_usd": 0.0017103,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -7398,7 +7398,7 @@
           "recorded": true,
           "claim_id": "CLM-9014",
           "decision": "approve_in_principle",
-          "receipt_sha256": "4c8d984d431956256374314905c7efa53a752975b07e2c21f461665b8e28b459",
+          "receipt_sha256": "526887a7abfbbf65186f61793c6fb24536f7346013c3226f6db597962b632bb6",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9014",
@@ -7431,9 +7431,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9220,
+            "tokens_in": 11565,
             "tokens_out": 335,
-            "cost_usd": 0.001056
+            "cost_usd": 0.0012905
           },
           "recovered_after_write_error": false
         },
@@ -7469,9 +7469,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9220,
+          "tokens_in": 11565,
           "tokens_out": 335,
-          "cost_usd": 0.001056
+          "cost_usd": 0.0012905
         },
         "request_ids": [
           "scripted:CLM-9014:1",
@@ -7515,7 +7515,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 965,
+            "characters": 967,
             "tokens_estimate_chars_div_4": 241
           }
         ],
@@ -7552,10 +7552,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12367,
+        "tokens_in": 15299,
         "tokens_out": 451,
-        "cost_usd": 0.0014171,
-        "catalog_cost_usd": 0.0014171,
+        "cost_usd": 0.0017103,
+        "catalog_cost_usd": 0.0017103,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -7576,7 +7576,7 @@
           "recorded": true,
           "claim_id": "CLM-9015",
           "decision": "approve_in_principle",
-          "receipt_sha256": "1de1a62d5113365ef53ff30a84e7a71423c8385c057f8ecf25feb3aa231cf12f",
+          "receipt_sha256": "529f0387c7107df547c78ebb65e3654e9b4cc502cc846dffd902f8dedb2010e1",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9015",
@@ -7609,9 +7609,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9220,
+            "tokens_in": 11565,
             "tokens_out": 335,
-            "cost_usd": 0.001056
+            "cost_usd": 0.0012905
           },
           "recovered_after_write_error": false
         },
@@ -7647,9 +7647,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9220,
+          "tokens_in": 11565,
           "tokens_out": 335,
-          "cost_usd": 0.001056
+          "cost_usd": 0.0012905
         },
         "request_ids": [
           "scripted:CLM-9015:1",
@@ -7693,7 +7693,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 965,
+            "characters": 967,
             "tokens_estimate_chars_div_4": 241
           }
         ],
@@ -7730,10 +7730,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12425,
+        "tokens_in": 15356,
         "tokens_out": 458,
-        "cost_usd": 0.0014257,
-        "catalog_cost_usd": 0.0014257,
+        "cost_usd": 0.0017188,
+        "catalog_cost_usd": 0.0017188,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -7754,7 +7754,7 @@
           "recorded": true,
           "claim_id": "CLM-9016",
           "decision": "approve_in_principle",
-          "receipt_sha256": "92e14090aaaa531d38e7970c46c22a09e64adfb8afb2e19622198cfa807a4dd2",
+          "receipt_sha256": "f73422f9ec8601eaa25dd805e08cd2e6ad77a6656525e915a5674d4ed1635350",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9016",
@@ -7787,9 +7787,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9256,
+            "tokens_in": 11600,
             "tokens_out": 342,
-            "cost_usd": 0.0010624
+            "cost_usd": 0.0012968
           },
           "recovered_after_write_error": false
         },
@@ -7825,9 +7825,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9256,
+          "tokens_in": 11600,
           "tokens_out": 342,
-          "cost_usd": 0.0010624
+          "cost_usd": 0.0012968
         },
         "request_ids": [
           "scripted:CLM-9016:1",
@@ -7871,7 +7871,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 969,
+            "characters": 970,
             "tokens_estimate_chars_div_4": 242
           }
         ],
@@ -7908,10 +7908,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12425,
+        "tokens_in": 15356,
         "tokens_out": 458,
-        "cost_usd": 0.0014257,
-        "catalog_cost_usd": 0.0014257,
+        "cost_usd": 0.0017188,
+        "catalog_cost_usd": 0.0017188,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -7932,7 +7932,7 @@
           "recorded": true,
           "claim_id": "CLM-9017",
           "decision": "approve_in_principle",
-          "receipt_sha256": "107a561b9680ff474a517a0d47b40588b2a887f3883fab7a3087f23ef558f556",
+          "receipt_sha256": "066954d00760629b867d42f687d711b80643be81c19000eee6327746e135493f",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9017",
@@ -7965,9 +7965,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9256,
+            "tokens_in": 11600,
             "tokens_out": 342,
-            "cost_usd": 0.0010624
+            "cost_usd": 0.0012968
           },
           "recovered_after_write_error": false
         },
@@ -8003,9 +8003,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9256,
+          "tokens_in": 11600,
           "tokens_out": 342,
-          "cost_usd": 0.0010624
+          "cost_usd": 0.0012968
         },
         "request_ids": [
           "scripted:CLM-9017:1",
@@ -8049,7 +8049,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 969,
+            "characters": 970,
             "tokens_estimate_chars_div_4": 242
           }
         ],
@@ -8107,10 +8107,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 13733,
+        "tokens_in": 16665,
         "tokens_out": 795,
-        "cost_usd": 0.0016913,
-        "catalog_cost_usd": 0.0016913,
+        "cost_usd": 0.0019845,
+        "catalog_cost_usd": 0.0019845,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -8131,7 +8131,7 @@
           "recorded": true,
           "claim_id": "CLM-9018",
           "decision": "approve_in_principle",
-          "receipt_sha256": "8b9c8247386ddd45be46d9ffc754be27be94f7d9194de02af0dc9c758f06bca3",
+          "receipt_sha256": "45ceac02289150af28546e5be7a786b22481d1f2b2eafa515774259c19329f32",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9018",
@@ -8185,9 +8185,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9778,
+            "tokens_in": 12123,
             "tokens_out": 564,
-            "cost_usd": 0.0012034
+            "cost_usd": 0.0014379
           },
           "recovered_after_write_error": false
         },
@@ -8244,9 +8244,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9778,
+          "tokens_in": 12123,
           "tokens_out": 564,
-          "cost_usd": 0.0012034
+          "cost_usd": 0.0014379
         },
         "request_ids": [
           "scripted:CLM-9018:1",
@@ -8308,7 +8308,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1490,
+            "characters": 1491,
             "tokens_estimate_chars_div_4": 372
           }
         ],
@@ -8360,10 +8360,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16720,
+        "tokens_in": 20240,
         "tokens_out": 775,
-        "cost_usd": 0.001982,
-        "catalog_cost_usd": 0.001982,
+        "cost_usd": 0.002334,
+        "catalog_cost_usd": 0.002334,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -8384,7 +8384,7 @@
           "recorded": true,
           "claim_id": "CLM-9019",
           "decision": "approve_in_principle",
-          "receipt_sha256": "c369764ea280b5bbee2afc1db6e385931c3995c1ffc9dc232ddbf452aa6c185e",
+          "receipt_sha256": "f44a19574f17e9e03e9a692e659901e73f082a0b2c47f6a1716064f81c34c77a",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9019",
@@ -8432,9 +8432,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12802,
+            "tokens_in": 15735,
             "tokens_out": 574,
-            "cost_usd": 0.0015098
+            "cost_usd": 0.0018031
           },
           "recovered_after_write_error": false
         },
@@ -8485,9 +8485,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12802,
+          "tokens_in": 15735,
           "tokens_out": 574,
-          "cost_usd": 0.0015098
+          "cost_usd": 0.0018031
         },
         "request_ids": [
           "scripted:CLM-9019:1",
@@ -8602,10 +8602,10 @@
           "issue_decision_letter"
         ],
         "turns": 5,
-        "tokens_in": 16689,
+        "tokens_in": 20208,
         "tokens_out": 770,
-        "cost_usd": 0.0019769,
-        "catalog_cost_usd": 0.0019769,
+        "cost_usd": 0.0023288,
+        "catalog_cost_usd": 0.0023288,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -8626,7 +8626,7 @@
           "recorded": true,
           "claim_id": "CLM-9020",
           "decision": "approve_in_principle",
-          "receipt_sha256": "e8dbb286f06a9e61a1b647ed15743465fa849170bf387e46db58c6aea3c70382",
+          "receipt_sha256": "487fb1db86f0f69033eeb505f12d62daf2eb217d1d3886d03bffd0b5b2cc2bde",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9020",
@@ -8674,9 +8674,9 @@
               "turn": 5
             },
             "turns": 6,
-            "tokens_in": 12785,
+            "tokens_in": 15718,
             "tokens_out": 572,
-            "cost_usd": 0.0015073
+            "cost_usd": 0.0018006
           },
           "recovered_after_write_error": false
         },
@@ -8727,9 +8727,9 @@
             "turn": 5
           },
           "turns": 6,
-          "tokens_in": 12785,
+          "tokens_in": 15718,
           "tokens_out": 572,
-          "cost_usd": 0.0015073
+          "cost_usd": 0.0018006
         },
         "request_ids": [
           "scripted:CLM-9020:1",
@@ -8850,10 +8850,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 13734,
+        "tokens_in": 16665,
         "tokens_out": 794,
-        "cost_usd": 0.001691,
-        "catalog_cost_usd": 0.001691,
+        "cost_usd": 0.0019841,
+        "catalog_cost_usd": 0.0019841,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -8874,7 +8874,7 @@
           "recorded": true,
           "claim_id": "CLM-9021",
           "decision": "approve_in_principle",
-          "receipt_sha256": "c7a0f741336dc23d2de65fcbd64622e458efd18a3cdb97a984a5ea3b51f1d18c",
+          "receipt_sha256": "aef8fb714d923f9486cb089c7b3c844ff9fbc3c5b99412d9a2ef477314839ba2",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9021",
@@ -8928,9 +8928,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9779,
+            "tokens_in": 12124,
             "tokens_out": 563,
-            "cost_usd": 0.0012031
+            "cost_usd": 0.0014376
           },
           "recovered_after_write_error": false
         },
@@ -8987,9 +8987,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9779,
+          "tokens_in": 12124,
           "tokens_out": 563,
-          "cost_usd": 0.0012031
+          "cost_usd": 0.0014376
         },
         "request_ids": [
           "scripted:CLM-9021:1",
@@ -9051,7 +9051,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1489,
+            "characters": 1490,
             "tokens_estimate_chars_div_4": 372
           }
         ],
@@ -9088,10 +9088,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12394,
+        "tokens_in": 15326,
         "tokens_out": 454,
-        "cost_usd": 0.001421,
-        "catalog_cost_usd": 0.001421,
+        "cost_usd": 0.0017142,
+        "catalog_cost_usd": 0.0017142,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -9112,7 +9112,7 @@
           "recorded": true,
           "claim_id": "CLM-9022",
           "decision": "approve_in_principle",
-          "receipt_sha256": "123c567767f7e8768156b1017610b9b9597c486b5333816e8c3691a5c3c79ac6",
+          "receipt_sha256": "2680c2c6a431f1285bb94d4c698fe846c20999ff4338aa88ed020eaa4f8d5375",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9022",
@@ -9145,9 +9145,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9236,
+            "tokens_in": 11582,
             "tokens_out": 337,
-            "cost_usd": 0.0010584
+            "cost_usd": 0.001293
           },
           "recovered_after_write_error": false
         },
@@ -9183,9 +9183,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9236,
+          "tokens_in": 11582,
           "tokens_out": 337,
-          "cost_usd": 0.0010584
+          "cost_usd": 0.001293
         },
         "request_ids": [
           "scripted:CLM-9022:1",
@@ -9266,10 +9266,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 12445,
+        "tokens_in": 15376,
         "tokens_out": 458,
-        "cost_usd": 0.0014277,
-        "catalog_cost_usd": 0.0014277,
+        "cost_usd": 0.0017208,
+        "catalog_cost_usd": 0.0017208,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -9290,7 +9290,7 @@
           "recorded": true,
           "claim_id": "CLM-9023",
           "decision": "approve_in_principle",
-          "receipt_sha256": "0fe4b8bfc773939b46a76464fc8b213789f65989eb6679589cdf96c2367dc39f",
+          "receipt_sha256": "786e9e48e84b1e70cf2d5a9bde90486d882c5ed2853c7d865276892970c77c91",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9023",
@@ -9323,9 +9323,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9270,
+            "tokens_in": 11614,
             "tokens_out": 342,
-            "cost_usd": 0.0010638
+            "cost_usd": 0.0012982
           },
           "recovered_after_write_error": false
         },
@@ -9361,9 +9361,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9270,
+          "tokens_in": 11614,
           "tokens_out": 342,
-          "cost_usd": 0.0010638
+          "cost_usd": 0.0012982
         },
         "request_ids": [
           "scripted:CLM-9023:1",
@@ -9407,7 +9407,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 969,
+            "characters": 970,
             "tokens_estimate_chars_div_4": 242
           }
         ],
@@ -9458,10 +9458,10 @@
           "issue_decision_letter"
         ],
         "turns": 4,
-        "tokens_in": 13367,
+        "tokens_in": 16300,
         "tokens_out": 698,
-        "cost_usd": 0.0016159,
-        "catalog_cost_usd": 0.0016159,
+        "cost_usd": 0.0019092,
+        "catalog_cost_usd": 0.0019092,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -9482,7 +9482,7 @@
           "recorded": true,
           "claim_id": "CLM-9024",
           "decision": "approve_in_principle",
-          "receipt_sha256": "765a7cfd1e393fc8b7d092e47657ca13885282354493d813e11d0c41c4d31d28",
+          "receipt_sha256": "e9e296eb3a10c92dcf8ff5ff2cabf9cc758a8e3cbd4f16fb9620060fbc86772c",
           "record": {
             "ts": "2026-09-09T00:00:00Z",
             "claim_id": "CLM-9024",
@@ -9529,9 +9529,9 @@
               "turn": 4
             },
             "turns": 5,
-            "tokens_in": 9643,
+            "tokens_in": 11989,
             "tokens_out": 505,
-            "cost_usd": 0.0011663
+            "cost_usd": 0.0014009
           },
           "recovered_after_write_error": false
         },
@@ -9581,9 +9581,9 @@
             "turn": 4
           },
           "turns": 5,
-          "tokens_in": 9643,
+          "tokens_in": 11989,
           "tokens_out": 505,
-          "cost_usd": 0.0011663
+          "cost_usd": 0.0014009
         },
         "request_ids": [
           "scripted:CLM-9024:1",
@@ -9639,7 +9639,7 @@
           {
             "turn": 4,
             "tool": "issue_decision_letter",
-            "characters": 1317,
+            "characters": 1318,
             "tokens_estimate_chars_div_4": 329
           }
         ],
@@ -9663,10 +9663,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -9717,10 +9717,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
@@ -9771,10 +9771,10 @@
           "get_claim"
         ],
         "turns": 1,
-        "tokens_in": 2017,
+        "tokens_in": 2603,
         "tokens_out": 31,
-        "cost_usd": 0.0002141,
-        "catalog_cost_usd": 0.0002141,
+        "cost_usd": 0.0002727,
+        "catalog_cost_usd": 0.0002727,
         "provider_cost_usd": null,
         "provider_cost_delta_usd": null,
         "provider_usage": [],
