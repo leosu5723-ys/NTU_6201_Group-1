@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 import json
+import re
 import time
 import urllib.error
 import urllib.request
@@ -105,25 +106,20 @@ class LiveBackend:
 
 
 def _parse_move(text: str) -> dict[str, Any]:
+    fenced = re.fullmatch(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n```[ \t]*", text, re.DOTALL)
+    if fenced:
+        text = fenced.group(1)
     try:
         move = json.loads(text)
     except json.JSONDecodeError as error:
         return {
             "thought": f"Unparseable model response: {text[:160]}",
-            "final": {
-                "decision": "escalate",
-                "trigger": "model_output_error",
-                "reason": f"Model output was not valid JSON: {error.msg}",
-            },
+            "parse_error": f"Model output was not valid JSON: {error.msg}",
         }
     if not isinstance(move, dict) or not ({"calls", "final"} & set(move)):
         return {
             "thought": "Model response had no calls or final object.",
-            "final": {
-                "decision": "escalate",
-                "trigger": "model_output_error",
-                "reason": "Model response did not match the move schema.",
-            },
+            "parse_error": "Model response did not match the move schema.",
         }
     return move
 

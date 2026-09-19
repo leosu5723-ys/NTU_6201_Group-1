@@ -10,8 +10,8 @@
 
 | Mode | Trials passed | Total turns | Median turns | Input tokens* | Cost* |
 |---|---:|---:|---:|---:|---:|
-| Sequential | 40 / 40 | 251 | 6.0 | 742,622 | US$0.0826 |
-| Parallel | 40 / 40 | 157 | 4.0 | 495,381 | US$0.0574 |
+| Sequential | 40 / 40 | 251 | 6.0 | 911,506 | US$0.0995 |
+| Parallel | 40 / 40 | 157 | 4.0 | 609,144 | US$0.0688 |
 
 *Scripted deterministic estimates, not live API billing evidence.*
 
@@ -19,8 +19,8 @@
 
 | Version | Prompt chars | Prompt tokens* | Line-return chars | Line-return tokens* | SHA-256 | Live result |
 |---|---:|---:|---:|---:|---|---|
-| v1 | 7,630 | 1,907 | 463 | 115 | `7a545461220bd9736de70a735dcd51c020ab609898747d6e9dcbfe17912249d2` | LIVE RUN PENDING |
-| v2 | 8,068 | 2,017 | 227 | 56 | `e88483e0e6a2880884b65bd79f4e6de679f97a6c65f352854ef9e2b569565daf` | LIVE RUN PENDING |
+| v1 | 9,976 | 2,494 | 463 | 115 | `2081ad2866d4c54a392267822ca243daae68e08978d4852f9fa61da45a67ddb5` | LIVE RUN PENDING |
+| v2 | 10,414 | 2,603 | 227 | 56 | `fd33f6b1e64a40f5a8b4c3ecaff63abb81447b5edc67219c1addb63ed1fd0036` | LIVE RUN PENDING |
 
 ## Guardrail checklist
 
@@ -30,12 +30,19 @@
 
 | Failure | Working | Component removed | Reproduced effect |
 |---|---|---|---|
-| Loop control | 5 turns, 9 calls, US$0.001984 | Action de-duplication | 7 turns, 13 calls, US$0.002837; same decision |
+| Loop control | 5 turns, 9 calls, US$0.002336 | Action de-duplication | 7 turns, 13 calls, US$0.003307; same decision |
 | Tool interface | Correctly requested itemised bill | Required-document fields | Incorrect approval; code-check pass = false |
 
 ## Live model battery
 
-**LIVE RUN PENDING. No model result is represented as measured.**
+| Model | Prompt | Trials | Overall pass | Negative pass | Tokens in | Tokens out | Cost |
+|---|---|---:|---:|---:|---:|---:|---:|
+| anthropic/claude-haiku-4.5 | v2 | 60 | 0 / 60 | 0 / 30 | 121,394 | 4,636 | US$0.1446 |
+| deepseek/deepseek-v3.2 | v2 | 60 | 16 / 60 | 13 / 30 | 611,609 | 32,584 | US$0.0773 |
+| google/gemini-2.5-flash-lite | v1 | 60 | 6 / 60 | 6 / 30 | 404,498 | 22,322 | US$0.0420 |
+| google/gemini-2.5-flash-lite | v2 | 60 | 9 / 60 | 9 / 30 | 578,032 | 24,852 | US$0.0436 |
+| meta-llama/llama-4-maverick | v2 | 60 | 10 / 60 | 9 / 30 | 685,355 | 24,291 | US$0.1481 |
+| qwen/qwen3-30b-a3b-instruct-2507 | v2 | 60 | 16 / 60 | 11 / 30 | 721,827 | 28,075 | US$0.0633 |
 
 ## Per-case grading map
 

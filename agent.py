@@ -130,6 +130,61 @@ def _outcome_projection(payload: dict[str, Any], *, action: bool) -> dict[str, A
     return projected
 
 
+def _required_action_from_final(case_id: str, final: dict[str, Any]) -> dict[str, Any]:
+    """Translate a premature final answer into the decision-tool payload shape.
+
+    This is returned to the model as corrective feedback; it is never executed
+    by the code layer.  The model must still deliberately call the gated tool.
+    """
+    decision = final.get("decision")
+    payload: dict[str, Any] = {
+        "claim_id": case_id,
+        "decision": decision,
+        "lines": final.get("line_dispositions", []),
+        "approved_total": final.get("approved_total", 0),
+        "refused_total": final.get("refused_total", 0),
+        "reason": final.get("reason"),
+    }
+    if decision == "request_document":
+        payload["missing"] = final.get("missing")
+    elif decision == "escalate":
+        payload["trigger"] = final.get("trigger")
+        payload["escalate_to"] = final.get("escalate_to")
+    return payload
+
+
+def _final_from_persisted(payload: dict[str, Any]) -> dict[str, Any]:
+    """Return the exact public final shape represented by a persisted action."""
+    decision = payload.get("decision")
+    final: dict[str, Any] = {
+        "decision": decision,
+        "reason": payload.get("reason"),
+    }
+    if decision == "approve_in_principle":
+        final.update(
+            {
+                "approved_total": payload.get("approved_total"),
+                "refused_total": payload.get("refused_total"),
+                "line_dispositions": payload.get("lines", []),
+            }
+        )
+    elif decision == "request_document":
+        final.update(
+            {
+                "missing": payload.get("missing"),
+                "line_dispositions": payload.get("lines", []),
+            }
+        )
+    elif decision == "escalate":
+        final.update(
+            {
+                "trigger": payload.get("trigger"),
+                "escalate_to": payload.get("escalate_to"),
+            }
+        )
+    return final
+
+
 def run_case(
     case_id: str,
     *,
@@ -177,6 +232,9 @@ def run_case(
     action_payload: dict[str, Any] | None = None
     action_receipt: dict[str, Any] | None = None
     persisted_decision: dict[str, Any] | None = None
+    final_corrections = 0
+    move_schema_corrections = 0
+    recoverable_tool_errors = 0
     stopped_by: str | None = None
     started = time.perf_counter()
     record: dict[str, Any] | None = None
@@ -207,10 +265,104 @@ def run_case(
             if usage.get("request_id"):
                 request_ids.append(str(usage["request_id"]))
             guards.check_budget(tokens_in + tokens_out)
-            _validate_move(move)
+            try:
+                _validate_move(move)
+            except ValueError as error:
+                if move_schema_corrections >= 1:
+                    raise
+                move_schema_corrections += 1
+                turns += 1
+                guards.check_turns(turns)
+                transcript.append(
+                    {"role": "assistant", "content": json.dumps(move, default=str)}
+                )
+                transcript.append(
+                    {
+                        "role": "user",
+                        "content": json.dumps(
+                            {
+                                "error": "invalid_move_schema",
+                                "detail": str(error),
+                                "instruction": (
+                                    "Return exactly one valid JSON move using "
+                                    "either a non-empty calls list or a final "
+                                    "object, following the system format."
+                                ),
+                            }
+                        ),
+                    }
+                )
+                continue
 
             if "final" in move:
-                record = dict(move["final"])
+                candidate = dict(move["final"])
+                if action_count == 0:
+                    # A final answer is not a completed ordinary workflow. Give
+                    # the model one bounded opportunity to perform the required
+                    # gated write instead of ending the run and rewriting the
+                    # otherwise-correct decision as action_integrity_error.
+                    if final_corrections >= 1:
+                        record = candidate
+                        break
+                    final_corrections += 1
+                    turns += 1
+                    guards.check_turns(turns)
+                    transcript.append(
+                        {"role": "assistant", "content": json.dumps(move)}
+                    )
+                    transcript.append(
+                        {
+                            "role": "user",
+                            "content": json.dumps(
+                                {
+                                    "error": "final_before_required_action",
+                                    "instruction": (
+                                        "Do not return final yet. Call "
+                                        "issue_decision_letter with the supported "
+                                        "decision payload. After its receipt, return "
+                                        "a matching final object."
+                                    ),
+                                    "required_call_shape": [
+                                        "issue_decision_letter",
+                                        _required_action_from_final(case_id, candidate),
+                                    ],
+                                }
+                            ),
+                        }
+                    )
+                    continue
+                if _outcome_projection(candidate, action=False) != _outcome_projection(
+                    persisted_decision or action_payload or {}, action=True
+                ):
+                    if final_corrections >= 1:
+                        record = candidate
+                        break
+                    final_corrections += 1
+                    turns += 1
+                    guards.check_turns(turns)
+                    transcript.append(
+                        {"role": "assistant", "content": json.dumps(move)}
+                    )
+                    transcript.append(
+                        {
+                            "role": "user",
+                            "content": json.dumps(
+                                {
+                                    "error": "final_does_not_match_recorded_action",
+                                    "instruction": (
+                                        "The decision is already recorded. Return "
+                                        "final only, matching this persisted record "
+                                        "exactly; do not call another tool."
+                                    ),
+                                    "required_final": _final_from_persisted(
+                                        persisted_decision or action_payload or {}
+                                    ),
+                                }
+                            ),
+                        }
+                    )
+                    continue
+                record = candidate
                 break
 
             turns += 1
@@ -221,24 +373,28 @@ def run_case(
             for name, args in calls:
                 guards.check_duplicate(name, args)
                 gate_record: dict[str, Any] = {}
-                if name == tools.GATED_ACTION[problem]:
-                    approved = guards.gate(name, args, approve)
-                    gate_record = {
-                        "autonomy": config.AUTONOMY,
-                        "approved": approved,
-                        "turn": turns,
-                    }
-                    if not approved:
-                        raise GuardrailStop(
-                            "gate_held",
-                            f"{name} awaits operator confirmation",
+                try:
+                    if name == tools.GATED_ACTION[problem]:
+                        # Do not ask a human to confirm an unsupported payload.
+                        tools.validate_decision_payload(
+                            **args, evidence_trace=trusted_evidence_trace
                         )
-
-                result = tools.call(
-                    problem,
-                    name,
-                    args,
-                    internal={
+                        approved = guards.gate(name, args, approve)
+                        gate_record = {
+                            "autonomy": config.AUTONOMY,
+                            "approved": approved,
+                            "turn": turns,
+                        }
+                        if not approved:
+                            raise GuardrailStop(
+                                "gate_held",
+                                f"{name} awaits operator confirmation",
+                            )
+                    result = tools.call(
+                        problem,
+                        name,
+                        args,
+                        internal={
                         "evidence": evidence + [name],
                         "evidence_trace": trusted_evidence_trace,
                         "gate": gate_record,
@@ -257,8 +413,33 @@ def run_case(
                             ),
                         },
                         "interface_version": prompt_version,
-                    },
-                )
+                        },
+                    )
+                except (KeyError, TypeError, ValueError) as error:
+                    # Tool argument and evidence-validation errors are useful
+                    # observations in a ReAct loop. Return them to the model so
+                    # it can repair the payload; hard guardrail and backend
+                    # failures still escape and stop the run loudly.
+                    recoverable_tool_errors += 1
+                    if recoverable_tool_errors > config.MAX_RECOVERABLE_TOOL_ERRORS:
+                        raise GuardrailStop(
+                            "recoverable_tool_error_cap",
+                            "exceeded %d recoverable tool-validation error(s)"
+                            % config.MAX_RECOVERABLE_TOOL_ERRORS,
+                        )
+                    observations.append(
+                        {
+                            "tool": name,
+                            "args": args,
+                            "error": str(error),
+                            "error_type": "tool_or_schema_error",
+                            "instruction": (
+                                "Correct the arguments using prior trusted "
+                                "observations. Do not repeat the identical call."
+                            ),
+                        }
+                    )
+                    break
                 evidence.append(name)
                 trusted_evidence_trace.append(
                     {"tool": name, "args": dict(args), "observation": result}

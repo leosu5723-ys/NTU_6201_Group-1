@@ -485,29 +485,22 @@ def _validate_escalation_evidence(
         raise ValueError(f"escalation trigger {trigger!r} is unsupported")
 
 
-def issue_decision_letter(
+def validate_decision_payload(
     *,
     claim_id: str,
     decision: str,
     lines: list[dict[str, Any]] | None = None,
     approved_total: int | float = 0,
     refused_total: int | float = 0,
-    reason: str,
+    reason: str | None = None,
     missing: str | None = None,
     trigger: str | None = None,
     escalate_to: str | None = None,
-    evidence: list[str],
     evidence_trace: list[dict[str, Any]],
-    gate: dict[str, Any],
-    log_path: str | Path,
-    timestamp: str | None = None,
-    telemetry: dict[str, Any] | None = None,
-) -> dict[str, Any]:
-    """Append one supported first-response decision to a local JSONL log."""
+) -> None:
+    """Check an action payload without confirmation or persistence."""
     if decision not in {"approve_in_principle", "request_document", "escalate"}:
         raise ValueError(f"unsupported first-response decision {decision!r}")
-    if not gate.get("approved"):
-        raise PermissionError("the autonomy gate has not approved this action")
     claim = get_claim(claim_id)
     if claim is None:
         raise ValueError(f"unknown claim_id {claim_id}")
@@ -534,15 +527,44 @@ def issue_decision_letter(
         line["amount"] for line in lines if line["status"] == "excluded"
     )
     if approved_total != calculated_approved or refused_total != calculated_refused:
-        raise ValueError(
-            "approved and refused totals must match the line dispositions"
-        )
+        raise ValueError("approved and refused totals must match the line dispositions")
     if decision == "approve_in_principle":
         _validate_approval_evidence(claim, lines, evidence_trace)
     elif decision == "request_document":
         _validate_request_evidence(claim, lines, missing, evidence_trace)
     else:
         _validate_escalation_evidence(claim, trigger, escalate_to, evidence_trace)
+
+
+def issue_decision_letter(
+    *,
+    claim_id: str,
+    decision: str,
+    lines: list[dict[str, Any]] | None = None,
+    approved_total: int | float = 0,
+    refused_total: int | float = 0,
+    reason: str,
+    missing: str | None = None,
+    trigger: str | None = None,
+    escalate_to: str | None = None,
+    evidence: list[str],
+    evidence_trace: list[dict[str, Any]],
+    gate: dict[str, Any],
+    log_path: str | Path,
+    timestamp: str | None = None,
+    telemetry: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Append one supported first-response decision to a local JSONL log."""
+    if not gate.get("approved"):
+        raise PermissionError("the autonomy gate has not approved this action")
+    # Revalidate after confirmation and immediately before creating the log.
+    validate_decision_payload(
+        claim_id=claim_id, decision=decision, lines=lines,
+        approved_total=approved_total, refused_total=refused_total,
+        missing=missing, trigger=trigger, escalate_to=escalate_to,
+        evidence_trace=evidence_trace,
+    )
+    lines = list(lines or [])
     path = Path(log_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     record = {
@@ -718,17 +740,17 @@ DESCRIPTORS = {
         "issue_decision_letter",
         "issue_decision_letter(claim_id: str, decision: 'approve_in_principle|request_document|escalate', lines: list[object], approved_total: number, refused_total: number, reason: str, missing?: str, trigger?: str, escalate_to?: str)",
         "Record one supported simulated first-response decision.",
-        "Last for every ordinary business outcome and only after the confirmation gate passes. Never call it for hostile-input escalation.",
+        "Mandatory last tool for every non-hostile outcome, after all evidence is collected. Knowing the answer is not completion: call this tool, wait for recorded=true, then return an exactly matching final object. Never call it for hostile-input escalation.",
         {
             "claim_id": "the case ID",
             "decision": "one of the three supported first-response outcomes",
-            "lines": "all resolved dispositions; every line for approval, possibly partial for a document request",
-            "approved_total": "sum of supplied covered line amounts, or zero when none are resolved",
-            "refused_total": "sum of supplied excluded line amounts, or zero when none are resolved",
+            "lines": "approve: every claim line in original order. request_document: only fully resolved lines; OMIT the unresolved line. escalate: []. Every supplied status is exactly covered or excluded. Evidence quotes the exact policy_id for ordinary coverage, preauth_id for pre-authorised coverage, or exclusion_rule for exclusion; generic text such as 'review_claim_line' is insufficient",
+            "approved_total": "exact sum of covered amounts in lines; use 0 when lines has no covered items",
+            "refused_total": "exact sum of excluded amounts in lines; use 0 when lines has no excluded items",
             "reason": "bounded evidence-grounded explanation",
-            "missing": "required only for request_document",
-            "trigger": "required only for escalation",
-            "escalate_to": "human claims assessor for escalation",
+            "missing": "request_document only. Exact form: 'itemised bill for line CODE'; absent/not-yet-valid: 'pre-authorisation reference for line CODE, valid on YYYY-MM-DD'; expired: 'current pre-authorisation for line CODE, valid on YYYY-MM-DD'",
+            "trigger": "escalate only; one of policy_lapsed, outside_policy_dates, annual_limit_exceeded or duplicate_claim",
+            "escalate_to": "escalate only; exactly 'human claims assessor'",
         },
         "A confirmation object no longer than 30 tokens; the local log holds the decision payload and gate, while the run record holds turns, tokens and cost.",
         "Blocked when confirmation is absent, trusted evidence does not support the exact outcome, the claim was already written, required outcome fields are absent, or an approval leaves a line unresolved.",
