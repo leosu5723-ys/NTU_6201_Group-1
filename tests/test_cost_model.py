@@ -30,6 +30,14 @@ class CostModelTests(unittest.TestCase):
         )
         self.assertAlmostEqual(value, 0.9142105263)
 
+    def test_break_even_is_not_clipped_when_observed_costs_imply_out_of_range_rate(self):
+        value = break_even_success_rate(
+            cheap_variable_cost=0.01,
+            expensive_cost_to_serve=10.0,
+            failure_cost=7.60,
+        )
+        self.assertLess(value, 0.0)
+
     def test_sensitivity_varies_success_rate_by_ten_points(self):
         rows = sensitivity_table(
             variable_cost=0.01,

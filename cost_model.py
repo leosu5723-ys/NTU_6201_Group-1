@@ -48,8 +48,7 @@ def break_even_success_rate(
 ) -> float:
     if failure_cost <= 0:
         raise ValueError("failure_cost must be positive")
-    rate = 1 - (expensive_cost_to_serve - cheap_variable_cost) / failure_cost
-    return max(0.0, min(1.0, rate))
+    return 1 - (expensive_cost_to_serve - cheap_variable_cost) / failure_cost
 
 
 def sensitivity_table(
