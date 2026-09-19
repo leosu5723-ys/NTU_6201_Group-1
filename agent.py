@@ -82,6 +82,37 @@ def _normalise_calls(move: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
     return calls
 
 
+def _validate_call_batch(
+    case_id: str,
+    calls: list[tuple[str, dict[str, Any]]],
+    *,
+    gated_action: str,
+    action_count: int,
+) -> None:
+    """Reject unsafe batches before a tool, gate callback, or write can run."""
+    if action_count:
+        raise GuardrailStop(
+            "post_action_tool_call",
+            "the recorded decision must be followed by a final response, not another tool",
+        )
+    for name, args in calls:
+        if name == "get_claim" and args.get("claim_id") != case_id:
+            raise GuardrailStop(
+                "case_binding_error",
+                f"get_claim must retrieve requested case {case_id}",
+            )
+        if name == gated_action and args.get("claim_id") != case_id:
+            raise GuardrailStop(
+                "case_binding_error",
+                f"{gated_action} must target requested case {case_id}",
+            )
+    if any(name == gated_action for name, _args in calls) and len(calls) != 1:
+        raise GuardrailStop(
+            "action_batch_integrity",
+            f"{gated_action} must be the only call in its batch",
+        )
+
+
 def _fallback_log_path(case_id: str) -> Path:
     directory = Path(tempfile.mkdtemp(prefix="pe6201-a2-"))
     return directory / f"{case_id}.jsonl"
@@ -368,6 +399,12 @@ def run_case(
             turns += 1
             guards.check_turns(turns)
             calls = _normalise_calls(move)
+            _validate_call_batch(
+                case_id,
+                calls,
+                gated_action=tools.GATED_ACTION[problem],
+                action_count=action_count,
+            )
             observations: list[dict[str, Any]] = []
 
             for name, args in calls:

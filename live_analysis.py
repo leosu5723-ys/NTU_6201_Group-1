@@ -327,11 +327,15 @@ def analyse(payloads: list[dict[str, Any]]) -> dict[str, Any]:
         balanced = case_balanced_metrics(payload["results"], price)
         catalog_variable = balanced["catalog_cost_per_task"]
         variable = balanced["variable_cost_per_task"]
-        provider_costs = [row["record"].get("provider_cost_usd") for row in payload["results"]]
+        provider_costs = [
+            response.get("usage", {}).get("cost")
+            for row in payload["results"]
+            for response in row["record"].get("raw_responses", [])
+        ]
         provider_priced = [float(cost) for cost in provider_costs if cost is not None]
         provider_priced_requests = len(provider_priced)
         provider_unpriced_requests = len(provider_costs) - provider_priced_requests
-        provider_complete = provider_unpriced_requests == 0
+        provider_complete = bool(provider_costs) and provider_unpriced_requests == 0
         # List-price token costs are the comparable baseline; provider billing is coverage-limited evidence.
         variable = catalog_variable
         service = cost_to_serve(
@@ -359,11 +363,16 @@ def analyse(payloads: list[dict[str, Any]]) -> dict[str, Any]:
                 "provider_billed_subtotal_usd": sum(provider_priced) if provider_priced else None,
                 "provider_billed_priced_requests": provider_priced_requests,
                 "provider_billed_unpriced_requests": provider_unpriced_requests,
-                "provider_billed_request_coverage": provider_priced_requests / len(provider_costs),
-                "mean_provider_billed_cost": sum(provider_priced) / provider_priced_requests if provider_complete else None,
+                "provider_billed_request_coverage": (
+                    provider_priced_requests / len(provider_costs)
+                    if provider_costs else None
+                ),
+                "mean_provider_billed_cost": (
+                    sum(provider_priced) / trials if provider_complete else None
+                ),
                 "mean_catalog_cost": catalog_variable,
                 "mean_provider_minus_catalog": (
-                    (sum(provider_priced) / provider_priced_requests) - catalog_variable
+                    (sum(provider_priced) / trials) - catalog_variable
                     if provider_complete else None
                 ),
                 "mean_variable_cost": catalog_variable,

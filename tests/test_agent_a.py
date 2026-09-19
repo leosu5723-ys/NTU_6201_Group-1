@@ -5,7 +5,7 @@ from pathlib import Path
 
 import config
 import prompt
-from backends import ScriptedBackend, _parse_move
+from backends import SCRIPTS, ScriptedBackend, _parse_move
 from agent import _validate_move, run_case
 
 
@@ -239,6 +239,76 @@ class AgentContractTests(unittest.TestCase):
         self.assertEqual(result["stopped_by"], "tool_or_schema_error")
         self.assertEqual(result["action_count"], 0)
         self.assertEqual(confirmations, [])
+
+    def test_foreign_claim_script_is_rejected_before_confirmation_or_write(self):
+        confirmations = []
+        scripts = {"CLM-8850": copy.deepcopy(SCRIPTS["CLM-8874"])}
+        with tempfile.TemporaryDirectory() as directory:
+            decision_log = Path(directory) / "decisions.jsonl"
+            result = run_case(
+                "CLM-8850",
+                problem="A",
+                scripted_scripts=scripts,
+                decision_log_path=decision_log,
+                approve=lambda name, payload: confirmations.append((name, payload)) or True,
+            )
+            self.assertFalse(decision_log.exists())
+        self.assertEqual(result["stopped_by"], "case_binding_error")
+        self.assertEqual(result["action_count"], 0)
+        self.assertEqual(confirmations, [])
+
+    def test_gated_action_in_multi_call_batch_is_rejected_before_callbacks_or_write(self):
+        confirmations = []
+        scripts = {"CLM-8850": copy.deepcopy(SCRIPTS["CLM-8850"])}
+        scripts["CLM-8850"][3]["calls"].append(
+            ["get_hospital_status", {"hospital_id": "H-207"}]
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            decision_log = Path(directory) / "decisions.jsonl"
+            result = run_case(
+                "CLM-8850",
+                problem="A",
+                scripted_scripts=scripts,
+                decision_log_path=decision_log,
+                approve=lambda name, payload: confirmations.append((name, payload)) or True,
+            )
+            self.assertFalse(decision_log.exists())
+        self.assertEqual(result["stopped_by"], "action_batch_integrity")
+        self.assertEqual(result["action_count"], 0)
+        self.assertEqual(confirmations, [])
+
+    def test_tool_after_successful_action_is_blocked_before_it_executes(self):
+        confirmations = []
+        scripts = {"CLM-8850": copy.deepcopy(SCRIPTS["CLM-8850"])}
+        scripts["CLM-8850"].insert(
+            4,
+            {"calls": [["get_hospital_status", {"hospital_id": "H-207"}]]},
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            decision_log = Path(directory) / "decisions.jsonl"
+            result = run_case(
+                "CLM-8850",
+                problem="A",
+                scripted_scripts=scripts,
+                decision_log_path=decision_log,
+                approve=lambda name, payload: confirmations.append((name, payload)) or True,
+            )
+            self.assertEqual(len(decision_log.read_text(encoding="utf-8").splitlines()), 1)
+        self.assertEqual(result["stopped_by"], "post_action_tool_call")
+        self.assertEqual(result["action_count"], 1)
+        self.assertEqual(len(confirmations), 1)
+
+    def test_normal_single_gated_action_still_completes(self):
+        confirmations = []
+        result = run_case(
+            "CLM-8850",
+            problem="A",
+            approve=lambda name, payload: confirmations.append((name, payload)) or True,
+        )
+        self.assertEqual(result["decision"], "approve_in_principle")
+        self.assertEqual(result["action_count"], 1)
+        self.assertIsNone(result["stopped_by"])
+        self.assertEqual(len(confirmations), 1)
 
     def test_only_one_recoverable_tool_validation_error_is_allowed(self):
         scripts = {

@@ -124,6 +124,52 @@ class LiveAnalysisTests(unittest.TestCase):
         self.assertIsNone(row["implied_step_reliability"])
         self.assertIn("zero", row["implied_step_reliability_note"])
 
+    def test_provider_billing_coverage_counts_each_raw_response(self):
+        payloads = self._valid_payloads()
+        battery = payloads[0]
+        for item in battery["results"]:
+            item["record"]["raw_responses"] = [
+                {"usage": {"cost": item["record"]["provider_cost_usd"]}}
+            ]
+        battery["results"][0]["record"]["raw_responses"].append({"usage": {}})
+
+        result = analyse(payloads)
+        row = next(
+            item
+            for item in result["models"]
+            if item["model"] == "google/gemini-2.5-flash-lite"
+            and item["prompt_version"] == "v2"
+        )
+
+        self.assertEqual(row["provider_billed_priced_requests"], 60)
+        self.assertEqual(row["provider_billed_unpriced_requests"], 1)
+        self.assertEqual(row["provider_billed_request_coverage"], 60 / 61)
+        self.assertIsNone(row["mean_provider_billed_cost"])
+
+    def test_provider_billed_mean_remains_per_trial_with_multiple_responses(self):
+        payloads = self._valid_payloads()
+        battery = payloads[0]
+        for item in battery["results"]:
+            item["record"]["raw_responses"] = [
+                {"usage": {"cost": item["record"]["provider_cost_usd"]}}
+            ]
+        battery["results"][0]["record"]["raw_responses"].append({"usage": {"cost": 0.001}})
+
+        result = analyse(payloads)
+        row = next(
+            item
+            for item in result["models"]
+            if item["model"] == "google/gemini-2.5-flash-lite"
+            and item["prompt_version"] == "v2"
+        )
+
+        self.assertEqual(row["provider_billed_priced_requests"], 61)
+        self.assertAlmostEqual(
+            row["mean_provider_billed_cost"],
+            (sum(item["record"]["provider_cost_usd"] for item in battery["results"]) + 0.001)
+            / 60,
+        )
+
     def test_cli_accepts_an_explicit_historical_directory(self):
         with tempfile.TemporaryDirectory() as directory:
             completed = subprocess.run(
