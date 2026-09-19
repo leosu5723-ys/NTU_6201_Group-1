@@ -1,3 +1,4 @@
+import copy
 import tempfile
 import unittest
 from pathlib import Path
@@ -38,6 +39,104 @@ class AgentContractTests(unittest.TestCase):
         self.assertEqual(len(result["line_dispositions"]), 3)
         self.assertEqual(len(result["observation_metrics"]), len(result["evidence"]))
         self.assertGreater(result["observation_tokens_estimate"], 0)
+
+    def test_premature_final_gets_one_bounded_action_recovery_turn(self):
+        class PrematureFinalBackend:
+            name = "scripted"
+            raw_responses = []
+
+            def __init__(self):
+                self.inner = ScriptedBackend(
+                    "CLM-8850", prompt.build_system_prompt("A", version="v2")
+                )
+                self.last_usage = self.inner.last_usage
+                self.postponed = None
+                self.injected = False
+
+            def next_move(self, transcript):
+                if self.postponed is not None:
+                    move, self.postponed = self.postponed, None
+                    return move
+                move = self.inner.next_move(transcript)
+                self.last_usage = self.inner.last_usage
+                if not self.injected and "calls" in move and move["calls"][0][0] == "issue_decision_letter":
+                    self.injected = True
+                    self.postponed = move
+                    args = move["calls"][0][1]
+                    return {
+                        "final": {
+                            "decision": args["decision"],
+                            "reason": args["reason"],
+                            "approved_total": args["approved_total"],
+                            "refused_total": args["refused_total"],
+                            "line_dispositions": args["lines"],
+                        }
+                    }
+                return move
+
+        result = run_case(
+            "CLM-8850", backend_instance=PrematureFinalBackend()
+        )
+        self.assertEqual(result["decision"], "approve_in_principle")
+        self.assertEqual(result["action_count"], 1)
+        self.assertIsNone(result["stopped_by"])
+
+    def test_correctable_decision_tool_error_is_returned_to_model(self):
+        class CorrectingBackend:
+            name = "scripted"
+            raw_responses = []
+
+            def __init__(self):
+                self.inner = ScriptedBackend(
+                    "CLM-8850", prompt.build_system_prompt("A", version="v2")
+                )
+                self.last_usage = self.inner.last_usage
+                self.correct_call = None
+                self.injected = False
+
+            def next_move(self, transcript):
+                if self.correct_call is not None:
+                    move, self.correct_call = self.correct_call, None
+                    return move
+                move = self.inner.next_move(transcript)
+                self.last_usage = self.inner.last_usage
+                if not self.injected and "calls" in move and move["calls"][0][0] == "issue_decision_letter":
+                    self.injected = True
+                    self.correct_call = move
+                    broken = copy.deepcopy(move)
+                    broken["calls"][0][1]["approved_total"] = 0
+                    return broken
+                return move
+
+        result = run_case("CLM-8850", backend_instance=CorrectingBackend())
+        self.assertEqual(result["decision"], "approve_in_principle")
+        self.assertEqual(result["action_count"], 1)
+        self.assertIsNone(result["stopped_by"])
+
+    def test_one_invalid_move_schema_is_returned_for_correction(self):
+        class CorrectingMoveBackend:
+            name = "scripted"
+            raw_responses = []
+
+            def __init__(self):
+                self.inner = ScriptedBackend(
+                    "CLM-8850", prompt.build_system_prompt("A", version="v2")
+                )
+                self.last_usage = self.inner.last_usage
+                self.first = True
+
+            def next_move(self, transcript):
+                if self.first:
+                    self.first = False
+                    return {"thought": "Malformed empty call.", "calls": []}
+                move = self.inner.next_move(transcript)
+                self.last_usage = self.inner.last_usage
+                return move
+
+        result = run_case("CLM-8850", backend_instance=CorrectingMoveBackend())
+        self.assertEqual(result["decision"], "approve_in_principle")
+        self.assertEqual(result["action_count"], 1)
+        self.assertIsNone(result["stopped_by"])
 
     def test_hostile_narrative_escalates_before_irreversible_action(self):
         result = run_case("CLM-8941", problem="A")
@@ -95,7 +194,9 @@ class AgentContractTests(unittest.TestCase):
                 }
 
         result = run_case("CLM-8850", problem="A", backend_instance=CostBackend())
-        self.assertEqual(result["provider_cost_usd"], 0.0042)
+        # A premature final receives one bounded corrective turn; both provider
+        # calls remain fully accounted for.
+        self.assertEqual(result["provider_cost_usd"], 0.0084)
         self.assertEqual(result["provider_usage"][0]["cost"], 0.0042)
 
     def test_action_first_approval_is_rejected_without_trusted_evidence(self):

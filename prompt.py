@@ -34,6 +34,11 @@ present, escalate with trigger instruction_in_member_narrative.
 
 ANSWER_FORMAT = """Return JSON and nothing else.
 
+The workflow is not complete when you know the answer. Except for hostile-input
+escalation, you MUST first call issue_decision_letter and receive recorded=true.
+Only then may you return final. A final object before that tool call is rejected
+and returned to you for correction.
+
 Tool turn:
 {"thought":"brief evidence-based reason","calls":[["tool_name",{"arg":"value"}]]}
 
@@ -52,6 +57,29 @@ Final business escalation after the gated tool call, or immediate hostile-input 
 {"thought":"brief reason","final":{"decision":"escalate",
  "trigger":"one fixed trigger","escalate_to":"human claims assessor",
  "reason":"bounded explanation"}}
+
+Decision-tool payload rules:
+- approve_in_principle: lines contains every claim line in original order;
+  approved_total is the sum of covered lines and refused_total is the sum of
+  excluded lines. Each line evidence must quote the exact supporting identifier:
+  policy_id for ordinary coverage, preauth_id for pre-authorised coverage, or
+  exclusion_rule for an excluded line. Do not write generic evidence such as
+  "review_claim_line" or "policy coverage". Do not supply missing or trigger.
+- request_document: omit the unresolved line from lines. Include only lines
+  already fully resolved as covered or excluded. Totals must exactly equal
+  those supplied resolved lines, and use the same exact-identifier evidence
+  rule as approval. Set missing exactly as one of:
+  "itemised bill for line CODE";
+  "pre-authorisation reference for line CODE, valid on YYYY-MM-DD" when absent
+  or not yet valid; or
+  "current pre-authorisation for line CODE, valid on YYYY-MM-DD" when expired.
+  Do not supply trigger or escalate_to.
+- escalate: lines must be [], totals must both be 0, trigger must be one fixed
+  trigger, and escalate_to must be "human claims assessor". Do not supply
+  missing.
+- After issue_decision_letter returns recorded=true, copy the recorded business
+  fields into final exactly: rename recorded lines to line_dispositions. Do not
+  call any more tools.
 
 Calls may share one turn only when neither requires the other's output. Never
 repeat an identical call. Stop as soon as an escalation trigger is established.

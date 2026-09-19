@@ -10,8 +10,8 @@
 
 | Mode | Trials passed | Total turns | Median turns | Input tokens* | Cost* |
 |---|---:|---:|---:|---:|---:|
-| Sequential | 40 / 40 | 251 | 6.0 | 742,622 | US$0.0826 |
-| Parallel | 40 / 40 | 157 | 4.0 | 495,381 | US$0.0574 |
+| Sequential | 40 / 40 | 251 | 6.0 | 911,506 | US$0.0995 |
+| Parallel | 40 / 40 | 157 | 4.0 | 609,144 | US$0.0688 |
 
 *Scripted deterministic estimates, not live API billing evidence.*
 
@@ -19,8 +19,8 @@
 
 | Version | Prompt chars | Prompt tokens* | Line-return chars | Line-return tokens* | SHA-256 | Live result |
 |---|---:|---:|---:|---:|---|---|
-| v1 | 7,630 | 1,907 | 463 | 115 | `7a545461220bd9736de70a735dcd51c020ab609898747d6e9dcbfe17912249d2` | LIVE RUN PENDING |
-| v2 | 8,068 | 2,017 | 227 | 56 | `e88483e0e6a2880884b65bd79f4e6de679f97a6c65f352854ef9e2b569565daf` | LIVE RUN PENDING |
+| v1 | 9,976 | 2,494 | 463 | 115 | `2081ad2866d4c54a392267822ca243daae68e08978d4852f9fa61da45a67ddb5` | LIVE RUN PENDING |
+| v2 | 10,414 | 2,603 | 227 | 56 | `fd33f6b1e64a40f5a8b4c3ecaff63abb81447b5edc67219c1addb63ed1fd0036` | LIVE RUN PENDING |
 
 ## Guardrail checklist
 
@@ -30,7 +30,7 @@
 
 | Failure | Working | Component removed | Reproduced effect |
 |---|---|---|---|
-| Loop control | 5 turns, 9 calls, US$0.001984 | Action de-duplication | 7 turns, 13 calls, US$0.002837; same decision |
+| Loop control | 5 turns, 9 calls, US$0.002336 | Action de-duplication | 7 turns, 13 calls, US$0.003307; same decision |
 | Tool interface | Correctly requested itemised bill | Required-document fields | Incorrect approval; code-check pass = false |
 
 ## Live model battery
