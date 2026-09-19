@@ -2,88 +2,84 @@
 
 **Team B-1 | Problem A: Health-insurance claim first response**
 
-> **Draft status:** Sections containing `[LIVE RESULT REQUIRED]` must be completed only from the frozen live battery. They are not submission-ready placeholders.
-
 ## 1. Why an agent
 
-Problem A sits on rung 7 of the Class 4 ladder because the claim determines both the sequence and number of retrieval steps. A single call would either guess from the member narrative or require every policy, procedure and history record to be placed in context. A fixed prompt chain would perform the same checks on every claim, including line-level work after a lapsed policy had already made escalation mandatory. Routing and parallelisation reduce cost but do not decide whether a particular line needs pre-authorisation. An evaluator-optimiser could improve wording, but it would not obtain missing ground truth. Our ReAct loop instead chooses its next lookup from tool observations and can stop, branch or query another record.
+We selected rung 7 to test whether model-directed retrieval can handle claims with different evidence requirements. A single prompt must either guess from the narrative or receive all records upfront. A fixed chain can retrieve reliable facts, but needs explicit branches for policy eligibility, duplicate history, missing documents and pre-authorisation. Routing selects a lane; parallelisation saves turns; neither alone chooses subsequent lookups from observations. Orchestrator-workers would distribute work without removing those dependencies. An evaluator-optimiser can revise wording but cannot recover a policy fact it has not retrieved.
 
-| Rung | What it would deliver here | Why it is not the complete instrument |
-|---|---|---|
-| 1. Single call | One fixed response | Either guesses or receives every record up front |
-| 2. Prompt chain | Fixed checks with review points | Runs the same subtasks on every claim |
-| 3. Routing | Selects a known lane | Does not decide later lookups from observations |
-| 4. Parallelisation | Collapses independent checks | Saves turns but does not choose the path |
-| 5. Orchestrator-workers | Splits work at runtime | Adds workers but not the evidence-driven gated loop we need |
-| 6. Evaluator-optimiser | Revises against stated criteria | Cannot retrieve a missing policy fact |
-| 7. Agent | Chooses, repeats and stops retrieval at runtime | Selected, with explicit caps and confirmation |
+A deterministic workflow could implement this finite routing table and may be the safer production choice. Our agent is therefore an experiment in adaptive retrieval, not proof that fixed workflows are inadequate. It chooses the next lookup, while tools and code retain responsibility for objective rules and action authorization. Read-only retrieval becomes an acting agent at `issue_decision_letter`, the irreversible boundary. We require confirmation there rather than allowing autonomous decisions.
 
-This is not a claim that an agent is always the production answer. The current routing table is structured enough that a deterministic workflow could be safer if it remained stable. We use an agent here to test adaptive retrieval and variable trajectories, while keeping the external action behind confirmation. Read-only model-directed lookups are agentic retrieval; the governance cliff into an acting agent is `issue_decision_letter`, our first irreversible action. If the records became subjective, slow to update or impossible to verify, the ground-truth test would fail and we would move down the ladder to a workflow with a human gate.
+The first diagnostic is machine-speed ground truth. Policy records can contradict an asserted coverage date or remaining limit; procedure tables, pre-authorisations and prior decisions can contradict the narrative. The second is reliability over a multi-step trajectory. The selected DeepSeek v2 battery passed 55/60 trials with median four tool turns, giving the diagnostic proxy `s = (55/60)^(1/4) = 0.9785`. This is not a measured probability for every individual step: dependencies, parallel calls and unequal failure risks violate that interpretation.
 
-The loop receives objective correction within seconds. Policy status, coverage dates and remaining limit come from the policy record. Procedure, exclusion and document requirements come from reference tables. Pre-authorisations and prior decisions provide additional machine-speed checks. Before implementation, we defined a good run as follows:
-
-1. It names the actual cause and traces it to a record.
-2. It follows Appendix A's fixed routing rule.
-3. It resolves every claim line and reconciles both totals.
-4. It asks or escalates rather than inventing missing evidence.
-5. It executes the gated action at most once and records turns, tokens, cost and guardrail events.
-
-The final v2 battery measured an end-to-end pass rate of **[LIVE P AND TRIAL COUNT REQUIRED]** with median **[LIVE T REQUIRED]** turns. This implies per-step reliability of **[CALCULATE s = P^(1/T) AFTER LIVE RUN]**. We will use this as a diagnostic rather than a physical constant because steps are dependent and some tool boundaries are more error-prone than others.
+A good run follows Appendix A's routing, names the cause and supporting record, resolves all required lines and totals, and requests evidence rather than inventing it. It records one confirmed ordinary decision, or zero writes for hostile-input escalation. These criteria are stricter than matching a final label.
 
 ## 2. The tool layer
 
-We shipped seven tools. `get_claim` is the entry point. `get_policy_context` exposes status, policy dates, remaining limit and explicit boundary checks. `review_claim_line` returns the exclusion, pre-authorisation and required-document facts for one line. `get_preauthorisation` distinguishes valid, expired, not-yet-valid and missing evidence. `get_hospital_status` records the payment basis. `find_prior_decision` matches member, hospital, service date and complete lines. `issue_decision_letter` is the only write and records each supported ordinary first response after confirmation.
+Seven tools expose only relevant records: `get_claim`, `get_policy_context`, `review_claim_line`, `get_preauthorisation`, `get_hospital_status`, `find_prior_decision` and `issue_decision_letter`. We tried not adding separate member and document-rule lookups because the policy join and line review already return their decision-relevant facts. Web search adds no necessary evidence to this fixture-backed task.
 
-We first tried not adding separate member and document tools. A member row contains no decision fact beyond its policy ID, so `get_policy_context` performs that join. Document rules belong to line resolution, so `review_claim_line` returns them with the other bounded line facts. This produced a shorter and less confusable interface than separate lookups. We also omitted web search because no task fails without it.
+The scaffold's same-turn policy and coverage calls contained a dependency: coverage needed the policy ID returned by the policy lookup. Our line-review signature instead takes the already retrieved member ID and resolves the policy internally. It also returns required-document status. These interface changes remove an unavailable argument and make silent approval with missing documentation harder.
 
-The scaffold placed `lookup_policy(member_id)` and `check_coverage(code, policy_id)` in the same turn even though the first call produces the policy ID required by the second. Its scripted example could hard-code that value, but a live model could not know it. We changed the line-review signature to accept the already known `member_id` and resolve the policy internally. We also added the document status absent from the starter tool set. These are poka-yoke changes: the first removes an impossible same-turn dependency, and the second makes silent approval without a required document harder.
+Calls can share a turn only when neither needs the other's output. The scripted policy retrieves the claim, checks eligibility and duplicate history before line work, groups independent hospital and line checks, then retrieves any required pre-authorisation. Live trajectories remain model-selected. The gated write must be alone in its batch and bound to the current claim; after a successful write, only a final response is permitted. Parameter validation precedes confirmation, and revalidation precedes persistence.
 
-Our dependency rule is that calls share a turn only when neither requires the other's output. Turn 1 retrieves the claim. Turn 2 checks policy eligibility and duplicate history because both can end the run before line review. If they pass, hospital status and all per-line reviews run together. Only lines marked as requiring pre-authorisation create another lookup. The decision write comes last.
+| Measured lever | Before | After |
+|---|---:|---:|
+| Candidate tool block | 9 tools; 1,817 estimated tokens | 7 tools; 1,571 estimated tokens |
+| Sequential versus parallel, 40 scripted cases | 251 turns; 911,506 input tokens | 157 turns; 609,144 input tokens |
+| Scripted cost for that comparison | $0.0995 | $0.0688 |
+| Missing-document observation probe | 115 estimated tokens, v1 | 56 estimated tokens, v2 |
 
-Across 40 scripted cases, parallel execution preserved 40/40 code-check passes while reducing total turns from 251 to 157. Estimated input tokens fell from 742,622 to 495,381 and estimated scripted cost from US$0.0826 to US$0.0574. These are deterministic scaffold estimates, not live billing evidence. The main limit is that parallel calls may perform work that a sequential observation would have made unnecessary, so we delay line review until the early escalation checks pass.
+Both execution modes passed 40/40. Token estimates use the scripted estimator, not API billing. Delaying line review until early checks pass limits unnecessary parallel work.
 
-The six non-selected tool descriptors are byte-identical across the ACI comparison. v1 uses only an underspecified `review_claim_line` descriptor and its raw nested policy/document return; its whole prompt is 7,630 characters, approximately 1,907 tokens. v2 changes that selected descriptor to the complete six-field form and pairs it with the bounded return, making the whole prompt 8,068 characters, approximately 2,017 tokens. For the missing-document probe, the return contracts shrink from 463 characters (about 115 tokens) to 227 (about 56). Thus the one selected ACI changes together while the model, cases, routing, guardrails, the other six descriptors and the rest of the code stay fixed. On Gemini 2.5 Flash Lite, v1 achieved **[LIVE V1 RESULT REQUIRED]** and v2 achieved **[LIVE V2 RESULT REQUIRED]** over 60 trials each. Their measured live costs were **[LIVE COMPARISON REQUIRED]**.
-
-Before the seven-tool design was selected, the candidate block also contained separate `lookup_member` and `get_required_document_rule` calls. They duplicated facts already returned by `get_policy_context` and `review_claim_line`. The frozen nine-tool block measured 6,576 characters (about 1,644 tokens); the selected seven-tool block measures 5,593 characters (about 1,398), saving an estimated 246 standing tokens per model request while removing two confusable calls.
+The ACI experiment changes only `review_claim_line`'s descriptor and return shape. Other tool descriptors remain identical. Whole-prompt size rises from 9,976 characters (2,494 estimated tokens) to 10,414 (2,603). Gemini v1 passed 33/60 and v2 20/60; their provider bills were $0.07430 and $0.07534. Across all observations, estimated mean tokens per call fell from 82.37 to 63.42, but reliability did not improve. This result does not justify deploying the rewrite on Gemini, nor does one battery isolate every stochastic difference as an interface effect.
 
 ## 3. What the evidence showed
 
-The frozen evaluation set contains 40 claims: all 15 supplied records plus 25 additions. Thirty cases are approvals and ten are negative decisions. The negatives receive three trials, producing 60 trials per model. Labels were derived from Appendix A before model output was viewed. Code checks compare the decision, escalation trigger, exact missing item and gated-action count. A separate judgement queue asks whether each explanation and evidence trail satisfies the case-specific `must_record` items.
+The evaluation contains 40 claims: 15 supplied and 25 additions. Thirty ordinary cases receive one trial; ten negative cases receive three, producing 60 trials per battery. Frozen checks grade decisions, triggers, missing items, totals, line evidence and action integrity. Reason quality and evidential sufficiency require separate human judgement and are not included in the machine-pass claim below.
 
-| Model | Prompt | Trials | Overall pass | Negative pass | Median turns | Live cost |
-|---|---:|---:|---:|---:|---:|---:|
-| Gemini 2.5 Flash Lite | v2 | [LIVE] | [LIVE] | [LIVE] | [LIVE] | [LIVE] |
-| Qwen3 30B A3B Instruct | v2 | [LIVE] | [LIVE] | [LIVE] | [LIVE] | [LIVE] |
-| Claude Haiku 4.5 | v2 | [LIVE] | [LIVE] | [LIVE] | [LIVE] | [LIVE] |
-| Llama 4 Maverick | v2 | [LIVE] | [LIVE] | [LIVE] | [LIVE] | [LIVE] |
-| DeepSeek V3.2 | v2 | [LIVE] | [LIVE] | [LIVE] | [LIVE] | [LIVE] |
+| Model | Prompt | Strict passes | Negative passes | Median turns | Provider bill |
+|---|---|---:|---:|---:|---:|
+| DeepSeek V3.2 | v2 | 55/60 | 29/30 | 4 | $0.09518 |
+| Llama 4 Maverick | v2 | 53/60 | 27/30 | 6 | $0.22221 |
+| Claude Haiku 4.5 | v2 | 35/60 | 18/30 | 5 | $1.23503 |
+| Qwen3 30B A3B Instruct | v2 | 33/60 | 21/30 | 6 | $0.07739 |
+| Gemini 2.5 Flash Lite | v2 | 20/60 | 15/30 | 5 | $0.07534 |
+| Gemini 2.5 Flash Lite | v1 | 33/60 | 18/30 | 5 | $0.07430 |
 
-**[LIVE RESULT REQUIRED: discuss the cheapest model that met the bar, the most expensive model that did not earn its price, and the negative families that separated them. Do not write this before the raw runs exist.]**
+All selected runs use freeze `f8a1d7450a4bee92c24f38a6924436bc9faabdaf`. DeepSeek's five failures were budget-ceiling stops; Llama had six such stops and one invalid action batch. Qwen had nineteen budget stops, while Gemini v2 also struggled with duplicate calls and action batching. None hit the eight-tool-turn cap. Thus token-budget and execution-contract failures, not only business reasoning, shape these scores.
+
+Claude's selected run is a complete repeat after 23 HTTP 429 failures in its initial second-round battery. An authorized replacement account/key changed access conditions, not code, cases or prompt. Both runs are retained, but no trial rows are mixed. The selected result is 35/60 versus the initial 23/60; stochastic variation prevents attributing the gain solely to the account change. Earlier first-round batteries remain historical evidence, not part of this comparison.
 
 ## 4. What it costs
 
-We use the Class 5 escalation model rather than dividing by success rate. A failed first response goes to a human assessor rather than being retried until the model succeeds. The official 60-trial pass rate still reports all repeated negative runs. Cost-to-serve first averages repeated trials within each case, then gives all 40 cases equal weight. This avoids treating ten negative cases as half of production volume, although the equal-case mix remains an evaluation proxy rather than a measured insurer distribution. Layer 1 uses provider-billed cost when available and reconciles it against token-count list price. Layer 2 is `(1 - success rate) × US$7.60`, based on a claims assessor earning US$38 per hour and spending 12 minutes on an escalation. Layer 3 uses a stated US$400 monthly baseline: eight hours of monitoring and maintenance, two hours of evaluation review at the same labour rate, and US$20 for lightweight logging infrastructure. Monthly volume is 8,000 claims. The fixed hours are our assumptions and are tested from US$200 to US$800. Each member's live-run CLI also enforces the brief's US$3 A2 battery ceiling and requires spend-to-date input before execution.
+We use escalation cost, not retry-until-success cost. Layer 1 prices measured tokens at the frozen catalogue rates, with provider bills reported separately. Layer 2 is `(1 - p) × $7.60`: twelve minutes at $38 per assessor-hour. Layer 3 assumes $400 monthly for monitoring, evaluation review and lightweight logging. Monthly volume is 8,000 claims.
 
-| Model | Variable cost/task | Expected fallback/task | Cost to serve/task | Monthly total |
-|---|---:|---:|---:|---:|
-| [LIVE MODEL ROWS REQUIRED] | | | | |
+Cost calculations average repeated trials within each case, then weight the 40 cases equally. This avoids silently treating negatives as half of operational volume. Equal case weighting is still a scenario assumption, not an observed insurer distribution; headline trial pass rates remain unchanged.
 
-The four measured levers were the tool block, turn count, observation size and success rate. Parallel grouping reduced the turn term without removing observations. The v1 to v2 experiment tests whether a larger but safer interface earns its repeated prompt cost. The live pass rate sets expected fallback, which is likely to dominate token price because one failure costs US$7.60. The shipped experiment caps are 8 turns and 25,000 total tokens per run, US$3 per member for the A2 battery, and US$25 per API-key owner per calendar month; the CLI requires both spend-to-date values and checks them before execution. **[LIVE RESULT REQUIRED: identify the dominant lever from measured values.]**
+| Model, v2 | Case-balanced success | Variable/task | Fallback/task | Combined/task | Monthly including fixed cost |
+|---|---:|---:|---:|---:|---:|
+| DeepSeek | 89.17% | $0.004250 | $0.82333 | $0.82758 | $7,020.66 |
+| Llama | 87.50% | $0.003723 | $0.95000 | $0.95372 | $8,029.79 |
+| Claude | 57.50% | $0.022176 | $3.23000 | $3.25218 | $26,417.41 |
+| Qwen | 47.50% | $0.001019 | $3.99000 | $3.99102 | $32,328.15 |
+| Gemini | 25.00% | $0.002077 | $5.70000 | $5.70208 | $46,016.62 |
 
-We will show success rate at minus ten points, measured value and plus ten points, crossed with failure cost at 75%, 100% and 125% of the default. For the cheapest and selected higher-cost models, the break-even success rate is `1 - (E - C) / F`, where `C` is the cheap model's variable cost, `E` is the expensive model's measured cost to serve and `F` is US$7.60. The resulting deployment recommendation remains **[LIVE RESULT REQUIRED]** across **[STATE WHETHER THE SENSITIVITY RANGE CHANGES IT]**.
+The four levers are tool-block size, turns, observation size and success rate. The first three reduce model traffic, but fallback dominates: DeepSeek's expected fallback alone is about $0.82 per claim against under half a cent of variable cost. Cheap tokens cannot compensate for Qwen's failures.
+
+Against DeepSeek, Qwen needs case-balanced success of 89.12% to break even, using `1 - (E - C) / F`; it measured 47.50%. DeepSeek is therefore our provisional selection within this system, not a production approval. Its sensitivity grid crosses success ±10 percentage points with failure cost at 75–125%, yielding monthly estimates of approximately $814–$16,267 at the fixed $400 baseline. This range is a scenario analysis, not a confidence interval. The small observed lead over Llama is not robust evidence of a population ranking when model success rates can vary independently.
+
+Shipped limits are eight tool turns, 25,000 tokens per run, a $3 member A2 allowance and $25 per key owner per month, with declared spend checked before execution. Token guards check both consumption and projected next-request usage; stopping can truncate legitimate work. Account-level limits and repeated experimental spending must be reconciled separately from per-task operating costs.
 
 ## 5. The two failures
 
-The loop-control experiment records three conditions. The normal working claim passed in 5 turns, 9 tool calls, 16,760 estimated input tokens and US$0.001984. Under one fixed repeated-action trajectory, the guard stopped loudly after 3 turns with `duplicate_action`; deleting only de-duplication allowed the same fault to continue for 7 turns and 13 calls, consuming 24,461 input tokens and US$0.002837 before returning the correct decision. A case-level pass alone would therefore miss the loop and its 43% higher cost than the normal run. Across all legitimate restored trajectories, pass rate was 60/60, median was 4 turns, the worst was 5, and no run hit the 8-turn cap. The fix belongs in code because a prompt cannot reliably remember for the model, while the cap only bounds the damage later.
+The loop experiment uses one repeated-action trajectory with and without de-duplication. The guard stops at three turns. Removing only that guard permits seven turns, thirteen calls and 29,154 estimated input tokens at $0.003307, despite reaching the correct decision. The normal trajectory takes five turns, nine calls and 20,278 input tokens at $0.002336. Outcome accuracy alone misses the waste. De-duplication belongs in code: prompt instructions cannot guarantee memory, while a step cap catches damage later. Restored scripted evaluation passes 60/60, with median four and worst five turns, supporting headroom below the eight-turn cap without proving live adequacy.
 
-The second experiment removed the 45378 required-document rule from `review_claim_line` while keeping the same reactive backend. CLM-8901 should request an itemised bill. With the faulty interface, both the model-facing observation and the trusted action-boundary check saw an incorrect “no document required” fact, so the run approved US$1,150 in 4 turns at US$0.000960 instead of recording the correct document request in 4 turns at US$0.000920. The code check caught the wrong decision, missing item and line disposition. Restoring the rule recovered the request and the full set returned to 60/60. The fix belongs at the interface because neither prompt wording nor loop controls can recreate a missing system-of-record rule.
+The interface experiment deletes the 45378 required-document rule while keeping the reactive backend. CLM-8901 then incorrectly approves $1,150 instead of requesting an itemised bill. Both conditions take four turns; estimated costs are $0.000960 faulty and $0.000920 working. Checks detect the incorrect decision, missing item and line disposition. Restoring the rule recovers the request and 60/60 scripted passes. The fix belongs at the interface because prompt wording and loop controls cannot reconstruct a missing authoritative rule. Both demonstrations reproduce without a paid model.
 
 ## 6. What we would not deploy
 
-This is a fixture-backed teaching system, not an insurance product. Its policy data is synthetic, its hostile-input detector covers named patterns rather than every possible attack, and its judgement checks still require human review. We have not tested policy updates, identity verification, privacy controls, adversarial paraphrases, provider outages or real operational latency. `confirm` is therefore the strongest autonomy setting we would defend. Ordinary approvals, requests and business escalations create only a confirmed local audit record; hostile-input escalation fails closed before the write.
+Synthetic fixtures, narrow hostile-input patterns and unfinished human judgement do not establish production safety. Matched hostile narratives are blocked before returning them to the model; those passes measure the shipped guard, not the model's independent injection resistance. Identity, privacy, policy updates, adversarial paraphrases and real latency remain untested. Confirmation and local audit writes are the only autonomy level we defend.
 
-A second reviewing agent might catch an unsupported reason or incomplete line disposition. It would also add another model, another prompt, more tokens, another failure surface and a harder attribution problem when the two agents disagree. We stayed with one agent because the code checks and confirmation gate cover the fixed high-risk fields more directly. Before deployment, we would prefer deterministic validation of totals and required fields, independent security testing, monitored human overrides and a controlled pilot. If the insurer's rules remain fully structured, we would also reconsider whether a deterministic workflow is safer than continuing to use an agent.
+A second reviewing agent might detect unsupported explanations, but would add tokens, latency and another fallible decision-maker. We retained a single agent because fixed-field validation provides more direct controls. We would require independent security testing, monitored human overrides and a controlled pilot; stable structured rules could instead favour a deterministic workflow.
 
 ## AI assistance and sources
 
-AI assistance supported implementation, drafting, debugging and mechanical verification. The team is responsible for reviewing the ground truth, running the live batteries, interpreting the measured results, understanding the submitted code and approving the final submission. Course brief, FAQ, supplied scaffold, Appendix A routing table and Week 4 to Week 6 materials are the primary sources.
+AI assisted implementation, drafting, debugging and mechanical verification. The team owns review of evidence, live-run execution, interpretation and final approval. Primary sources are the course brief, FAQ and updates, supplied scaffold, Appendix A and Weeks 4–6 materials. Numerical evidence is in `artifacts/`, `results/live/` and the archived runs; human-review completion is tracked separately.
