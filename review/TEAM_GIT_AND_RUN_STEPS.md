@@ -12,6 +12,27 @@ Everyone pushes to **their own branch**. Nobody pushes to `main`. That is what k
 
 ---
 
+## Step 0 · Tell Git who you are (do this before anything else)
+
+GitHub decides who a commit belongs to by matching the **commit author email** against the emails registered on a GitHub account. If you commit with an email that is not on your account, your commits show up as unlinked and **you will not appear in the repository's contributor list**, even though your name is in the log.
+
+Set your identity once, in this repository:
+
+```bash
+git config user.name "Your Name"
+git config user.email "YOUR_GITHUB_EMAIL"
+```
+
+Use the email registered on your own GitHub account. If you would rather not publish your real address, use your GitHub noreply address instead — find it under GitHub → Settings → Emails → "Keep my email addresses private".
+
+Check it worked:
+
+```bash
+git config user.email
+```
+
+If you have already made commits with the wrong email, you can still add that email to your GitHub account (Settings → Emails → Add email address, then verify) and GitHub will link the existing commits to you. That is easier and safer than rewriting history.
+
 ## Step 1 · Get the code
 
 First time:
