@@ -54,23 +54,28 @@ Plus, from §4: the repository must contain a `CONTRIBUTIONS.md` naming who did 
 - **Human-judgement surface fixed**: `prepare_judgement_check` now projects `escalate_to`, which five cases require reviewers to confirm. The regenerated scripted payload is otherwise identical (same summary, all 60 result rows and every decision log byte-identical; frozen fixture hash unchanged), and the three collected batteries still validate.
 - **Readiness test made stage-independent** (`tests/test_verify_submission.py`): it now compares the reported live/judgement counts with the files present instead of pinning zero, so the suite passes before and after the batteries merge. Verified OK with 0, 1 and 3 batteries present; full suite 101 OK.
 - `review/MERGE_STEPS.md` corrected: the documented `git push -c ...` form fails (option must precede the subcommand), and the shared `review/judgement_verdicts.json` file is now flagged as the one file six reviewers must not fill on separate branches.
+- **All six live batteries are in** (19 Sep), every one on the frozen commit `42253ad` with a clean tree and matching hashes. Details and caveats in Outstanding 1.
+- **Merge rehearsal run** in a throwaway clone at `/tmp/a2_merge_dry`: all six member branches merge cleanly, 101 tests pass and the scripted run is 60/60, but `live_analysis.py` crashes — two blockers, see Outstanding 2.
+- Meng Sijia committed her Phase A cases and strand review (`40c7dd9`); Su Yang committed Phase A, a detailed cost-strand review and the Claude battery (`f9ce8e9`).
 
 **Outstanding**
 
-1. **Live batteries: 5 of 6 run.** All five recorded the frozen commit `42253ad` with a clean tree and matching case / answer-key / v2 prompt hashes, so none needs a rerun:
-   - Meng Sijia — `google/gemini-2.5-flash-lite`, v2 — 9/60 (15.0%), US$0.0436 — pushed on `member/meng-sijia`
-   - SHI SHUYI — `qwen/qwen3-30b-a3b-instruct-2507`, v2 — 16/60 (26.7%), US$0.0633
-   - Isha Kirti Ghia — `meta-llama/llama-4-maverick`, v2 — 10/60 (16.7%), US$0.1481
-   - Zhang Jiayang — `google/gemini-2.5-flash-lite`, v1 (control) — 6/60 (10.0%), US$0.0420
-   - Sun Hanyu — `deepseek/deepseek-v3.2`, v2 — 16/60 (26.7%), US$0.0773 — **still in the wrong path** after two web uploads: the file sits at the repository root as `deepseek__deepseek-v3.2__v2.json`, and `results/scripted/live_results_backup.zip` is still there. The payload itself is valid (commit `42253ad`, clean tree, hashes match, 60 trials, no keys, byte-identical to the copy inside the archive), but `live_analysis.load_live_payloads()` only reads `results/live/*.json`, so as it stands the six-battery validation would see five. It must end up at `results/live/deepseek__deepseek-v3.2__v2.json` before the merge.
-   - **Still missing: Su Yang** (`anthropic/claude-haiku-4.5`, v2) — no branch created yet.
-2. **Phase B strand reviews: 4 of 6 returned** (Zhang Jiayang, Isha Kirti Ghia, SHI SHUYI in their branches; Meng Sijia sent hers to the team bot on 19 Sep 16:31 and it is **not yet in the repository** — she still needs to commit it to `review/member_work/`). Missing: Sun Hanyu, Su Yang.
-   - **Correction owed by Meng Sijia:** her review lists the ten *judgement* cases as the ten *negative* cases. Her quoted rule is right and the 40→60 arithmetic still holds, but the sets differ: the negatives are `CLM-8888, 8894, 8901, 8910, 8917, 8925, 8933, 8941, 8952, 9025`, while `CLM-8842` and `CLM-9019` are ordinary approvals that only appear in the judgement queue. Fix before the report and the video.
-3. **Ten human judgements: 2 of 10 filled** — SHI SHUYI's `CLM-8894` and `CLM-8941`, both `pass` with cited evidence. The remaining eight wait for the merge. Note the judgement surface is the frozen **scripted** run, so it does not depend on the live batteries.
-4. **Isha's Phase A case record is unsigned** — her document still reads "Awaiting Isha Kirti Ghia's personal confirmation before final sign-off", although she sent a completed worksheet to the team bot on 18 September.
-5. **Report has live placeholders and is over the cap** (2,021 prose words against 2,000); trim before inserting the real numbers from the six JSONs.
-6. **Not produced yet:** report PDF, team self-appraisal sheet, video link text file, the NTULearn folder copy of the code, final approval record, `PE6201_A2_B-1.zip`.
-7. **Merge step not yet done:** five member branches are pushed (`meng-sijia`, `shi-shuyi`, `isha-kirti-ghia`, `sun-hanyu`, `zhang-jiayang`); Su Yang's does not exist. An open pull request from `member/isha-kirti-ghia` must stay unmerged until the last battery lands — merging moves `main` off `42253ad` and would void any checkout that has not run yet.
+1. **Six of six batteries are in.** All recorded the frozen commit `42253ad` with a clean tree and matching case / answer-key / v2 prompt hashes, so none needs a rerun:
+   - Meng Sijia — gemini-2.5-flash-lite v2 — 9/60 (15.0%), US$0.0436
+   - SHI SHUYI — qwen3-30b-a3b-instruct-2507 v2 — 16/60 (26.7%), US$0.0633
+   - Su Yang — claude-haiku-4.5 v2 — **0/60**, US$0.1446 — every trial stopped before the first turn completed because the model returned its JSON inside a code fence; 58 recorded `tool_or_schema_error` plus 2 `backend_error` (429). Report as an output-format failure, never as a quality score.
+   - Isha Kirti Ghia — llama-4-maverick v2 — 10/60 (16.7%), US$0.1481
+   - Sun Hanyu — deepseek-v3.2 v2 — 16/60 (26.7%), US$0.0773
+   - Zhang Jiayang — gemini-2.5-flash-lite v1 (control) — 6/60 (10.0%), US$0.0420
+   Total measured spend: about US$0.52 across the six.
+2. **Two blockers must be fixed before the merge.** `live_analysis.validate_battery_set` compares the batteries' recorded commit with `git rev-parse HEAD`, which can never match once `main` moves past `42253ad`, and `analyse()` calls `implied_step_reliability` with Claude's median of 0 turns, which raises `median_turns must be positive`. Fixes are designed (compare against an explicit frozen-experiment commit; treat zero-turn batteries as N/A while keeping their failures and spend) and were proposed to Kyle, who has not yet answered. Details in `review/KYLE_NEXT_ACTIONS.md` Part C.
+3. **Strand reviews: 5 of 6 returned** — Zhang, Isha, SHI SHUYI, Meng (committed `40c7dd9`), Su (committed `f9ce8e9`). Missing: **Sun Hanyu**.
+4. **Ten human judgements: 2 of 10 filled** — SHI SHUYI's `CLM-8894` and `CLM-8941`, both `pass`. The surface is the frozen scripted run, so the live batteries do not gate the rest.
+5. **Sun Hanyu's result file needs renaming** to `results/live/deepseek__deepseek-v3.2__v2.json`; the payload is valid and loads, but the file name carries an extra prefix. He also owes a strand review.
+6. **Su Yang's commits are not linked to a GitHub account** (`author=null`; the committer email is a local machine address), so the contributor list will not credit him until he re-pushes with a registered address or adds that address to his account.
+7. **Report** carries 35 live placeholders and 1,899 prose words by the verifier's own count (under the 2,000 cap). The numbers must come from the six JSONs, and the Claude caveat must appear beside its 0/60.
+8. **Not produced yet:** report PDF, team self-appraisal sheet, video link text file, the NTULearn folder copy of the code, `FINAL_APPROVAL.json`, `PE6201_A2_B-1.zip`.
+9. **Merge step not yet done.** All six member branches merge cleanly in rehearsal; the open PR from `member/isha-kirti-ghia` still must not be merged on its own. After the merge, `CONTRIBUTIONS.md` must be updated with each member's commit hash so the file and the history corroborate each other.
 
 ## Known limitation to state honestly in the report
 

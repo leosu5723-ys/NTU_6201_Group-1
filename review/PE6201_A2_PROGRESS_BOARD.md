@@ -22,9 +22,9 @@
 | 1 | System: single-agent loop, 7 tools, harness, guardrails, experiments, cost model | 工程系统：Agent循环、7个工具、评测框架、guardrails、实验、成本模型 | ✅ Done / 完成 |
 | 2 | 40-case evaluation set with exactly 10 negative cases | 40个评测案例（含10个 negative） | ✅ Done / 完成 |
 | 3 | Everyone writes 5–8 evaluation cases | 全队案例撰写（每人5–8个） | ✅ 6 of 6 / 已交6人 |
-| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 **4 of 6 已交**（SHI SHUYI、Isha、Zhang 已在仓库；Meng 已通过团队 bot 提交，待推送到她的分支）|
+| 4 | Code review — each member reviews their own strand | 代码审阅：每人负责自己的 strand | 🟡 **5 of 6 已交**（Zhang、Isha、SHI SHUYI、Meng、Su 均已在各自分支；缺 Sun Hanyu）|
 | 5 | Freeze one version and push to GitHub | 冻结统一版本并 push 到 GitHub | ✅ Done / 完成 |
-| 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | 🟡 **5 of 6 已跑**（4 套已入库；Sun Hanyu 待按规范提交）|
+| 6 | Six live model batteries, one per member | 六套 live 模型测试（每人一套） | ✅ **6 of 6 已跑**，全部在冻结 commit 上（Sun 的文件名待更正；合并前需先修两处校验）|
 | 7 | Ten human judgements | 10项人工判定 | 🟡 **2 of 10**（SHI SHUYI 的两项已填；其余在六套合并后统一收集）|
 | 8 | Report with real live numbers | 报告填入真实数据 | 🟡 Draft exists / 草稿已有（2,021 词，已超 2,000 词上限）|
 
@@ -47,11 +47,11 @@
 
 | Member | Battery | Strand review | Note / 备注 |
 |---|---|---|---|
-| Meng Sijia | ✅ done | ✅ returned | 结果已在 `member/meng-sijia`；审阅通过团队 bot 于 9月19日 16:31 提交，**尚未在仓库里**，需她推到 `review/member_work/` |
+| Meng Sijia | ✅ done | ✅ returned | 结果、Phase A 与审阅均在 `member/meng-sijia`（提交 `40c7dd9`）|
 | SHI SHUYI | ✅ done | ✅ returned | 结果与审阅均在 `member/shi-shuyi` |
-| Su Yang | ⏳ not yet | ⏳ not yet | 分支尚未建立 / branch not created yet |
+| Su Yang | ✅ done | ✅ returned | 结果、Phase A 与成本 strand 审阅均在 `member/su-yang`（提交 `f9ce8e9`）；**提交邮箱未连 GitHub 账号**，需修 |
 | Isha Kirti Ghia | ✅ done | ✅ returned | Phase A 仍待她本人确认签署 |
-| Sun Hanyu | ⚠️ run complete, still in the wrong path | ⏳ not yet | 9月19日 16:57 重新上传了一次，但 JSON 落在**仓库根目录**而不是 `results/live/`；根目录那份和 `results/scripted/live_results_backup.zip` 都需要删掉后重传 |
+| Sun Hanyu | ⚠️ run complete, file name needs fixing | ⏳ not yet | 结果已落在 `results/live/`，但文件名是 `sun hanyudeepseek__deepseek-v3.2__v2.json`，需改成 `deepseek__deepseek-v3.2__v2.json`；另缺 code review |
 | Zhang Jiayang | ✅ done | ✅ returned | — |
 
 **One correction to send back to Meng Sijia / 需要退回给 Meng 的一处更正：** her Phase B review states that the ten *negative* cases are `CLM-8842, 8888, 8894, 8901, 8910, 8925, 8933, 8941, 8952, 9019`. Those are the ten **human-judgement** cases, not the negatives. The rule she quotes is correct (`is_negative` = expected decision `request_document` or `escalate`), and both sets happen to contain ten cases, so her 40→60 arithmetic still holds — but the case lists differ. The real negative set is `CLM-8888, 8894, 8901, 8910, **8917**, 8925, 8933, 8941, 8952, **9025**`; `CLM-8842` and `CLM-9019` are in the judgement queue but are ordinary approvals (one trial each). She should correct this before it goes into the report or the video.
@@ -65,13 +65,16 @@
 |---|---|---|---|---|---|
 | Meng Sijia | `google/gemini-2.5-flash-lite` | v2 | **9/60** (15.0%) | 9/30 | US$0.0436 |
 | SHI SHUYI | `qwen/qwen3-30b-a3b-instruct-2507` | v2 | **16/60** (26.7%) | 11/30 | US$0.0633 |
-| Su Yang | `anthropic/claude-haiku-4.5` | v2 | — | — | — |
+| Su Yang | `anthropic/claude-haiku-4.5` | v2 | **0/60**（格式失败，见下）| 0/30 | US$0.1446 |
 | Isha Kirti Ghia | `meta-llama/llama-4-maverick` | v2 | **10/60** (16.7%) | 9/30 | US$0.1481 |
 | Sun Hanyu | `deepseek/deepseek-v3.2` | v2 | **16/60** (26.7%) | 13/30 | US$0.0773 |
 | Zhang Jiayang | `google/gemini-2.5-flash-lite` | v1 (control) | **6/60** (10.0%) | 6/30 | US$0.0420 |
 
-All five recorded runs used the **same commit `42253ad`**, a clean tree, and identical case / answer-key / v2 prompt hashes. Five of five consistent — no rerun needed so far.
-五套已记录的运行使用**同一 commit `42253ad`**、树干净、案例/答案键/prompt 哈希一致。5/5 一致，目前没有一套需要重跑。
+All six recorded runs used the **same commit `42253ad`**, a clean tree, and identical case / answer-key / v2 prompt hashes. Six of six consistent — no rerun needed.
+六套已记录的运行使用**同一 commit `42253ad`**、树干净、案例/答案键/prompt 哈希一致。6/6 一致，无需重跑。
+
+**Claude 的 0/60 需要说明**：60 次试验都在第一个回合完成前中止，因为模型把 JSON 包在了代码围栏里，解析失败后按"失败即关闭"记成了升级。这是输出格式不符合要求，**不是质量评分**，报告里必须这样写。
+**Claude's 0/60 needs a caveat:** every trial stopped before the first turn completed because the model wrapped its JSON in a code fence; the fail-closed fallback recorded an escalation. It is an output-format failure, **not a quality score**, and the report must say so.
 
 The ACI comparison now has both halves of its pair: the **same model** scores 9/60 under the v2 prompt (Meng) and 6/60 under v1 (Zhang).
 v1/v2 对照现在两半都齐了：**同一个模型**在 v2 下 9/60（Meng），在 v1 下 6/60（Zhang）。
