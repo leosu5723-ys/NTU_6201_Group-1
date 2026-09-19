@@ -1,0 +1,50 @@
+[
+  {
+    "from": "results/live/anthropic__claude-haiku-4.5__v2.json",
+    "to": "results/round2_original/su-yang/anthropic__claude-haiku-4.5__v2.json",
+    "sha256_before": {
+      "anthropic__claude-haiku-4.5__v2.json": "42d22278d285ddc537f009f0cd1735183fdf229f9e05b678c0a2dfdf3747fbd3"
+    },
+    "bytes_preserved": true
+  },
+  {
+    "from": "results/live/anthropic__claude-haiku-4.5__v2-logs",
+    "to": "results/round2_original/su-yang/anthropic__claude-haiku-4.5__v2-logs",
+    "sha256_before": {
+      "CLM-9012-trial-1/decision_logs/CLM-9012-trial-1.jsonl": "86a710196fc43a3ea514da6f7568a71701271f00c69d8994b518c971cbb841f4",
+      "CLM-8933-trial-3/decision_logs/CLM-8933-trial-1.jsonl": "755f2254d7aa02138e648f34d6d7f736e6ac2322230598ac938466a8caf678dc",
+      "CLM-8925-trial-1/decision_logs/CLM-8925-trial-1.jsonl": "0012313455136e42a4b1e877719d37f48cb430c526a95712a4af5a3cf1d3e199",
+      "CLM-9011-trial-1/decision_logs/CLM-9011-trial-1.jsonl": "afda982e75894956f07625b4ceb280513758b4b2f11859e2e7a504c80f8de067",
+      "CLM-8894-trial-1/decision_logs/CLM-8894-trial-1.jsonl": "b95279d7ff822ffff669816859eacd6d0c2b170590822ff2583e6cd0e1f9c381",
+      "CLM-8917-trial-3/decision_logs/CLM-8917-trial-1.jsonl": "2f50b8dde889f773ad183cb16d799d21f27c27e1bdab1a62204cc97004075ef6",
+      "CLM-8910-trial-1/decision_logs/CLM-8910-trial-1.jsonl": "6a116d66714e5278988e66acd6a6e67d416f2f09e9903ecb316b104f6e9ef4e8",
+      "CLM-9010-trial-1/decision_logs/CLM-9010-trial-1.jsonl": "1c208052aa7161d044c2337a62e827bdff094cafaadb21f6a144a2d4f44246fd",
+      "CLM-8917-trial-2/decision_logs/CLM-8917-trial-1.jsonl": "f700d6cef2464297a4ade2a799c6ada25e1add868429ec964c466324c483640f",
+      "CLM-8861-trial-1/decision_logs/CLM-8861-trial-1.jsonl": "96af3b644564c8d3104329f67f99d820e1991183215d617e61ec6ec302e6800d",
+      "CLM-8842-trial-1/decision_logs/CLM-8842-trial-1.jsonl": "f3a1fede6f6d110cd256b92418f7c429833bfa5ad5d600a343913a1ab3115d8e",
+      "CLM-9023-trial-1/decision_logs/CLM-9023-trial-1.jsonl": "945fd088c051150bdbd5fa26496b96ba9b497d45e8af27979f81508487cf4511",
+      "CLM-8888-trial-1/decision_logs/CLM-8888-trial-1.jsonl": "0b0186cc874259d7727f1cb1639c331fd5b3c4331fbb4d3117cd80092717fe3f",
+      "CLM-8925-trial-2/decision_logs/CLM-8925-trial-1.jsonl": "2db07215cd282662f5acfd81c9822b35ce698b9049572a028cc1f6d894038d52",
+      "CLM-9022-trial-1/decision_logs/CLM-9022-trial-1.jsonl": "5b27345d61c9ab8523c057b9b8da642a17681bf934a2ecd840eb95cb345a7f3a",
+      "CLM-9004-trial-1/decision_logs/CLM-9004-trial-1.jsonl": "b81114754ba4232c1bd85239a81496bea1ff1a687812002de273b0a6d937609a",
+      "CLM-8894-trial-2/decision_logs/CLM-8894-trial-1.jsonl": "8efe7e85fbeb15a6e32914fdeffd822283823cbe0bc9f7941a73642cff8a8049",
+      "CLM-8901-trial-3/decision_logs/CLM-8901-trial-1.jsonl": "dd94b394e4b0775775180ce884b76990facde7bc7ba89d24ad22b26327b18d9c",
+      "CLM-8894-trial-3/decision_logs/CLM-8894-trial-1.jsonl": "ee0d1b1363abab61b22366c417547a9351e13bd1dedb7c95b0758c330529d5d4",
+      "CLM-9006-trial-1/decision_logs/CLM-9006-trial-1.jsonl": "edd48457449215e13a80f42bcb4b66b4a9f0fa08ff06f36fd3263bb04c5686a9",
+      "CLM-9016-trial-1/decision_logs/CLM-9016-trial-1.jsonl": "1b2e8dcdf43e23a2b7d5230075f9c3715613b7c1e50893026302255764afefd1",
+      "CLM-8910-trial-2/decision_logs/CLM-8910-trial-1.jsonl": "0149e39ccdf44274fe60e215fd5629d465b884906c6deda0aee4db83e7877b45",
+      "CLM-9017-trial-1/decision_logs/CLM-9017-trial-1.jsonl": "7c045f806c1c6d0c7a0cb21f6072ce93dc7ad5befdbf4634d9b1dac176285b00",
+      "CLM-8850-trial-1/decision_logs/CLM-8850-trial-1.jsonl": "35abf48c5ab891821193f2ba4faee2a5585e79e0dc1fbbe61c16d08c65477e29",
+      "CLM-8910-trial-3/decision_logs/CLM-8910-trial-1.jsonl": "777724f91d0110f097d277cafdeaa2ce28b2923525711c9688607a1e90c9e5f1"
+    },
+    "bytes_preserved": true
+  },
+  {
+    "from": "results/live/anthropic__claude-haiku-4.5__v2__supplementary.json",
+    "to": "results/live/anthropic__claude-haiku-4.5__v2.json",
+    "sha256_before": {
+      "anthropic__claude-haiku-4.5__v2__supplementary.json": "cec3ab5e4eae23ce275d4e84ff05c7b0ce2a1d495f06bdf4f972ecf8615956af"
+    },
+    "bytes_preserved": true
+  }
+]
