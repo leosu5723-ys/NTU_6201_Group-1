@@ -11,10 +11,11 @@
 
 The system is built, tested and frozen on GitHub. What is left is the part only **you** can do:
 
-1. run your **live battery** (one model, your own key),
+1. run your **live battery** (one model, your own course key),
 2. write your **strand review** (code review of your module),
-3. fill your **judgement cases** (human decision on real outputs),
-4. record your **video segment**.
+3. fill your **judgement cases** (human decision on real outputs).
+
+There is a fourth item, the **video segment**, but **do not start it now**. We will record only after all six batteries are in, so that the numbers on screen are real. At that point the team agrees the running order together: who speaks, what each person says, and what is on screen. Nobody records on their own before that.
 
 ## The one rule
 
@@ -150,10 +151,11 @@ Name and date:
 
 系统已经做好、测试通过、并在 GitHub 上冻结。剩下的只有**你本人**能做的四件事：
 
-1. 跑你的 **live battery**（一个模型，用你自己的 key）
+1. 跑你的 **live battery**（一个模型，用你自己的课程 key）
 2. 写你的 **strand review**（你负责模块的代码审阅）
 3. 填你的 **judgement cases**（对真实输出做人工判定）
-4. 录你的 **视频片段**
+
+还有第四件事——**视频片段**——但**现在先不要动**。要等六套 battery 都跑完、屏幕上的数字都是真实的之后才录。到那时我们一起商定顺序：谁先讲、每个人说什么、画面上放什么。在那之前不要各自开录。
 
 ## 唯一的底线
 
