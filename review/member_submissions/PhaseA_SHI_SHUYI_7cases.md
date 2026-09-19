@@ -1,9 +1,11 @@
-# PE6201 A2 — Phase A Case Authoring (R2)
+# PE6201 A2: Phase A Evaluation Contracts
 
 **Member:** SHI SHUYI
 **Assigned cases:** `CLM-8850`, `CLM-8888`, `CLM-8925`, `CLM-9002`, `CLM-9008`, `CLM-9013`, `CLM-9019`
+**Additional integration case:** `CLM-9012`. Eight contracts in total; the filename retains the original seven-case allocation for traceability.
 **Date:** 2026-09-19
 **Basis:** The source facts below come from the frozen fixture records and read-only tool lookups. The contracts are written against the official Problem A routing rules. No Agent trajectory was used.
+**Revision scope:** Documentation clarification against round-two experiment `f8a1d7450a4bee92c24f38a6924436bc9faabdaf`. This revision does not change fixtures, expected outcomes, scoring or the experimental freeze. The original contracts and authorship record remain available in Git history.
 
 ---
 
@@ -17,7 +19,7 @@
 - **Required line dispositions / evidence:**
   - `99213` — SGD 180 — covered — evidence `POL-6001`
   - Hospital `H-207` (Mount Elizabeth East) is on panel.
-- **Decision boundary and rationale:** This is the baseline ordinary approval. All three early-exit checks pass (policy live, no duplicate, panel hospital), the only line resolves as covered, and the claim total equals the approved total. The routing rule therefore requires the acting outcome. If the service date fell before `2026-06-01` the outcome would become `escalate` with trigger `outside_policy_dates`.
+- **Decision boundary and rationale:** This is the baseline ordinary approval. Policy status, service dates and remaining annual limit permit processing, and no duplicate is found. Hospital panel status is recorded separately as payment-basis evidence; it is not an escalation trigger. The only line resolves as covered, and the claim total equals the approved total. The routing rule therefore requires the acting outcome. If the service date fell before `2026-06-01` the outcome would become `escalate` with trigger `outside_policy_dates`.
 - **Fixed machine-check fields:** `decision = approve_in_principle`; `approved_total = 180`; `refused_total = 0`; line `99213` status `covered`; `expected_action_count = 1`.
 - **Case-specific `must_record`:** Must record policy `POL-6001` as active with the service date inside its dates, the single line disposition `99213 covered 180`, and an approved total of SGD 180 with SGD 0 refused.
 - **My authorship or substantive revision:** Defined the decision boundary for the baseline approval, fixed the line disposition and totals, and added the counterfactual escalation boundary for an out-of-dates service date.
@@ -31,13 +33,13 @@
 
 - **Decision:** `request_document`
 - **Trigger / missing item / escalation target:** Missing item — **pre-authorisation reference for line 62480, valid on 2026-09-08**. No escalation trigger applies.
-- **Approved total / refused total:** Not applicable. This is a document-request outcome, so no payable totals are issued.
+- **Approved total / refused total:** The final outcome is a document request, not a completed payment approval. For the round-two decision-tool payload, the resolved covered line totals SGD 900 and the resolved excluded line totals SGD 300. These are partial-resolution amounts, not approval of the unresolved SGD 1,200 line.
 - **Required line dispositions / evidence:**
   - `47120` — SGD 900 — covered — evidence `POL-7220`
   - `31255` — SGD 300 — excluded — evidence `EX-14` (cosmetic dermatology)
   - `62480` — SGD 1,200 — unresolved: requires pre-authorisation and none exists
 - **Decision boundary and rationale:** Procedure `62480` requires a pre-authorisation, and `get_preauthorisation` returns `status = missing` for member `M-6118` on `2026-09-08`. Appendix A requires a document request, naming the exact thing missing and the line it belongs to. The other two lines are already resolved, which is why the record must show resolved lines alongside the single unresolved one rather than treating the whole claim as undecidable. If the pre-authorisation existed and was valid on the service date, the outcome would become an approval.
-- **Fixed machine-check fields:** `decision = request_document`; `missing = "pre-authorisation reference for line 62480, valid on 2026-09-08"`; `expected_action_count = 1`; no approved or refused total.
+- **Fixed machine-check fields:** `decision = request_document`; `missing = "pre-authorisation reference for line 62480, valid on 2026-09-08"`; `expected_action_count = 1`. The final request does not require payment totals. Separately, the decision-tool payload retains only the resolved lines (`47120 covered`, `31255 excluded`), with `approved_total = 900` and `refused_total = 300`; unresolved line `62480` is identified in `missing`, not submitted as a resolved disposition.
 - **Case-specific `must_record`:** Must record the exact missing item together with line `62480` and the required validity date `2026-09-08`, and must preserve the two already-resolved dispositions (`47120` covered, `31255` excluded under `EX-14`).
 - **My authorship or substantive revision:** Defined the missing-item contract for an absent pre-authorisation, fixed the resolved-line dispositions that must survive alongside the request, and added the counterfactual that a valid pre-authorisation converts the outcome to an approval.
 - **Name and date:** SHI SHUYI — 2026-09-19
@@ -149,4 +151,4 @@
 
 ## Submission Note
 
-This file contains SHI SHUYI's Phase A evaluation contracts for the seven assigned Problem A cases and is ready for team integration review.
+This file contains SHI SHUYI's seven assigned Problem A contracts and the additional CLM-9012 contract completed during integration. The contracts specify decision boundaries, required evidence and case-specific acceptance criteria. The frozen answer key is unchanged.

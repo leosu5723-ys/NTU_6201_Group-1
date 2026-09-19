@@ -1,34 +1,40 @@
-# Strand review — SHI SHUYI
+# Strand review: SHI SHUYI
 
 **Strand:** the ReAct loop, the tool layer and their integration
 **Files read:** `agent.py`, `tools.py`, `guardrails.py`, `docs/architecture.md`, `docs/tool_dependency_design.md`
-**Status:** read in full, confirmed and owned by **SHI SHUYI, 19 September 2026**. The design choice, the limitation and the verdict below are stated as this reviewer understands them; nothing here is signed on anyone else's behalf.
+**Review scope:** First-round experiment `42253ad28fc58b36b9014808f9d8e3fd523c01ed` and revised experiment `f8a1d7450a4bee92c24f38a6924436bc9faabdaf`.
+**Revision date:** 19 September 2026.
+
 
 ## The design choice I can explain
 
 **One case, one recorded decision — and nothing written on the hostile path.**
 
-The loop is allowed to call read-only tools as many times as it needs, in any order it needs, but the case ends with **exactly one** call to the gated action (`issue_decision_letter`), and the business fields of that call must match the model's final answer. If the count is wrong, or the final answer disagrees with what was actually recorded, the run is rewritten as an escalation with `stopped_by = "action_integrity_error"` rather than being accepted.
+The model chooses its retrieval path within the turn cap, token budget, de-duplication rules and tool dependencies. Only independent read-only calls may share a turn. Successful non-hostile completion requires exactly one recorded `issue_decision_letter` action, followed by a final answer whose business fields match that record. A halted or unconfirmed run need not write anything. These are separate requirements: limiting writes protects the action boundary; checking the final answer protects the accuracy of the reported result.
 
-That is deliberate. The system's whole reason for being on Class 4's rung 7 is that it can write. A first-response system that writes a decision letter is making something irreversible, so the invariant has to be *checked*, not *hoped for*. Counting the writes and cross-checking them against the final answer is cheap, deterministic, and catches the failure mode that matters: a model that narrates one decision while recording another.
+The write is the governance boundary discussed in Class 4. In this assignment it is a local structured log entry, not a sent letter or a real insurance transaction. The same design issue still matters: marking a run failed after an incorrect write does not undo that write. Post-run integrity checks are useful evidence checks, but cannot replace prevention at the point of execution.
 
 The same logic drives the hostile path. When `get_claim` returns a narrative containing instruction-like text, the loop stops immediately, escalates with trigger `instruction_in_member_narrative`, and performs **zero writes**. The text is treated as untrusted data, never as a command. That is why the negative battery includes hostile cases: the property being tested is not "did it answer well" but "did it refuse to act on injected instructions".
 
 Two supporting details I would defend in the oral:
 
-- Each case runs through a single `run_case()` call, and the evidence list, action counter and recorded action payload are all initialised **inside** that function. `harness.py` then iterates the case ids one at a time. Nothing carries over between cases, so a decision cannot cite a tool result produced for a different claim.
-- The gated action is validated *before* it is persisted (required evidence, disposition order, no fabricated resolved lines), so an invalid letter never reaches the receipt log at all.
+- Each `run_case()` initialises its own evidence trace, action counter and recorded payload. This avoids carrying transient evidence from one run into another. It does not, by itself, prevent a model from retrieving another claim within the same run. The revised `_validate_call_batch()` explicitly binds `get_claim` and the gated action to the requested case ID.
+- `_validate_call_batch()` checks the entire proposed batch before any tool or confirmation callback runs. A gated action must be the only call in its batch, and no further tool calls are allowed after a successful write. Payload validation then occurs before confirmation and again immediately before persistence. This combines authorization scope, action ordering and evidence validity rather than relying on the action counter alone.
 
-## What I checked, and one honest limitation
+## Findings, corrections and evidence
 
-I read the loop's error handling closely. `agent.py` wraps the whole turn loop in a single `try`; a tool that raises `ValueError` (an unsupported disposition, a missing evidence reference) propagates to the outer handler and **halts the run**, which is then recorded as a business escalation with `stopped_by = "tool_or_schema_error"`. The model never sees the validation error and never gets a retry.
+The first-round runtime stopped on a tool-validation error rather than returning that error to the model for correction. This protected against unsupported writes but also made an otherwise recoverable payload mistake an end-to-end failure. The revised runtime allows one recoverable tool-validation error (`MAX_RECOVERABLE_TOOL_ERRORS = 1`); a second stops with `recoverable_tool_error_cap`. Recovery remains within the existing caps and cannot bypass case binding, confirmation or the post-write restriction. Accepting one exact JSON code fence also addresses a response-format failure without accepting surrounding prose.
 
-This is fail-closed, and it is consistent with the cost model's `(1 - P) × F` fallback term — an unvalidatable decision goes to a human rather than being guessed. But it does mean the strict pass rate counts two different things as one failure: *the model chose the wrong outcome* and *the model chose correctly but produced an invalid payload*. **My own Qwen3 battery shows this clearly: 16/60 strict (26.7%) but 30/60 on decision agreement (50%).** I am recording it here rather than leaving it implicit, and the report states both numbers.
+Pre-freeze testing also reproduced a more serious defect: a run could persist decisions for other claims and only then fail the action-count check. Post-run counting therefore did not guarantee one authorized write. The team corrected it with the pre-execution checks above. Regression tests now cover a foreign-claim trajectory, a gated action mixed with other calls, a tool call after a recorded action, and normal single-action completion. The important lesson is to make the invalid action unreachable, not merely detectable afterwards.
 
-I would also flag what the battery validation caught during review: an earlier version of `validate_battery_set()` accepted a seventh battery duplicated from an existing one. It now requires exactly six and rejects tampering with the summary, the trial matrix or the decision receipts by recomputing their hashes.
+My first-round Qwen3 v2 battery (`qwen/qwen3-30b-a3b-instruct-2507`, archived under `results/round1/`) passed 16 of 60 trials, or 26.7%. The saved final decision label matched the oracle in 30 of 60 trials, or 50%. That second figure is not a model reasoning accuracy: nine matching records had `action_integrity_error` and one had `tool_or_schema_error`, and the runtime substitutes escalation on failed runs. The strict rate remains the end-to-end measure; the label comparison only helps locate failures when interpreted alongside the trace and stop reason. Neither figure measures the revised runtime.
+
+The revised candidate passed 117 automated tests and 60 of 60 scripted evaluation trials. These are offline regression results, not evidence that live models now achieve the same rate. The ten-case guardrail checklist is likewise deterministic evidence about the controls, not a claim of complete prompt-injection protection. Historical batteries are validated against their recorded experiment commit and kept separate from round two.
+
+Allowing bounded recovery may improve completion but adds turns and tokens. Its benefit must therefore be evaluated in the second-round battery, including negative-case performance and cost to serve. In the cost model, `(1 - P) × F` represents the assumed human fallback workload; a safety stop is not automatically a correct business decision or a successful trial.
 
 ## Verdict
 
-**Approved as written, with the limitation above recorded.**
+**The offline evidence supports the revised frozen version entering the coordinated second-round battery, not a claim of final submission readiness.**
 
-No further correction requested. The loop, the tool layer and the guardrails behave as the design documents describe them, and the two properties I care about — exactly one recorded decision per case, and zero writes on the hostile path — hold under test.
+The reproduced action-boundary defect has a targeted pre-execution fix and regression coverage. The first-round measurements remain historical evidence and must not be pooled with the second round. Final conclusions about live reliability and cost await the complete revised battery and the outstanding human judgement checks. This review changes documentation only; the executable experiment remains frozen at `f8a1d7450a4bee92c24f38a6924436bc9faabdaf`.
