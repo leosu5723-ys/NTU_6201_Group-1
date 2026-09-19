@@ -35,7 +35,14 @@
 
 ## Live model battery
 
-**LIVE RUN PENDING. No model result is represented as measured.**
+| Model | Prompt | Trials | Overall pass | Negative pass | Tokens in | Tokens out | Cost |
+|---|---|---:|---:|---:|---:|---:|---:|
+| anthropic/claude-haiku-4.5 | v2 | 60 | 35 / 60 | 18 / 30 | 1,019,878 | 43,031 | US$1.2350 |
+| deepseek/deepseek-v3.2 | v2 | 60 | 55 / 60 | 29 / 30 | 826,587 | 35,150 | US$0.0952 |
+| google/gemini-2.5-flash-lite | v1 | 60 | 33 / 60 | 18 / 30 | 983,338 | 43,068 | US$0.0743 |
+| google/gemini-2.5-flash-lite | v2 | 60 | 20 / 60 | 15 / 30 | 977,866 | 44,425 | US$0.0753 |
+| meta-llama/llama-4-maverick | v2 | 60 | 53 / 60 | 27 / 30 | 986,462 | 28,824 | US$0.2222 |
+| qwen/qwen3-30b-a3b-instruct-2507 | v2 | 60 | 33 / 60 | 21 / 30 | 986,325 | 32,347 | US$0.0774 |
 
 ## Per-case grading map
 

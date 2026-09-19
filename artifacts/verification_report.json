@@ -8,12 +8,33 @@
   "scripted_trials": 60,
   "scripted_passed": 60,
   "guardrail_cases": 10,
-  "live_batteries_found": 0,
-  "live_v2_models_found": [],
-  "live_v1_batteries_found": 0,
-  "live_set_valid": false,
-  "live_set_error": "A measured evidence set must contain exactly six batteries",
-  "live_set_validation": null,
+  "live_batteries_found": 6,
+  "live_v2_models_found": [
+    "anthropic/claude-haiku-4.5",
+    "deepseek/deepseek-v3.2",
+    "google/gemini-2.5-flash-lite",
+    "meta-llama/llama-4-maverick",
+    "qwen/qwen3-30b-a3b-instruct-2507"
+  ],
+  "live_v1_batteries_found": 1,
+  "live_set_valid": true,
+  "live_set_error": null,
+  "live_set_validation": {
+    "commit": "f8a1d7450a4bee92c24f38a6924436bc9faabdaf",
+    "v2_models": [
+      "anthropic/claude-haiku-4.5",
+      "deepseek/deepseek-v3.2",
+      "google/gemini-2.5-flash-lite",
+      "meta-llama/llama-4-maverick",
+      "qwen/qwen3-30b-a3b-instruct-2507"
+    ],
+    "v1_model": "google/gemini-2.5-flash-lite",
+    "fixture_hashes": {
+      "claims": "86961fe3a1660432381c441a8a44a948d5f1fdeda6a271a97f63b566ba2f708b",
+      "answer_key": "680fe106cd8319012470c961239a5ea24083cb3fa68f9247f17c34a888d02100",
+      "scripts": "43a07a6cf40bec9d3e95131402e5af1e7bb15093165b9ed73ad87c97fb324374"
+    }
+  },
   "judgement_checks_completed": 2,
   "judgement_checks_ready": false,
   "mandatory_deliverables_missing": [
@@ -48,7 +69,7 @@
       ],
       "returncode": 0,
       "stdout": "",
-      "stderr": "ionTest) ... ok\ntest_every_callable_tool_has_complete_descriptor (test_prompt_contract.PromptContractTests) ... ok\ntest_only_review_claim_line_aci_changes_between_versions (test_prompt_contract.PromptContractTests) ... ok\ntest_prompt_records_every_supported_non_hostile_first_response (test_prompt_contract.PromptContractTests) ... ok\ntest_shared_descriptors_state_nonapproval_prerequisites (test_prompt_contract.PromptContractTests) ... ok\ntest_system_prompt_marks_narrative_untrusted_and_defines_output (test_prompt_contract.PromptContractTests) ... ok\ntest_v1_and_v2_are_distinct_auditable_artifacts (test_prompt_contract.PromptContractTests) ... ok\ntest_rejected_nine_tool_block_is_measured_against_selected_seven (test_prompt_experiment.PromptExperimentTests) ... ok\ntest_implied_step_reliability_works_backwards_from_run_pass_rate (test_reliability.ReliabilityTests) ... ok\ntest_invalid_inputs_fail_loudly (test_reliability.ReliabilityTests) ... ok\ntest_markdown_uses_saved_scripted_evidence_and_marks_live_pending (test_result_tables.ResultTableTests) ... ok\ntest_builder_creates_one_fixed_trajectory_per_case (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_committed_inventory_exactly_matches_the_builder (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_early_escalations_do_not_review_individual_lines (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_ordinary_multiline_claim_groups_independent_line_reviews (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_blank_worksheet_matches_fixture_renderer (test_team_review_pack.TeamReviewPackTests) ... ok\ntest_worksheet_allocation_matches_all_authorities (test_team_review_pack.TeamReviewPackTests) ... ok\ntest_approval_rejects_reordered_line_dispositions (test_tools_a.ProblemAToolContractTests) ... ok\ntest_business_escalation_rejects_line_amounts (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_fabricated_resolved_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_skipped_eligibility_checks (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_totals_not_supported_by_resolved_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_duplicate_escalation_rejects_skipped_policy_check (test_tools_a.ProblemAToolContractTests) ... ok\ntest_duplicate_requires_all_four_business_facts (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_accepts_a_supported_business_escalation (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_accepts_a_supported_document_request (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_appends_one_structured_record (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_rejects_incomplete_or_inconsistent_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_line_review_exposes_required_document_status (test_tools_a.ProblemAToolContractTests) ... ok\ntest_line_review_keeps_exclusion_at_line_level (test_tools_a.ProblemAToolContractTests) ... ok\ntest_policy_context_exposes_machine_checkable_boundaries (test_tools_a.ProblemAToolContractTests) ... ok\ntest_post_write_fsync_error_recovers_the_exact_persisted_receipt (test_tools_a.ProblemAToolContractTests) ... ok\ntest_preauthorisation_distinguishes_valid_expired_and_missing (test_tools_a.ProblemAToolContractTests) ... ok\ntest_v1_line_return_is_larger_and_less_poka_yoke_than_v2 (test_tools_a.ProblemAToolContractTests) ... ok\ntest_case_signoff_requires_case_linked_work_for_every_assignment (test_verify_submission.VerificationTests) ... ok\ntest_empty_placeholder_files_do_not_satisfy_mandatory_gate (test_verify_submission.VerificationTests) ... ok\ntest_reported_readiness_matches_the_repository_state (test_verify_submission.VerificationTests)\nReadiness must describe the tree as it actually is, at any stage. ... ok\n\n----------------------------------------------------------------------\nRan 117 tests in 3.165s\n\nOK\n"
+      "stderr": "ionTest) ... ok\ntest_every_callable_tool_has_complete_descriptor (test_prompt_contract.PromptContractTests) ... ok\ntest_only_review_claim_line_aci_changes_between_versions (test_prompt_contract.PromptContractTests) ... ok\ntest_prompt_records_every_supported_non_hostile_first_response (test_prompt_contract.PromptContractTests) ... ok\ntest_shared_descriptors_state_nonapproval_prerequisites (test_prompt_contract.PromptContractTests) ... ok\ntest_system_prompt_marks_narrative_untrusted_and_defines_output (test_prompt_contract.PromptContractTests) ... ok\ntest_v1_and_v2_are_distinct_auditable_artifacts (test_prompt_contract.PromptContractTests) ... ok\ntest_rejected_nine_tool_block_is_measured_against_selected_seven (test_prompt_experiment.PromptExperimentTests) ... ok\ntest_implied_step_reliability_works_backwards_from_run_pass_rate (test_reliability.ReliabilityTests) ... ok\ntest_invalid_inputs_fail_loudly (test_reliability.ReliabilityTests) ... ok\ntest_markdown_uses_saved_scripted_evidence_and_marks_live_pending (test_result_tables.ResultTableTests) ... ok\ntest_builder_creates_one_fixed_trajectory_per_case (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_committed_inventory_exactly_matches_the_builder (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_early_escalations_do_not_review_individual_lines (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_ordinary_multiline_claim_groups_independent_line_reviews (test_scripted_trajectories.ScriptedTrajectoryTests) ... ok\ntest_blank_worksheet_matches_fixture_renderer (test_team_review_pack.TeamReviewPackTests) ... ok\ntest_worksheet_allocation_matches_all_authorities (test_team_review_pack.TeamReviewPackTests) ... ok\ntest_approval_rejects_reordered_line_dispositions (test_tools_a.ProblemAToolContractTests) ... ok\ntest_business_escalation_rejects_line_amounts (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_fabricated_resolved_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_skipped_eligibility_checks (test_tools_a.ProblemAToolContractTests) ... ok\ntest_document_request_rejects_totals_not_supported_by_resolved_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_duplicate_escalation_rejects_skipped_policy_check (test_tools_a.ProblemAToolContractTests) ... ok\ntest_duplicate_requires_all_four_business_facts (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_accepts_a_supported_business_escalation (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_accepts_a_supported_document_request (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_appends_one_structured_record (test_tools_a.ProblemAToolContractTests) ... ok\ntest_irreversible_action_rejects_incomplete_or_inconsistent_lines (test_tools_a.ProblemAToolContractTests) ... ok\ntest_line_review_exposes_required_document_status (test_tools_a.ProblemAToolContractTests) ... ok\ntest_line_review_keeps_exclusion_at_line_level (test_tools_a.ProblemAToolContractTests) ... ok\ntest_policy_context_exposes_machine_checkable_boundaries (test_tools_a.ProblemAToolContractTests) ... ok\ntest_post_write_fsync_error_recovers_the_exact_persisted_receipt (test_tools_a.ProblemAToolContractTests) ... ok\ntest_preauthorisation_distinguishes_valid_expired_and_missing (test_tools_a.ProblemAToolContractTests) ... ok\ntest_v1_line_return_is_larger_and_less_poka_yoke_than_v2 (test_tools_a.ProblemAToolContractTests) ... ok\ntest_case_signoff_requires_case_linked_work_for_every_assignment (test_verify_submission.VerificationTests) ... ok\ntest_empty_placeholder_files_do_not_satisfy_mandatory_gate (test_verify_submission.VerificationTests) ... ok\ntest_reported_readiness_matches_the_repository_state (test_verify_submission.VerificationTests)\nReadiness must describe the tree as it actually is, at any stage. ... ok\n\n----------------------------------------------------------------------\nRan 117 tests in 3.981s\n\nOK\n"
     },
     {
       "command": [
