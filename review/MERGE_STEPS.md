@@ -80,6 +80,7 @@ for f in sorted(glob.glob('results/live/*.json')):
 
 ## After the merge
 
+- `python3 -m unittest discover -s tests -q` and confirm **OK (101 tests)**. The readiness test compares the reported counts with the files actually in `results/live/` and `review/judgement_verdicts.json`, so it passes before and after the batteries land — if it fails here, a real inconsistency was merged in.
 - `python3 verify_submission.py` and confirm what it reports.
 - Run the official validation over the six batteries: `python3 live_analysis.py` (or the documented entry point) — this is where a mismatched commit, a duplicated battery or a tampered summary gets rejected.
 - Only then fill the report's live numbers.
