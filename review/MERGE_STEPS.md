@@ -38,10 +38,15 @@ for b in meng-sijia su-yang isha-kirti-ghia sun-hanyu zhang-jiayang; do
 done
 git merge --no-ff origin/member/shi-shuyi -m "Merge member/shi-shuyi"
 
-git push -c credential.helper='!gh auth git-credential' origin main
+# Push. The -c option belongs BEFORE the subcommand: `git -c ... push`, never `git push -c ...`
+# (the wrong order fails with a usage error and nothing is pushed).
+git -c credential.helper='!gh auth git-credential' push origin main
+# A plain `git push origin main` also works on this machine; the keychain helper is already configured.
 ```
 
 If a merge conflicts, stop and look at which file collided before resolving anything. With six independent `member_work` files and six differently-named JSON results, a conflict would mean two people edited the same shared file — worth understanding before you force anything.
+
+**The one shared file to watch:** `review/judgement_verdicts.json`. Six reviewers write into it, so if each member fills their own two rows on their own branch, every merge collides. The intended flow is that reviewers return their verdict, name and evidence to the group and SHI SHUYI fills the single file on `main` after the merge. Confirm that is what happened before merging, and if two branches do touch it, take both rows rather than one side's file.
 
 ## Verify afterwards
 
