@@ -51,7 +51,7 @@
 | SHI SHUYI | ✅ done | ✅ returned | 结果与审阅均在 `member/shi-shuyi` |
 | Su Yang | ⏳ not yet | ⏳ not yet | 分支尚未建立 / branch not created yet |
 | Isha Kirti Ghia | ✅ done | ✅ returned | Phase A 仍待她本人确认签署 |
-| Sun Hanyu | ⚠️ run complete, needs re-commit | ⏳ not yet | 结果以压缩包上传到 `results/scripted/`，需改放 `results/live/` |
+| Sun Hanyu | ⚠️ run complete, still in the wrong path | ⏳ not yet | 9月19日 16:57 重新上传了一次，但 JSON 落在**仓库根目录**而不是 `results/live/`；根目录那份和 `results/scripted/live_results_backup.zip` 都需要删掉后重传 |
 | Zhang Jiayang | ✅ done | ✅ returned | — |
 
 **One correction to send back to Meng Sijia / 需要退回给 Meng 的一处更正：** her Phase B review states that the ten *negative* cases are `CLM-8842, 8888, 8894, 8901, 8910, 8925, 8933, 8941, 8952, 9019`. Those are the ten **human-judgement** cases, not the negatives. The rule she quotes is correct (`is_negative` = expected decision `request_document` or `escalate`), and both sets happen to contain ten cases, so her 40→60 arithmetic still holds — but the case lists differ. The real negative set is `CLM-8888, 8894, 8901, 8910, **8917**, 8925, 8933, 8941, 8952, **9025**`; `CLM-8842` and `CLM-9019` are in the judgement queue but are ordinary approvals (one trial each). She should correct this before it goes into the report or the video.
