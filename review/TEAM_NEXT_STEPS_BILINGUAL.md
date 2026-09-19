@@ -1,6 +1,7 @@
 # PE6201 A2 · What to do next / 下一步怎么做
 
 **English first, then 中文. / 先英文，后中文。**
+**Deadline: Sunday 20 September 2026, 23:59 SGT. / 截止：9月20日（周日）23:59。**
 
 ---
 
@@ -50,7 +51,10 @@ steps in order. Stop and ask me whenever I have to type something myself.
 3. git checkout -b member/<MY-BRANCH-NAME> main
 
 4. Run: git rev-parse HEAD
-   Print the result and remember it. This is the frozen version.
+   It must print 42253ad28fc58b36b9014808f9d8e3fd523c01ed
+   If it prints anything else, run:
+     git fetch origin && git checkout main && git pull
+   and check again. If it still differs, stop and tell me.
 
 5. Verify the checkout works:
    python3 -m unittest discover -s tests -q      # expect: OK (101 tests)
@@ -102,6 +106,8 @@ steps in order. Stop and ask me whenever I have to type something myself.
 | Zhang Jiayang | `google/gemini-2.5-flash-lite` | `v1` | `zhang-jiayang` |
 
 Zhang Jiayang runs `v1` on purpose: it is the control for the v1-versus-v2 comparison. Do not change Meng Sijia's `v2` result.
+
+**Why branches, not `main`:** all six batteries must run on the exact same frozen commit. If anyone pushes to `main`, the tip moves and anyone who clones afterwards gets a different version — their result would record a different commit and the six runs would no longer be comparable. SHI SHUYI merges all six branches at the end.
 
 ## Step 3 · Your strand review
 
@@ -181,6 +187,8 @@ Name and date:
 | Zhang Jiayang | `google/gemini-2.5-flash-lite` | `v1` | `zhang-jiayang` |
 
 Zhang Jiayang 跑 `v1` 是故意的：他是 v1/v2 对照实验的对照组。**不要**动 Meng Sijia 的 `v2` 结果。
+
+**为什么要用分支而不是直接推 main：** 六套 battery 必须跑在**完全同一个 commit** 上。只要有人推了 main，分支顶端就会移动，之后才 clone 的人拿到的版本就不同了——他们结果里记录的 commit 会和大家对不上，六套结果就不能作为一组比较。最后由 SHI SHUYI 统一合并六个分支。
 
 ## 第 3 步 · 你的 strand review
 
