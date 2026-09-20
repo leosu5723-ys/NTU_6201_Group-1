@@ -4,6 +4,12 @@ Team B-1 implementation of Problem A. This repository contains one hand-written 
 
 The harness is the primary deliverable. The submitted default uses no network and no API key.
 
+## Video demonstration
+
+[![Watch the Team B-1 demonstration on YouTube](https://img.youtube.com/vi/7jRAWV-R2JI/hqdefault.jpg)](https://youtu.be/7jRAWV-R2JI)
+
+▶ [Watch the demonstration on YouTube](https://youtu.be/7jRAWV-R2JI)
+
 ## Reproduce the scripted result
 
 Requirements: Python 3.10 or newer. No third-party packages are required.
