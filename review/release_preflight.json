@@ -1,0 +1,57 @@
+{
+  "status": "code_preflight_passed_not_submission_approval",
+  "archive": "PE6201_A2_CODE_PREFLIGHT_NOT_FINAL.zip",
+  "archive_sha256": "3d8269449c91223b304648d8149ccf92169451bf57fa0c7a5f654b79aeedc60d",
+  "file_count": 455,
+  "network": "Python socket connections blocked for subprocesses",
+  "credentials": "key/token/secret/password environment entries removed",
+  "commands": [
+    {
+      "command": "python3 A2_reference_data/check_my_data.py",
+      "exit_code": 0,
+      "log": "preflight-1.log"
+    },
+    {
+      "command": "python3 run_eval.py",
+      "exit_code": 0,
+      "log": "preflight-2.log"
+    },
+    {
+      "command": "python3 run_eval.py --guardrails",
+      "exit_code": 0,
+      "log": "preflight-3.log"
+    },
+    {
+      "command": "python3 run_eval.py --parallel",
+      "exit_code": 0,
+      "log": "preflight-4.log"
+    },
+    {
+      "command": "python3 run_eval.py --failures",
+      "exit_code": 0,
+      "log": "preflight-5.log"
+    },
+    {
+      "command": "python3 run_eval.py --prompt --prompt-version v1",
+      "exit_code": 0,
+      "log": "preflight-6.log"
+    },
+    {
+      "command": "python3 run_eval.py --prompt --prompt-version v2",
+      "exit_code": 0,
+      "log": "preflight-7.log"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -q",
+      "exit_code": 0,
+      "log": "preflight-8.log"
+    }
+  ],
+  "experiment_freeze": "f8a1d7450a4bee92c24f38a6924436bc9faabdaf",
+  "remaining": [
+    "team appraisal approval and signature",
+    "video final and access",
+    "final package assembly and upload"
+  ],
+  "log_location": "Local course Final-preparation directory (not published)"
+}

@@ -15,7 +15,7 @@ Each member's Phase A document is preserved unchanged in `review/member_submissi
 | Meng Sijia | 6 cases: CLM-8842, CLM-8901, CLM-8910, CLM-9001, CLM-9007, CLM-9018 | 2026-09-14 | Independently authored contracts. Her document reviewed `CLM-9013` (another member's assigned case) instead of the assigned `CLM-9012`, so `CLM-9012` was authored by the integration owner. Her `CLM-9013` review is retained as an additional cross-check. |
 | SHI SHUYI | 8 cases: CLM-8850, CLM-8888, CLM-8925, CLM-9002, CLM-9008, CLM-9012, CLM-9013, CLM-9019 | 2026-09-19 | Authored `CLM-9012` after integration review found it uncovered; authored `CLM-9013` as originally assigned. |
 | Su Yang | 7 cases: CLM-8861, CLM-8894, CLM-8933, CLM-9003, CLM-9009, CLM-9014, CLM-9020 | 2026-09-14 | Disclosed AI-assisted drafting reviewed and accepted without requested substantive changes. Recorded as disclosed rather than as unaided authorship. |
-| Isha Kirti Ghia | 7 cases: CLM-8874, CLM-8941, CLM-8960, CLM-9004, CLM-9010, CLM-9015, CLM-9021 | 2026-09-19 | Updated review committed in `d18883b`, with a signed ending but an inconsistent “awaiting confirmation” header. Both are preserved; the member must reconcile the status. |
+| Isha Kirti Ghia | 7 cases: CLM-8874, CLM-8941, CLM-8960, CLM-9004, CLM-9010, CLM-9015, CLM-9021 | 2026-09-19 | Reviewed and confirmed in `review/member_work/Isha_Kirti_Ghia_Phase_A_reviewed.md`; the current reviewed copy has a confirmed header and personal sign-off. Original submission history is retained. |
 | Sun Hanyu | 7 cases: CLM-8917, CLM-8952, CLM-8971, CLM-9005, CLM-9011, CLM-9016, CLM-9022 | 2026-09-14 | Contracts derived from a local scripted-backend run rather than solely from source facts and Appendix A. Recorded as disclosed; the decisions agree with the frozen oracle. |
 | Zhang Jiayang | 5 cases: CLM-9006, CLM-9017, CLM-9023, CLM-9024, CLM-9025 | 2026-09-17 | Independently authored contracts with explicit decision boundaries and counterfactuals. |
 
@@ -43,9 +43,24 @@ All 40 cases are covered exactly once, and no member's recorded decision contrad
 | Sun Hanyu | `deepseek/deepseek-v3.2`, v2 | Round one received: 16/60; member tip `cb1d6f4` |
 | Zhang Jiayang | `google/gemini-2.5-flash-lite`, v1 | Round one received: 6/60; member tip `7089eb5` |
 
-All six original batteries recorded experiment commit `42253ad28fc58b36b9014808f9d8e3fd523c01ed`. Their complete files are preserved byte-for-byte under `results/round1/`, separately from the pending second-round results under `results/live/`. These are strict end-to-end scores, not pure model-capability scores. Original author commits are preserved by ordinary merges, not squashed or recreated by the integration owner.
+All six original batteries recorded experiment commit `42253ad28fc58b36b9014808f9d8e3fd523c01ed`. Their complete files are preserved byte-for-byte under `results/round1/`, separately from the selected second-round results under `results/live/`. These are strict end-to-end scores, not pure model-capability scores. Original author commits are preserved by ordinary merges, not squashed or recreated by the integration owner.
 
-Round two is not yet measured. No member is credited with a second run, final judgement, presentation or approval before their evidence arrives. SHI SHUYI coordinates integration and reviews the combined evidence with AI assistance; this does not replace the members' own execution or authorship.
+## Phase D — selected Round 2 and human review
+
+All six selected batteries use experiment `f8a1d7450a4bee92c24f38a6924436bc9faabdaf`. Their complete results are in `results/live/`; the integration record is `review/ROUND2_INTEGRATION_SUMMARY.md`. The table above remains a historical Round 1 record, not the current comparison.
+
+| Member | Selected Round 2 battery | Strict passes | Review evidence |
+|---|---|---:|---|
+| Meng Sijia | Gemini 2.5 Flash Lite v2 | 20/60 | Live judgement; scripted CLM-8933; report review |
+| SHI SHUYI | Qwen3 30B A3B Instruct v2 | 33/60 | Live judgement; scripted CLM-8842 and CLM-8901; report review; integration coordination |
+| Su Yang | Claude Haiku 4.5 v2 | 35/60 | Live judgement; scripted CLM-8952; cost/report review |
+| Isha Kirti Ghia | Llama 4 Maverick v2 | 53/60 | Live judgement; scripted CLM-8910; report review |
+| Sun Hanyu | DeepSeek V3.2 v2 | 55/60 | Live judgement; scripted CLM-8925; report review |
+| Zhang Jiayang | Gemini 2.5 Flash Lite v1 control | 33/60 | Live judgement; scripted CLM-8888 and CLM-9019; interface/report corrections |
+
+Claude's selected battery is a complete rerun following rate-limit disruption; the initial run remains preserved separately, with no trial splicing. Each member's selected live review covers ten cases and 26 trials. `review/round2_judgement/calibrated/` preserves the agreed final-delivery standard with an audit trail; raw artifacts and machine scores are unchanged. Scripted judgement is recorded in `review/judgement_verdicts.json` (10/10 completed, including earlier reviewed cases).
+
+SHI SHUYI coordinates integration and reviews the combined evidence with AI assistance; this does not replace members' own execution or authorship. The coordinator reports that all six members have recorded their narration. The edited video, team self-appraisal ratings/declaration/signature and final release approval remain pending verification.
 
 ## Integrated build evidence
 

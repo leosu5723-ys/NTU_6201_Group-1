@@ -1,64 +1,73 @@
-# Team Self-Appraisal Working Draft
+# Team Self-Appraisal: review-ready answers
 
-This is a review aid only. Complete the official Word form together after the live evidence and final report exist.
+Transfer the approved answers into the official PE6201_A2_Team_Self_Appraisal.docx. This working copy is not a signed form.
 
 ## Header
 
-- Team ID: B-1
-- Section: B
-- Problem: A
-- Members: Meng Sijia; SHI SHUYI; Su Yang; Isha Kirti Ghia; Sun Hanyu; Zhang Jiayang
+- Team ID: B-1; Section B; Problem A.
+- Members: Meng Sijia; SHI SHUYI; Su Yang; Isha Kirti Ghia; Sun Hanyu; Zhang Jiayang.
 - Repository: https://github.com/leosu5723-ys/NTU_6201_Group-1
-- Date: [FINAL DATE]
+- Signing date: complete at actual team approval.
 
 ## 1. Rubric rating
 
-Do not select bands until the clean-clone test, live batteries, judgement checks and video review are complete.
+Team decision required for each: Conceptual Understanding (25%); Technical Execution (30%); Reasoning & Justification (25%); Communication & Clarity (20%). Available bands: Excellent (4), Proficient (3), Developing (2), Limited (1). No rating is selected here. Communication should be assessed after reviewing the actual video.
 
-- Conceptual Understanding: [FINAL TEAM RATING]
-- Technical Execution: [FINAL TEAM RATING]
-- Reasoning & Justification: [FINAL TEAM RATING]
-- Communication & Clarity: [FINAL TEAM RATING]
+## 2. The decision we would defend hardest
 
-## 2. The one decision we would defend hardest
+We would defend the dependency rule behind our parallel calls. The starter example paired a policy lookup with coverage calls that needed the policy ID it had not yet returned. Our line-review interface instead uses the member ID already available from the claim and resolves the policy internally. The scripted comparison retained 40/40 correct cases while reducing turns from 251 to 157 and estimated input tokens from 911,506 to 609,144. This is measured efficiency on the scripted trajectories, not proof that every live model will choose the same ordering.
 
-We would defend our dependency rule and the related redesign of the line-review tool. The starter example placed a policy lookup and coverage calls requiring its policy ID in the same turn, which a live model could not reproduce without hidden fixture knowledge. We changed the line-review signature to use the member ID already returned by the claim and resolve the policy internally. We also delayed line review until policy eligibility and duplicate history had passed, preserving early exits. In the scripted comparison, this safe parallel design kept 40/40 cases correct while reducing total turns from 251 to 157 and estimated input tokens from 742,622 to 495,381.
+## 3. The decision we are least sure about
 
-## 3. The one we are least sure about
-
-Our hostile-input control is deliberately narrow. It detects the supplied attack families and an additional role-style instruction, but pattern matching cannot establish protection against paraphrased or novel prompt injection. Once `get_claim` returns a matched narrative, the code escalates before that observation is sent back to the model. The scripted checklist therefore measures the shipped guardrail, while the live battery cannot be interpreted as a test of the model's own resistance to those matched attacks. A production system would need broader adversarial testing and independent security review.
+Our hostile-input protection is deliberately narrow. Known instruction patterns are detected in code before the claim observation returns to the model. Passing these cases demonstrates the shipped guard, not independent model resistance to prompt injection. We would require broader adversarial testing and independent security review before deployment, including paraphrases that do not match the current patterns.
 
 ## 4. Headline numbers
 
-| Field | Value |
-|---|---:|
+| Official field | Evidence-backed value |
+|---|---|
 | Evaluation cases | 40 |
-| Guardrail cases | 10 |
+| Guardrail cases | 10 scripted guardrail checklist cases; distinguish these from the 3 live injection cases |
 | Negative cases | 10 |
-| Live runs per model | 60 |
-| Pass rate, best model | [LIVE RESULT] |
-| Pass rate on negatives only | [LIVE RESULT] |
-| Models in battery | 5 v2 families plus one Gemini v1 pass |
-| Median turns per run | [LIVE RESULT] |
-| Live model each member ran | [INSERT SIX MEMBER RESULTS] |
-| Turns saved by parallel calls | 94 total scripted turns across one trial per 40 cases |
-| Cost per successful task | [LIVE COST MODEL] |
-| Monthly cost at 8,000 claims | [LIVE COST MODEL] |
-| Break-even success rate | [LIVE COST MODEL] |
-| Tokens per call, v1 to v2 | [LIVE COMPARISON] |
-| Pass rate, v1 to v2 | [LIVE COMPARISON] |
+| Live runs per model | 60: 30 ordinary cases once and 10 negative cases three times |
+| Best-model strict pass rate | DeepSeek V3.2 v2: 55/60 (91.7%) |
+| Best-model negative pass rate | 29/30 (96.7%) |
+| Models in battery | Five v2 model families plus Gemini v1 control |
+| Median turns | DeepSeek: 4 |
+| Turns saved by parallel calls | 94 across 40 scripted cases; 251 to 157 |
+| Cost per successful task | Escalation-cost convention: $0.82758 per incoming task resolved by agent or human fallback, before monthly fixed cost. Not API spend divided by agent successes and not retry-until-success cost. |
+| Monthly cost at 8,000 claims | DeepSeek scenario: $7,020.66 including $400 fixed cost |
+| Break-even success rate | Qwen requires 89.12% case-balanced success to match DeepSeek's expected cost; measured 47.50% |
+| Tokens per call, v1 to v2 | Gemini mean observation estimate: 82.37 to 63.42; representative missing-document observation: 115 to 56. Estimates, not billed token counts. |
+| Pass rate, v1 to v2 | Same Gemini model: 33/60 (55.0%) to 20/60 (33.3%) |
 
-## 5. Contribution
+### All members' live runs
 
-Copy only completed and evidenced work from `CONTRIBUTIONS.md`. Do not turn intended ownership into completed contribution.
+| Member | Model / version | Strict passes |
+|---|---|---:|
+| Meng Sijia | Gemini 2.5 Flash Lite v2 | 20/60 |
+| SHI SHUYI | Qwen3 30B A3B Instruct v2 | 33/60 |
+| Su Yang | Claude Haiku 4.5 v2, selected complete rerun | 35/60 |
+| Isha Kirti Ghia | Llama 4 Maverick v2 | 53/60 |
+| Sun Hanyu | DeepSeek V3.2 v2 | 55/60 |
+| Zhang Jiayang | Gemini 2.5 Flash Lite v1 control | 33/60 |
 
-## 6. Declaration preconditions
+All selected runs use f8a1d7450a4bee92c24f38a6924436bc9faabdaf. Claude's initial rate-limited run remains archived separately; no trials were spliced.
 
-Every box can be ticked only after:
+## 5. Contribution wording for team review
 
-- All six members can explain every submitted code block at function level.
-- All reported pass rates, token counts, turns and costs come from saved execution evidence.
-- The clean scripted run works without a key or network.
-- `check_my_data.py` passes and shipped fixture fingerprints remain unchanged.
-- No A2 artefact is reused in an individual project.
-- Sources, tools and AI assistance are attributed.
+| Member | Owned | Also contributed to |
+|---|---|---|
+| Meng Sijia | Case contracts; evaluation-harness strand review; Gemini v2 battery | Live judgement, scripted CLM-8933 and report review |
+| SHI SHUYI | Case contracts; integrated-loop/tool-layer review; Qwen v2 battery; integration coordination | Combined evidence interpretation, human-review calibration and report review |
+| Su Yang | Case contracts; cost/ledger/sensitivity review; Claude v2 battery | Live judgement, scripted CLM-8952 and report review |
+| Isha Kirti Ghia | Case contracts; dependency/parallel-call review; Llama v2 battery | Loop/interface repair proposals; live judgement, scripted CLM-8910 and report review |
+| Sun Hanyu | Case contracts; scripted/negative/hostile-input review; DeepSeek v2 battery | Live judgement, scripted CLM-8925 and report review |
+| Zhang Jiayang | Case contracts; descriptors/ACI/guardrails/tool-selection review; Gemini v1 battery | Live judgement, scripted CLM-8888/CLM-9019 and report corrections |
+
+Match the final contribution log and preserved member commits. Video participation is not yet credited. Original Phase A disclosures remain in the source records; this table does not assert unaided drafting.
+
+## 6. Declaration: leave unticked until team confirmation
+
+Use the official wording without weakening it. Each member must confirm code-block understanding, actual execution underlying reported measurements, no-key/no-network scripted reproducibility, fixture preservation and labelled cases, no reuse from or into the individual project, and attribution of sources/tools/assistance. Actual execution with AI assistance is not invented measurement; disclose assistance accurately. The signatory and signing date must be supplied by the team. Do not infer signatures from report feedback.
+
+Evidence: report/PE6201_A2_Report_Draft.md; artifacts/live_analysis_round2.json; review/ROUND2_INTEGRATION_SUMMARY.md; review/round2_judgement/calibrated/; original member commits. The official template contains historical deadline text; check the later course extension when submitting rather than treating the printed date as current.

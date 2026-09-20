@@ -1,55 +1,38 @@
 # Submission Manifest and Gates
 
-## Required final artefacts
+Technical evidence is complete; final submission is not approved. No new paid run is requested. Round 2 experiment freeze remains `f8a1d7450a4bee92c24f38a6924436bc9faabdaf`.
 
-| Artefact | Location | Current state |
-|---|---|---|
-| Public repository | `https://github.com/leosu5723-ys/NTU_6201_Group-1` | Remote still contains only the initial README; local integrated candidate not pushed |
-| Code copy in NTULearn folder | Final submission package | Not assembled |
-| Team report, maximum 2,000 prose words | `report/PE6201_A2_Report_Draft.md` | 1,475 draft prose words; 35 live-result placeholders |
-| Five-minute demonstration link | Final report or submission folder | Storyboard prepared; recording pending |
-| Team self-appraisal | Official Word template | Working answers prepared; final numbers and signatures pending |
-| Team declaration | Official Word template | Team has prepared it; model names and sign-off require final confirmation |
-| Contribution log | `CONTRIBUTIONS.md` | Structure prepared; member evidence pending |
+| Artefact | Current state |
+|---|---|
+| Public repository | https://github.com/leosu5723-ys/NTU_6201_Group-1 — This closing-document revision follows `c766373e2982f5f5bd9b3758c0671fd1d8f299f6`; see the current main commit for its release identifier. The coordinator approved publication of the closing documents, not final NTULearn submission. |
+| Code copy | Preflight archive and independent extraction test recorded in `review/release_preflight.json`; not the final submission archive. |
+| Report | `report/PE6201_A2_Report_Draft.md`: 1,638 prose words, no placeholders. PDF exported in the course submission preparation directory. |
+| Self-appraisal | Official template prefilled in course submission preparation directory. Ratings, declarations, signature and date remain unfilled. |
+| Video | All six narrations reported recorded; teammate assembling GitHub/code/result screen recordings. No PPT required. Final duration/access unverified. |
+| Contribution record | Round 2 and human review added to `CONTRIBUTIONS.md`; original history retained. |
+| Early declaration | Completed local form exists; NTULearn receipt not verified. |
+| Peer rating | Individual completion and current deadline require NTULearn verification; old printed dates are not current authority. |
 
-## Deterministic evidence complete
+## Completed evidence
 
-- [x] Problem A configured
-- [x] 40 claims and 40 labels
-- [x] All 15 supplied claims preserved
-- [x] Exactly 10 negative cases
-- [x] `check_my_data.py` passes
-- [x] 60 scripted trials pass code checks
-- [x] Ten guardrail cases pass
-- [x] Three full hostile-input guardrail cases
-- [x] Parallel and sequential modes retain 40/40 correctness
-- [x] Two distinct D7 failures reproduce
-- [x] Full scripted set returns to 60/60 after restoration
-- [x] v1 and v2 prompt text and hashes frozen
-- [x] Five live model IDs and prices checked
-- [x] Dry-run-only live runner prepared
-- [x] No API key or private absolute path in saved evidence
-- [x] Python 3.9 standard-library tests pass
+- [x] 40 claims and labels, supplied fixtures preserved, 10 negative cases
+- [x] Six selected live batteries validated against one frozen experiment
+- [x] Scripted 60/60 and 117 unit tests passing
+- [x] Guardrail, parallel and two failure experiment evidence
+- [x] Scripted human judgement 10/10 completed
+- [x] Selected live reviews and calibration audit preserved separately from machine scores
+- [x] Report populated with measurements, costs, negative results and limitations
+- [x] README and contribution status updated
 
-## Human and live gates still required
+## Remaining gates
 
-- [ ] Team reviews and freezes case labels
-- [ ] Team reviews ten scripted judgement cases
-- [ ] Local candidate receives independent specification and code review
-- [ ] Frozen clean commit selected
-- [ ] Optional smoke tests kept separate
-- [ ] Five v2 model batteries completed from the same commit
-- [ ] Gemini v1 battery completed against the same Gemini model
-- [ ] Human judgement verdicts completed on selected live outputs
-- [ ] Cost model populated from measured usage
-- [ ] Report placeholders replaced with measured results
-- [ ] Final model recommendation and limitations approved
-- [ ] Individual video scripts generated from final evidence
-- [ ] Every member completes code walkthrough
-- [ ] Official self-appraisal completed and signed
-- [ ] Video recorded and checked under five minutes
-- [ ] Final clean clone reproduces all scripted evidence
-- [ ] Code copy and all required files assembled in the submission archive
-- [ ] Kyle approves remote push and final submission package
+- [ ] Team confirms appraisal ratings, reflection/contribution wording and every official declaration
+- [ ] Representative signs and dates the official form
+- [ ] Final video checked: every member speaks, actual negative run, numbers, no secrets, at most five minutes
+- [ ] Video link accessible to marker without access requests
+- [ ] Approved closing documents committed/pushed and remote read-back verified
+- [ ] Final package assembled with report, official appraisal, code and video link
+- [ ] Final package approved and uploaded; NTULearn receipt verified
+- [ ] Early declaration receipt and individual peer ratings checked
 
-`artifacts/verification_report.json` is the machine-readable status. `submission_ready` must remain false until the live batteries and all report placeholders are complete.
+`FINAL_APPROVAL.json` and the archive filename used by the local verifier are internal release controls, not additional instructor-prescribed deliverables. Keep `submission_ready` false until real final artefacts and approvals exist.
